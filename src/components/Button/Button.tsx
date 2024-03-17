@@ -1,27 +1,30 @@
-import PropTypes from 'prop-types'
-import './Button.css'
+import PropTypes from 'prop-types';
+import {ButtonProps} from '../../utils/types/ButtonProps.types';
+import './Button.css';
 
-const Button = (
-    {text}: {text: string},
-    {onClickFunction}: {onClickFunction?: () => void},
-) => {
+const Button = (props: ButtonProps) => {
     return (
         <div>
-            <button className='btn' onClick={onClickFunction}>
-                {text}
+            <button
+                type={props.type}
+                className={'button ' + (props.className ? props.className : '')}
+                onClick={props.onClick}
+                data-testid='button-test-id'
+            >
+                {props.buttonText}
             </button>
         </div>
-    )
-}
+    );
+};
 
 Button.defaultProps = {
     text: 'Button',
     onClickFunction: () => console.log('Click'),
-}
+};
 
 Button.prototype = {
     text: PropTypes.string,
     onClickFunction: PropTypes.func,
-}
+};
 
-export default Button
+export default Button;

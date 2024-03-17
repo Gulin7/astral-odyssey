@@ -1,0 +1,16 @@
+.header {
+    background: url('../../assets/main-bg-2.jpg') no-repeat center center/cover;
+    height: 200px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.header-container {
+    height: 80%;
+    width: 80%;
+    margin: 0 auto;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}

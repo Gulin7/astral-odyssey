@@ -1,0 +1,16 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.layout {
+    display: grid;
+    grid-template-areas:
+        'header' 'header'
+        'navbar' 'main'
+        'footer' 'footer';
+    min-height: 100vh;
+    min-width: 100vw;
+    align-items: center;
+}

@@ -1,20 +1,15 @@
+import {CharacterCardProps} from '../../utils/types/CharacterCardProps.types';
 import './CharacterCard.css';
 
-const CharacterCard = (
-    {id}: {id: number},
-    {name}: {name: string},
-    {charClass}: {charClass: string},
-    {race}: {race: string},
-    {skinUrl}: {skinUrl: string},
-) => {
+const CharacterCard = (prosp: CharacterCardProps) => {
     return (
         <div className='card'>
-            <h2 className='character-name'>Name: {name}</h2>
-            <img src={skinUrl} alt={name} className='skin' />
+            <h2 className='character-name'>Name: {prosp.name}</h2>
+            <img src={prosp.skinUrl} alt={prosp.name} className='skin' />
             <div className='card-info'>
-                <div className='character-class'>Class: {charClass}</div>
-                <div className='character-race'>Race: {race}</div>
-                <div className='character-id'>ID: {id}</div>
+                <div className='character-class'>Class: {prosp.charClass}</div>
+                <div className='character-race'>Race: {prosp.race}</div>
+                <div className='character-id'>ID: {prosp.id}</div>
             </div>
             <button
                 className='button-delete'

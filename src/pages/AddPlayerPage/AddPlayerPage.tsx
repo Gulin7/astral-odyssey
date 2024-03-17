@@ -65,7 +65,7 @@ const AddPlayerPage = () => {
                         id={idInput}
                         username={usernameInput}
                         nickname={nicknameInput}
-                        url={urlInput}
+                        pictureUrl={urlInput}
                         data-testid='player-form-id'
                     />
                     <Button

@@ -5,7 +5,7 @@ import {Player} from '../../models/Player';
 import './PlayersPage.css';
 
 const PlayersPage = () => {
-    document.title = 'Astral Odyssey | Users';
+    document.title = 'Astral Odyssey | Players';
 
     const playersContext = useContext(PlayersContext)!;
 
@@ -16,7 +16,7 @@ const PlayersPage = () => {
         <div>
             <div className='main-page'>
                 <div className='main-page-container'>
-                    <div className='users-list' data-testid='users-list-id'>
+                    <div className='players-list' data-testid='users-list-id'>
                         {playersArray.map((player: Player) => (
                             <PlayerCard
                                 givenPlayer={player}

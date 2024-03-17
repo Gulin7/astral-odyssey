@@ -3,7 +3,7 @@ import {PlayerCardPropsType} from '../../utils/types/PlayerCardProps.types';
 import './PlayerCard.css';
 
 const PlayerCard = ({givenPlayer, removePlayer}: PlayerCardPropsType) => {
-    let path: string = 'assets/' + givenPlayer.getPictureUrl();
+    let path: string = '../../assets/' + givenPlayer.getPictureUrl();
 
     const navigate = useNavigate();
 

@@ -3,11 +3,22 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import './App.css';
 import {PlayersContextProvider} from './contexts/PlayersContext';
 import {Player} from './models/Player';
+import AddPlayerPage from './pages/AddPlayerPage/AddPlayerPage';
 import PlayerProfilePage from './pages/PlayerProfilePage/PlayerProfilePage';
 import PlayersPage from './pages/PlayersPage/PlayersPage';
 
-let player1: Player = new Player(1, 'gulintudor', 'MareBarosSan', 'player.jpg');
-let player2: Player = new Player(2, 'danutgolut', 'xXxDanFTWxXx', 'player.jpg');
+let player1: Player = new Player(
+    1,
+    'gulintudor',
+    'MareBarosSan',
+    'profile-1.png',
+);
+let player2: Player = new Player(
+    2,
+    'danutgolut',
+    'xXxDanFTWxXx',
+    'profile-1.png',
+);
 
 function App() {
     let [players, setPlayers] = useState<Player[]>([player1, player2]);
@@ -29,7 +40,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<PlayersPage />} />
-                    <Route path='/addPlayer' element={<PlayersPage />} />
+                    <Route path='/addPlayer' element={<AddPlayerPage />} />
                     <Route
                         path='/playerProfile/:playerId'
                         element={<PlayerProfilePage />}

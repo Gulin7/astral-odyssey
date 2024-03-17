@@ -2,10 +2,6 @@ import {Link} from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
-    const goToCharacters = () => {};
-    const goToArmorShop = () => {};
-    const goToWeaponShop = () => {};
-    const goToPotionShop = () => {};
     return (
         <nav className='navbar' data-testid='navbar-test-id'>
             <h2 className='nav-title'>Astral Odyssey</h2>

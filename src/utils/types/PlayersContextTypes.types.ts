@@ -3,7 +3,7 @@ import {Player} from '../../models/Player';
 
 export type PlayersContextType = {
     players: Player[];
-    addPlayer: (players: Player[]) => void;
+    addPlayer: (players: Player) => void;
     removePlayer: (playerId: number) => void;
 };
 

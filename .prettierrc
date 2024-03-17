@@ -7,11 +7,11 @@
     "useTabs": false,
     "endOfLine": "auto",
     "arrowParens": "always",
-    "semi": false,
+    "semi": true,
     "max-line-length": [
         true,
         {
-            "limit": 140,
+            "limit": 160,
             "ignore-pattern": "^import |^export {(.*?)}"
         }
     ]

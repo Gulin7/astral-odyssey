@@ -1,15 +1,19 @@
-import Footer from '../../layouts/footer/Footer';
-import Header from '../../layouts/header/Header';
-import Navbar from '../../layouts/navbar/Navbar';
+import MainLayout from '../../layouts/mainLayout/MainLayout';
 import './HomePage.css';
 
 const HomePage = () => {
     return (
-        <div>
-            <Header title='Astral Odyssey' />
-            <Navbar />
-            <Footer />
-        </div>
+        <MainLayout>
+            <div className='main-page'>
+                <div className='main-page-container'>
+                    <h2 className='main-title'>Welcome to Astral Odyssey</h2>
+                    <div className='main-description'>
+                        This is a game where you can create your own character
+                        and explore the world of Astral Odyssey.
+                    </div>
+                </div>
+            </div>
+        </MainLayout>
     );
 };
 

@@ -1,7 +1,6 @@
-export type CharacterCardProps = {
-    id: number;
-    name: string;
-    charClass: string;
-    race: string;
-    skinUrl: string;
+import Character from '../../models/Character';
+
+export type CharacterCardPropsType = {
+    givenCharacter: Character;
+    removeCharacter: (CharacterId: number) => void;
 };

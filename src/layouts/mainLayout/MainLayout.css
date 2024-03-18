@@ -4,17 +4,36 @@ body {
     margin: 0;
 }
 
-.layout {
-    display: grid;
-    grid-template-areas:
-        'header' 'header'
-        'navbar' 'main'
-        'footer' 'footer';
+.main-layout {
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
-    min-width: 100vw;
+    min-width: 100%;
     align-items: center;
 }
 
-.main-content {
-    flex: 1;
+.main-layout-content {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0.5rem;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.main-layout .navbar {
+    padding: 1rem;
+}
+
+.main-layout-section {
+    width: 80%;
+    margin: 0 auto;
+    background: #f9f5c5;
+}
+
+.footer {
+    margin-top: auto;
 }

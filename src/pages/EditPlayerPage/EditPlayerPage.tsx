@@ -1,10 +1,11 @@
 import React, {useContext} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
+import Button from '../../components/Button/Button';
 import {PlayersContext} from '../../contexts/PlayersContext';
 import {PlayerForm} from '../../features/CRUD/PlayerForm/PlayerForm';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
 import {Player} from '../../models/Player';
-import './PlayerProfilePage.css';
+import './EditPlayerPage.css';
 
 function handleOnClick(
     idInput: React.RefObject<HTMLInputElement>,
@@ -43,7 +44,7 @@ function handleOnClick(
     );
 }
 
-const PlayerProfilePage = () => {
+const EditPlayerPage = () => {
     document.title = 'Astral Odyssey | Player Profile';
 
     const idInput = React.createRef<HTMLInputElement>();
@@ -81,8 +82,10 @@ const PlayerProfilePage = () => {
         }
     };
 
+    const layoutTitle: string = 'Player Profile';
+
     return (
-        <MainLayout>
+        <MainLayout title={layoutTitle}>
             <div className='main-page'>
                 <div className='main-page-container'>
                     <PlayerForm
@@ -92,10 +95,17 @@ const PlayerProfilePage = () => {
                         pictureUrl={pictureUrlInput}
                         givenPlayer={givenPlayer}
                     />
+
+                    <Button
+                        type='submit'
+                        buttonText='Edit Player'
+                        onClick={handleOnClickWrapper}
+                        className='button-dark'
+                    />
                 </div>
             </div>
         </MainLayout>
     );
 };
 
-export default PlayerProfilePage;
+export default EditPlayerPage;

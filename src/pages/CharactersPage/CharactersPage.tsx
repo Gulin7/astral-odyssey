@@ -1,16 +1,17 @@
 import MainLayout from '../../layouts/mainLayout/MainLayout';
-import './ArmorPage.css';
+import './CharactersPage.css';
 
-const ArmorPage = () => {
-    document.title = 'Astral Odyssey | Armor Shop';
+const CharactersPage = () => {
+    document.title = 'Astral Odyssey | Characters';
+
     return (
         <MainLayout>
             <div className='main-page'>
                 <div className='main-page-container'>
-                    <h2 className='main-title'>Armor Shop</h2>
+                    <h2 className='main-title'>Characters</h2>
                     <div className='main-description'>
-                        This is the Armor shop where you can buy different
-                        armors for your character.
+                        This is the Characters page where you can create and
+                        manage your characters.
                     </div>
                 </div>
             </div>
@@ -18,4 +19,4 @@ const ArmorPage = () => {
     );
 };
 
-export default ArmorPage;
+export default CharactersPage;

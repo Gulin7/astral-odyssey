@@ -56,11 +56,13 @@ const AddPlayerPage = () => {
         }
     };
 
+    const layoutTitle: string = 'Add Player';
+
     return (
         <MainLayout>
             <div className='main-page' data-testid='main-page-id'>
                 <div className='main-page-container'>
-                    <div className='main-title'>Add Player</div>
+                    <div className='main-title'>{layoutTitle}</div>
                     <PlayerForm
                         id={idInput}
                         username={usernameInput}
@@ -73,6 +75,7 @@ const AddPlayerPage = () => {
                         buttonText='Add Player'
                         onClick={handleOnClickWrapper}
                         data-testid='add-player-button-id'
+                        className='button-dark'
                     />
                 </div>
             </div>

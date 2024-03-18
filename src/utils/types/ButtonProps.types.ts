@@ -1,6 +1,6 @@
 export type ButtonProps = {
     type: 'button' | 'submit' | 'reset' | undefined;
     buttonText: string;
-    onClick: () => void;
+    onClick: (e?: any) => void;
     className?: string;
 };

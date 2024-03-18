@@ -13,22 +13,37 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div>
+                    <Link to='/players' className='nav-link'>
+                        Players
+                    </Link>
+                </div>
+                <div>
+                    <Link to='/addPlayer' className='nav-link'>
+                        Add Player
+                    </Link>
+                </div>
+                <div>
                     <Link to='/characters' className='nav-link'>
                         Characters
                     </Link>
                 </div>
                 <div>
-                    <Link to='/armor' className='nav-link'>
+                    <Link to='/addCharacter' className='nav-link'>
+                        Add Character
+                    </Link>
+                </div>
+                <div>
+                    <Link to='/armorShop' className='nav-link'>
                         Armor
                     </Link>
                 </div>
                 <div>
-                    <Link to='/weapons' className='nav-link'>
+                    <Link to='/weaponShop' className='nav-link'>
                         Weapons
                     </Link>
                 </div>
                 <div>
-                    <Link to='/potions' className='nav-link'>
+                    <Link to='/potionShop' className='nav-link'>
                         Potions
                     </Link>
                 </div>

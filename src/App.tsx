@@ -30,11 +30,53 @@ let player3: Player = new Player(
     'ClasTreyler27',
     'profile-3.png',
 );
+let player4: Player = new Player(
+    4,
+    'nimrod2003',
+    'NimrodTheGoat',
+    'profile-4.png',
+);
+
+let character1: Character = new Character(
+    1,
+    'gabitzuMircea',
+    'Warrior',
+    'RasaMatii',
+    1,
+);
+
+let character2: Character = new Character(2, 'DanutGolut', 'Mage', 'Dwarf', 2);
+
+let character3: Character = new Character(
+    3,
+    'NinjaNarcis',
+    'Fighter',
+    'Human',
+    3,
+);
+
+let character4: Character = new Character(
+    4,
+    'NimrodTheGoat',
+    'Ranger',
+    'Elf',
+    4,
+);
 
 function App() {
-    let [players, setPlayers] = useState<Player[]>([player1, player2, player3]);
+    let [players, setPlayers] = useState<Player[]>([
+        player1,
+        player2,
+        player3,
+        player4,
+    ]);
 
-    let [characters, setCharacters] = useState<Character[]>([]);
+    let [characters, setCharacters] = useState<Character[]>([
+        character1,
+        character2,
+        character3,
+        character4,
+    ]);
 
     const addPlayer = (newPlayer: Player) => {
         setPlayers((prevState: Player[]) => [...prevState, newPlayer]);

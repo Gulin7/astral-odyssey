@@ -1,8 +1,8 @@
 import {forwardRef} from 'react';
-import {PlayerFormEntryProps} from '../../../utils/types/PlayerFormEntryProps.types';
+import {FormEntryProps} from '../../../utils/types/FormEntryProps.types';
 import './PlayerFormEntry.css';
 
-const PlayerFormEntry = forwardRef<HTMLInputElement, PlayerFormEntryProps>(
+const PlayerFormEntry = forwardRef<HTMLInputElement, FormEntryProps>(
     (props, ref) => {
         return (
             <div

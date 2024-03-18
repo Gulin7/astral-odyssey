@@ -1,18 +1,11 @@
 import {Player} from '../../../models/Player';
+import {FormEntryProps} from '../../../utils/types/FormEntryProps.types';
 import {PlayerFormType} from '../../../utils/types/PlayerFormProps.types';
 import {PlayerFormEntry} from '../PlayerFormEntry/PlayerFormEntry';
 import './PlayerForm.css';
 
-type PlayerFormEntryType = {
-    label: string;
-    ref: React.RefObject<HTMLInputElement>;
-    placeHolder: string;
-    defaultValue: string;
-    disabled: boolean;
-};
-
 function setPlayerFormEntriesForPlayer(
-    formEntries: PlayerFormEntryType[],
+    formEntries: FormEntryProps[],
     givenPlayer: Player | undefined,
 ) {
     if (givenPlayer !== undefined) {

@@ -3,8 +3,8 @@ import Character from '../../models/Character';
 
 export type CharactersContextType = {
     characters: Character[];
-    addCharacter: (Characters: Character) => void;
-    removeCharacter: (CharacterId: number) => void;
+    addCharacter: (characters: Character) => void;
+    removeCharacter: (characterId: number) => void;
 };
 
 export type ProviderType = {

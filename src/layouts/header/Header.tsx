@@ -4,7 +4,10 @@ import './Header.css';
 const Header = () => {
     return (
         <header className='header' data-testid='header-test-id'>
-            <div className='header-container'>
+            <div
+                className='header-container'
+                data-testid='header-container-test-id'
+            >
                 <h1>Astral Odyssey</h1>
             </div>
         </header>

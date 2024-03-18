@@ -7,7 +7,10 @@ const MainLayout = ({children}: {children?: any}) => {
     return (
         <div className='main-layout' data-testid='main-layout-test-id'>
             <Header />
-            <div className='main-layout-content'>
+            <div
+                className='main-layout-content'
+                data-testid='main-layout-content-test-id'
+            >
                 <Navbar />
                 <div className='main-layout-section'>
                     <h2></h2>

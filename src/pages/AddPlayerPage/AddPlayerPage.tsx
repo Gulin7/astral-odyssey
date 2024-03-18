@@ -50,7 +50,7 @@ const AddPlayerPage = () => {
                 urlInput,
             );
             playersContext.addPlayer(inputPlayer);
-            navigate('/');
+            navigate('/players');
         } catch (error) {
             alert(error);
         }

@@ -1,6 +1,6 @@
 import {useContext} from 'react';
-import PlayerCard from '../../components/PlayerCard/PlayerCard';
 import {PlayersContext} from '../../contexts/PlayersContext';
+import PlayerCard from '../../features/PlayerCard/PlayerCard';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
 import {Player} from '../../models/Player';
 import './PlayersPage.css';

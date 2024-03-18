@@ -57,7 +57,7 @@ const EditPlayerPage = () => {
 
     const {playerId} = useParams();
     if (!playerId) {
-        navigate('/');
+        navigate('/players');
         return;
     }
 
@@ -76,7 +76,7 @@ const EditPlayerPage = () => {
             playersContext.removePlayer(newPlayer.getId());
             playersContext.addPlayer(newPlayer);
 
-            navigate('/');
+            navigate('/players');
         } catch (error) {
             alert(error);
         }
@@ -85,9 +85,10 @@ const EditPlayerPage = () => {
     const layoutTitle: string = 'Player Profile';
 
     return (
-        <MainLayout title={layoutTitle}>
+        <MainLayout>
             <div className='main-page'>
                 <div className='main-page-container'>
+                    <h2 className='main-title'>{layoutTitle}</h2>
                     <PlayerForm
                         id={idInput}
                         username={usernameInput}

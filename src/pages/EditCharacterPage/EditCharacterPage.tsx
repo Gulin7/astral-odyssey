@@ -1,4 +1,4 @@
-import React, {useContext, useRef} from 'react';
+import React, {useContext} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import {CharactersContext} from '../../contexts/CharactersContext';
@@ -52,23 +52,23 @@ function handleOnClick(
 const EditCharacterPage = () => {
     document.title = 'Astral Odyssey | Character Profile';
 
-    const idInput = useRef<HTMLInputElement>(null);
-    const nameInput = useRef<HTMLInputElement>(null);
-    const classInput = useRef<HTMLInputElement>(null);
-    const raceInput = useRef<HTMLInputElement>(null);
-    const playerIdInput = useRef<HTMLInputElement>(null);
+    const idInput = React.createRef<HTMLInputElement>();
+    const nameInput = React.createRef<HTMLInputElement>();
+    const classInput = React.createRef<HTMLInputElement>();
+    const raceInput = React.createRef<HTMLInputElement>();
+    const playerIdInput = React.createRef<HTMLInputElement>();
 
     const navigate = useNavigate();
     const charactersContext = useContext(CharactersContext)!;
 
-    const {CharacterId} = useParams();
-    if (!CharacterId) {
-        navigate('/');
+    const {characterId} = useParams();
+    if (!characterId) {
+        navigate('/characters');
         return;
     }
 
     const givenCharacter = charactersContext.characters.find(
-        (Character: Character) => Character.getId() === parseInt(CharacterId),
+        (character: Character) => character.getId() === parseInt(characterId),
     );
 
     const handleOnClickWrapper = () => {
@@ -83,7 +83,7 @@ const EditCharacterPage = () => {
             charactersContext.removeCharacter(newCharacter.getId());
             charactersContext.addCharacter(newCharacter);
 
-            navigate('/');
+            navigate('/characters');
         } catch (error) {
             alert(error);
         }
@@ -92,9 +92,10 @@ const EditCharacterPage = () => {
     const layoutTitle: string = 'Character Profile';
 
     return (
-        <MainLayout title={layoutTitle}>
+        <MainLayout>
             <div className='main-page'>
                 <div className='main-page-container'>
+                    <h2 className='main-title'>{layoutTitle}</h2>
                     <CharacterForm
                         idInput={idInput}
                         nameInput={nameInput}

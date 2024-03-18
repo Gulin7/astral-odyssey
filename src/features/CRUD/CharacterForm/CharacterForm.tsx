@@ -1,19 +1,13 @@
 import Character from '../../../models/Character';
 import {CharacterFormType} from '../../../utils/types/CharacterFormProps.types';
+
+import {FormEntryProps} from '../../../utils/types/FormEntryProps.types';
 import {CharacterFormEntry} from '../CharacterFormEntry/CharacterFormEntry';
 
 import './CharacterForm.css';
 
-type CharacterFormEntryType = {
-    label: string;
-    ref: React.RefObject<HTMLInputElement>;
-    placeHolder: string;
-    defaultValue: string;
-    disabled: boolean;
-};
-
 function setCharacterFormEntriesForCharacter(
-    formEntries: CharacterFormEntryType[],
+    formEntries: FormEntryProps[],
     givenCharacter: Character | undefined,
 ) {
     if (givenCharacter !== undefined) {
@@ -23,6 +17,7 @@ function setCharacterFormEntriesForCharacter(
         formEntries[1].defaultValue = givenCharacter.getName();
         formEntries[2].defaultValue = givenCharacter.getCharClass();
         formEntries[3].defaultValue = givenCharacter.getRace();
+        formEntries[4].defaultValue = givenCharacter.getPlayerId().toString();
     }
 
     return formEntries;

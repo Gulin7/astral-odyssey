@@ -25,15 +25,15 @@ class Character {
 
     public getDefaultSkinUrl(): string {
         if (this.charClass === 'Warrior') {
-            return 'src/assets/warrior-default.png';
+            return 'warrior-default.png';
         } else if (this.charClass === 'Mage') {
-            return 'src/assets/mage-default.png';
+            return 'mage-default.png';
         } else if (this.charClass === 'Fighter') {
-            return 'src/assets/fighter-default.png';
+            return 'fighter-default.png';
         } else if (this.charClass === 'Ranger') {
-            return 'src/assets/ranger-default.png';
+            return 'ranger-default.png';
         }
-        return '';
+        return 'warrior-default';
     }
 
     public getId(): number {

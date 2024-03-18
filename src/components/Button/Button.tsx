@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import {ButtonProps} from '../../utils/types/ButtonProps.types';
 import './Button.css';
 
@@ -20,11 +19,6 @@ const Button = (props: ButtonProps) => {
 Button.defaultProps = {
     text: 'Button',
     onClickFunction: () => console.log('Click'),
-};
-
-Button.prototype = {
-    text: PropTypes.string,
-    onClickFunction: PropTypes.func,
 };
 
 export default Button;

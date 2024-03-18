@@ -24,18 +24,18 @@ function handleOnClick(
         throw new Error('All fields are required');
     }
 
-    const CharacterId: number = parseInt(idInput.current!.value);
-    const CharacterName: string = nameInput.current!.value;
-    const CharacterClass: string = classInput.current!.value;
-    const CharacterRace: string = raceInput.current!.value;
-    const CharacterPlayerId: number = parseInt(playerIdInput.current!.value);
+    const characterId: number = parseInt(idInput.current!.value);
+    const characterName: string = nameInput.current!.value;
+    const characterClass: string = classInput.current!.value;
+    const characterRace: string = raceInput.current!.value;
+    const characterPlayerId: number = parseInt(playerIdInput.current!.value);
 
     return new Character(
-        CharacterId,
-        CharacterName,
-        CharacterClass,
-        CharacterRace,
-        CharacterPlayerId,
+        characterId,
+        characterName,
+        characterClass,
+        characterRace,
+        characterPlayerId,
     );
 }
 
@@ -60,9 +60,11 @@ const AddCharacterPage = () => {
                 raceInput,
                 playerIdInput,
             );
+            console.log(idInput);
             charactersContext.addCharacter(inputCharacter);
-            navigate('/');
+            navigate('/characters');
         } catch (error) {
+            // alert('Smth went wrong');
             alert(error);
         }
     };

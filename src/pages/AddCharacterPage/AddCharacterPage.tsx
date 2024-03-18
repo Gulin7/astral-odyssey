@@ -28,7 +28,7 @@ function handleOnClick(
     const CharacterName: string = nameInput.current!.value;
     const CharacterClass: string = classInput.current!.value;
     const CharacterRace: string = raceInput.current!.value;
-    const CharacterPlayerId: string = playerIdInput.current!.value.toString();
+    const CharacterPlayerId: number = parseInt(playerIdInput.current!.value);
 
     return new Character(
         CharacterId,

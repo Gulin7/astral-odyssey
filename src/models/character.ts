@@ -3,7 +3,7 @@ class Character {
     private name: string;
     private charClass: string;
     private race: string;
-    private playerId: string;
+    private playerId: number;
     private skinUrl: string;
     private level: number;
 
@@ -12,7 +12,7 @@ class Character {
         name: string,
         charClass: string,
         race: string,
-        playerId: string,
+        playerId: number,
     ) {
         this.id = id;
         this.name = name;
@@ -69,11 +69,11 @@ class Character {
         this.race = newRace;
     }
 
-    public getPlayerId(): string {
+    public getPlayerId(): number {
         return this.playerId;
     }
 
-    public setPlayerId(newPlayerId: string): void {
+    public setPlayerId(newPlayerId: number): void {
         this.playerId = newPlayerId;
     }
 

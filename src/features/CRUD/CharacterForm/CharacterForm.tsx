@@ -74,7 +74,10 @@ export function CharacterForm(props: CharacterFormType) {
     const formEntries = createFormEntries(props);
 
     return (
-        <div className='character-form-div' data-testid='character-form-id'>
+        <div
+            className='character-form-div'
+            data-testid='character-form-test-id'
+        >
             <form className='character-form'>
                 {formEntries.map((entry) => (
                     <CharacterFormEntry

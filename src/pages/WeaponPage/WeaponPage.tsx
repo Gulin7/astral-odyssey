@@ -11,6 +11,10 @@ const WeaponPage = () => {
                     <div className='main-description'>
                         This is the Weapon shop where you can buy different
                         weapons for your character.
+                        <div
+                            className='weapons-list'
+                            data-testid='weapons-list-test-id'
+                        ></div>
                     </div>
                 </div>
             </div>

@@ -25,7 +25,7 @@ const CharactersPage = () => {
                         manage your characters.
                         <div
                             className='characters-list'
-                            data-testid='characters-list-id'
+                            data-testid='characters-list-test-id'
                         >
                             {charactersArray.map((character: Character) => (
                                 <CharacterCard

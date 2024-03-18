@@ -23,7 +23,7 @@ const PlayerCard = ({givenPlayer, removePlayer}: PlayerCardPropsType) => {
             data-testid='player-card-test-id'
             onClick={editPlayer}
         >
-            <div className='player-image'>
+            <div className='player-image' data-testid='player-image-test-id'>
                 <img src={path} alt={givenPlayer.getUsername()} />
             </div>
             <div className='player-info'>

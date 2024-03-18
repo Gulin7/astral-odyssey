@@ -11,6 +11,10 @@ const PotionPage = () => {
                     <div className='main-description'>
                         This is the Potion shop where you can buy different
                         potions for your character.
+                        <div
+                            className='potions-list'
+                            data-testid='potions-list-test-id'
+                        ></div>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ const PlayerFormEntry = forwardRef<HTMLInputElement, FormEntryProps>(
         return (
             <div
                 className='player-form-entry'
-                data-testid='player-form-entry-id'
+                data-testid='player-form-entry-test-id'
             >
                 <label className='player-form-label' htmlFor={props.label}>
                     {props.label}
@@ -18,7 +18,7 @@ const PlayerFormEntry = forwardRef<HTMLInputElement, FormEntryProps>(
                         type='text'
                         id={props.label}
                         ref={ref}
-                        data-testid='player-form-input-id'
+                        data-testid='player-form-input-test-id'
                         placeholder={props.placeHolder}
                         disabled={props.disabled}
                     />
@@ -28,7 +28,7 @@ const PlayerFormEntry = forwardRef<HTMLInputElement, FormEntryProps>(
                         type='text'
                         id={props.label}
                         ref={ref}
-                        data-testid='player-form-input-id'
+                        data-testid='player-form-input-test-id'
                         placeholder={props.defaultValue}
                         disabled={props.disabled}
                         defaultValue={props.defaultValue}

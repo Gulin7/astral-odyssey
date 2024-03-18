@@ -23,7 +23,10 @@ const PlayersPage = () => {
                     <div className='main-description'>
                         Here you can see all the players.
                     </div>
-                    <div className='players-list' data-testid='users-list-id'>
+                    <div
+                        className='players-list'
+                        data-testid='players-list-test-id'
+                    >
                         {playersArray.map((player: Player) => (
                             <PlayerCard
                                 givenPlayer={player}

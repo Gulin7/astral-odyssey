@@ -24,29 +24,29 @@ function createFormEntries(props: PlayerFormType) {
     let formEntries = [
         {
             label: 'ID',
-            ref: props.id,
+            ref: props.idInput,
             placeHolder: 'Enter ID',
             defaultValue: '',
             disabled: false,
         },
         {
             label: 'Username',
-            ref: props.username,
+            ref: props.usernameInput,
             placeHolder: 'Enter username',
             defaultValue: '',
             disabled: false,
         },
         {
             label: 'Nickname',
-            ref: props.nickname,
+            ref: props.nicknameInput,
             placeHolder: 'Enter nickname',
             defaultValue: '',
             disabled: false,
         },
         {
-            label: 'Picture URL',
-            ref: props.pictureUrl,
-            placeHolder: 'Enter picture URL',
+            label: 'URL',
+            ref: props.urlInput,
+            placeHolder: 'Enter URL',
             defaultValue: '',
             disabled: false,
         },
@@ -61,7 +61,7 @@ export function PlayerForm(props: PlayerFormType) {
     const formEntries = createFormEntries(props);
 
     return (
-        <div className='player-form-div' data-testid='player-form-id'>
+        <div className='player-form-div' data-testid='player-form-test-id'>
             <form className='player-form'>
                 {formEntries.map((entry) => (
                     <PlayerFormEntry

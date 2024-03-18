@@ -11,6 +11,10 @@ const ArmorPage = () => {
                     <div className='main-description'>
                         This is the Armor shop where you can buy different
                         armors for your character.
+                        <div
+                            className='armors-list'
+                            data-testid='armors-list-test-id'
+                        ></div>
                     </div>
                 </div>
             </div>

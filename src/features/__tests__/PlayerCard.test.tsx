@@ -25,7 +25,7 @@ vi.mock('react-router-dom', async () => {
 });
 
 describe('PlayerCard component', () => {
-    const mockPlayer = new Player(1, 'testUsername', 'testNickname', 1);
+    const mockPlayer = new Player(1, 'testUsername', 'testNickname', 'testUrl');
     const mockRemovePlayer = vi.fn();
     it('Renders the player card', () => {
         render(
@@ -42,12 +42,14 @@ describe('PlayerCard component', () => {
         const renderedUsername = screen.getByText('UserName: testUsername');
         const renderedNickname = screen.getByText('NickName: testNickname');
         const renderedId = screen.getByText('Id: 1');
+        const renderedSkin = screen.getByTestId('player-image-test-id');
 
         expect(renderedPlayerCard).toBeInTheDocument();
         expect(renderedUsername).toBeInTheDocument();
         expect(renderedNickname).toBeInTheDocument();
         expect(renderedId).toBeInTheDocument();
         expect(renderedRemoveButton).toBeInTheDocument();
+        expect(renderedSkin).toBeInTheDocument();
     });
 
     it('Calls removePlayer when remove button is clicked', () => {

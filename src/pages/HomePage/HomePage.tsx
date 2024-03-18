@@ -7,7 +7,10 @@ const HomePage = () => {
             <div className='main-page'>
                 <div className='main-page-container'>
                     <h2 className='main-title'>Welcome to Astral Odyssey</h2>
-                    <div className='main-description'>
+                    <div
+                        className='main-description'
+                        data-testid='home-description-test-id'
+                    >
                         This is a game where you can create your own character
                         and explore the world of Astral Odyssey.
                     </div>

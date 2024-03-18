@@ -27,7 +27,8 @@
 }
 
 .button-dark:hover {
-    background-color: #444;
+    background-color: #f4f4f4;
+    color: #333;
     transform: scale(0.95);
 }
 

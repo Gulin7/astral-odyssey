@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import {render, screen} from '@testing-library/react';
 
 import {BrowserRouter} from 'react-router-dom';
-import PotionPage from '../PotionPage/PotionPage';
+import PotionPage from '../PotionsPage/PotionsPage';
 
 describe('PotionPage component', () => {
     it('Renders the potion page', () => {

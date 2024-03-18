@@ -3,7 +3,7 @@
 }
 .player-card {
     width: 15rem;
-    height: 20rem;
+    height: 24rem;
 
     display: flex;
     flex-direction: column;
@@ -36,8 +36,8 @@
 }
 
 .player-image > img {
-    width: 7rem;
-    height: 7rem;
+    width: 10rem;
+    height: 10rem;
     border-radius: 8px;
     margin: 0.5rem;
 }

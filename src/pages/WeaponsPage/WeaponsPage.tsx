@@ -1,8 +1,8 @@
 import MainLayout from '../../layouts/mainLayout/MainLayout';
-import './WeaponPage.css';
+import './WeaponsPage.css';
 
-const WeaponPage = () => {
-    document.title = 'WeaponPage';
+const WeaponsPage = () => {
+    document.title = 'WeaponsPage';
     return (
         <MainLayout>
             <div className='main-page'>
@@ -22,4 +22,4 @@ const WeaponPage = () => {
     );
 };
 
-export default WeaponPage;
+export default WeaponsPage;

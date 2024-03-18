@@ -90,10 +90,10 @@ const EditPlayerPage = () => {
                 <div className='main-page-container'>
                     <h2 className='main-title'>{layoutTitle}</h2>
                     <PlayerForm
-                        id={idInput}
-                        username={usernameInput}
-                        nickname={nicknameInput}
-                        pictureUrl={pictureUrlInput}
+                        idInput={idInput}
+                        usernameInput={usernameInput}
+                        nicknameInput={nicknameInput}
+                        urlInput={pictureUrlInput}
                         givenPlayer={givenPlayer}
                     />
 

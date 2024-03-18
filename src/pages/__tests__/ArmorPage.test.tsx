@@ -4,13 +4,13 @@ import '@testing-library/jest-dom';
 import {render, screen} from '@testing-library/react';
 
 import {BrowserRouter} from 'react-router-dom';
-import ArmorPage from '../ArmorPage/ArmorPage';
+import ArmorsPage from '../ArmorsPage/ArmorsPage';
 
 describe('ArmorPage component', () => {
     it('Renders the armor page', () => {
         render(
             <BrowserRouter>
-                <ArmorPage></ArmorPage>
+                <ArmorsPage></ArmorsPage>
             </BrowserRouter>,
         );
 

@@ -64,10 +64,10 @@ const AddPlayerPage = () => {
                 <div className='main-page-container'>
                     <div className='main-title'>{layoutTitle}</div>
                     <PlayerForm
-                        id={idInput}
-                        username={usernameInput}
-                        nickname={nicknameInput}
-                        pictureUrl={urlInput}
+                        idInput={idInput}
+                        usernameInput={usernameInput}
+                        nicknameInput={nicknameInput}
+                        urlInput={urlInput}
                         data-testid='player-form-id'
                     />
                     <Button

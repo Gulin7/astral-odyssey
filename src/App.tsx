@@ -7,15 +7,15 @@ import Character from './models/Character';
 import {Player} from './models/Player';
 import AddCharacterPage from './pages/AddCharacterPage/AddCharacterPage';
 import AddPlayerPage from './pages/AddPlayerPage/AddPlayerPage';
-import ArmorPage from './pages/ArmorPage/ArmorPage';
+import ArmorPage from './pages/ArmorsPage/ArmorsPage';
 import CharactersPage from './pages/CharactersPage/CharactersPage';
 import EditCharacterPage from './pages/EditCharacterPage/EditCharacterPage';
 import EditPlayerPage from './pages/EditPlayerPage/EditPlayerPage';
 import HomePage from './pages/HomePage/HomePage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import PlayersPage from './pages/PlayersPage/PlayersPage';
-import PotionPage from './pages/PotionPage/PotionPage';
-import WeaponPage from './pages/WeaponPage/WeaponPage';
+import PotionPage from './pages/PotionsPage/PotionsPage';
+import WeaponPage from './pages/WeaponsPage/WeaponsPage';
 
 let player1: Player = new Player(1, 'suciub', 'sbbogdy', 'profile-1.png');
 let player2: Player = new Player(

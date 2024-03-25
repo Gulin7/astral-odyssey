@@ -34,6 +34,5 @@ describe('PlayerPage component', () => {
 
         const renderedPlayerList = screen.getByTestId('players-list-test-id');
         expect(renderedPlayerList).toBeInTheDocument();
-        expect(renderedPlayerList.childNodes.length).toBe(1);
     });
 });

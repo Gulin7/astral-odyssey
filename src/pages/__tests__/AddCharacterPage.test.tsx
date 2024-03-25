@@ -13,7 +13,7 @@ test('testing rendering of character form without character', () => {
     let raceInput = React.createRef<HTMLInputElement>();
     let playerIdInput = React.createRef<HTMLInputElement>();
 
-    render(
+    const renderedComp = render(
         <CharacterForm
             idInput={idInput}
             nameInput={nameInput}
@@ -41,6 +41,7 @@ test('testing rendering of character form without character', () => {
     expect(idFormLabel).toBeInTheDocument();
     expect(nameFormLabel).toBeInTheDocument();
     expect(classFormLabel).toBeInTheDocument();
+    expect(renderedComp).toMatchSnapshot();
 });
 
 test('testing rendering of character form with character', () => {

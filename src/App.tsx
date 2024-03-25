@@ -9,6 +9,7 @@ import AddCharacterPage from './pages/AddCharacterPage/AddCharacterPage';
 import AddPlayerPage from './pages/AddPlayerPage/AddPlayerPage';
 import ArmorPage from './pages/ArmorsPage/ArmorsPage';
 import CharactersPage from './pages/CharactersPage/CharactersPage';
+import ClassesChartPage from './pages/ClassesChartPage/ClassesChartPage';
 import EditCharacterPage from './pages/EditCharacterPage/EditCharacterPage';
 import EditPlayerPage from './pages/EditPlayerPage/EditPlayerPage';
 import HomePage from './pages/HomePage/HomePage';
@@ -63,6 +64,20 @@ let character4: Character = new Character(
     4,
 );
 
+let character5: Character = new Character(
+    5,
+    'gabitzuMircea',
+    'Warrior',
+    'RasaMatii',
+    1,
+);
+
+let character6: Character = new Character(6, 'DanutGolut', 'Mage', 'Dwarf', 2);
+
+let character7: Character = new Character(7, 'ErikGod', 'Fighter', 'Human', 3);
+
+let character8: Character = new Character(8, 'GuguTheGoat', 'Mage', 'Elf', 4);
+
 function App() {
     let [players, setPlayers] = useState<Player[]>([
         player1,
@@ -76,6 +91,10 @@ function App() {
         character2,
         character3,
         character4,
+        character5,
+        character6,
+        character7,
+        character8,
     ]);
 
     const addPlayer = (newPlayer: Player) => {
@@ -127,6 +146,10 @@ function App() {
                         <Route
                             path='/editCharacter/:characterId'
                             element={<EditCharacterPage />}
+                        />
+                        <Route
+                            path='/classesChart'
+                            element={<ClassesChartPage />}
                         />
                         <Route path='/armorShop' element={<ArmorPage />} />
                         <Route path='/potionShop' element={<PotionPage />} />

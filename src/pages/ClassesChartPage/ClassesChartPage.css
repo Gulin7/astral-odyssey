@@ -24,9 +24,14 @@
     margin: 0.5rem 1rem 0 0;
 }
 
-.buttons {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+.sorts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filters {
+    display: flex;
     justify-content: center;
     align-items: center;
 }

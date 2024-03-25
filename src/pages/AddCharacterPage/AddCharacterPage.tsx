@@ -69,7 +69,7 @@ const AddCharacterPage = () => {
         }
     };
 
-    const layoutTitle: string = 'Add Character';
+    const layoutTitle: string = 'Add Characters';
 
     return (
         <MainLayout>
@@ -86,7 +86,7 @@ const AddCharacterPage = () => {
                     />
                     <Button
                         type='submit'
-                        buttonText='Add Character'
+                        buttonText='Add Characters'
                         onClick={handleOnClickWrapper}
                         data-testid='add-character-button-id'
                         className='button-dark'

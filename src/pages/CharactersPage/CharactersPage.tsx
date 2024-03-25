@@ -1,3 +1,4 @@
+import {Pagination} from '@mui/material';
 import {useContext, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Button from '../../components/Button/Button';
@@ -46,10 +47,21 @@ const CharactersPage = () => {
     }, [charactersContext.characters]);
     const navigate = useNavigate();
 
-    const getCharactersList = (page = 0, limit = 6) => {
-        const start = page * limit;
-        const end = (page + 1) * limit;
-        const items = characters.slice(start, end);
+    const [page, setPage] = useState(1);
+    const limit = 6;
+
+    useEffect(() => {
+        setCharacters(charactersArray);
+    }, [charactersContext.characters]);
+
+    const getCharactersList = () => {
+        const start = (page - 1) * limit;
+        const end = page * limit;
+        return characters.slice(start, end);
+    };
+
+    const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+        setPage(value);
     };
 
     return (
@@ -151,13 +163,20 @@ const CharactersPage = () => {
                         className='characters-list'
                         data-testid='characters-list-test-id'
                     >
-                        {characters.map((character: Character) => (
+                        {getCharactersList().map((character: Character) => (
                             <CharacterCard
                                 givenCharacter={character}
                                 removeCharacter={removeCharacter}
                                 key={character.getId()}
                             />
                         ))}
+                    </div>
+                    <div className='pagination'>
+                        <Pagination
+                            count={Math.ceil(characters.length / limit)}
+                            page={page}
+                            onChange={handleChange}
+                        />
                     </div>
                 </div>
             </div>

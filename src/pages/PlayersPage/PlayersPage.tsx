@@ -1,4 +1,5 @@
-import {useContext} from 'react';
+import {useContext, useState} from 'react';
+import Button from '../../components/Button/Button';
 import {PlayersContext} from '../../contexts/PlayersContext';
 import PlayerCard from '../../features/PlayerCard/PlayerCard';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
@@ -15,6 +16,12 @@ const PlayersPage = () => {
     let playersArray: Player[] = playersContext.players;
     const removePlayer = playersContext.removePlayer;
 
+    const [numToShow, setNumToShow] = useState(3);
+
+    const handleShowMore = () => {
+        setNumToShow((prevNum) => prevNum + 3);
+    };
+
     return (
         <MainLayout>
             <div className='main-page'>
@@ -28,14 +35,27 @@ const PlayersPage = () => {
                         className='players-list'
                         data-testid='players-list-test-id'
                     >
-                        {playersArray.map((player: Player) => (
-                            <PlayerCard
-                                givenPlayer={player}
-                                removePlayer={removePlayer}
-                                key={player.getId()}
-                            />
-                        ))}
-                        br F
+                        {playersArray
+                            .slice(0, numToShow)
+                            .map((player: Player) => (
+                                <PlayerCard
+                                    givenPlayer={player}
+                                    removePlayer={removePlayer}
+                                    key={player.getId()}
+                                />
+                            ))}
+                    </div>
+                    <div className='pagination'>
+                        <div>
+                            Showing {Math.min(numToShow, playersArray.length)}{' '}
+                            out of {playersArray.length} players
+                        </div>
+                        <Button
+                            type='button'
+                            buttonText='Show More'
+                            onClick={handleShowMore}
+                            className='button-dark'
+                        ></Button>
                     </div>
                 </div>
             </div>

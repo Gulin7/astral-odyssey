@@ -23,10 +23,12 @@ const CharactersPage = () => {
 
     const [sortedByName, setSortedByName] = useState<boolean>(false);
 
+    // Console useEffect for characters
     useEffect(() => {
         console.log(characters);
     }, [characters]);
 
+    // Sorted useEffect
     useEffect(() => {
         let sorted;
         if (sortedByName) {
@@ -47,6 +49,7 @@ const CharactersPage = () => {
     }, [charactersContext.characters]);
     const navigate = useNavigate();
 
+    // Pagination
     const [page, setPage] = useState(1);
     const limit = 6;
 
@@ -60,7 +63,10 @@ const CharactersPage = () => {
         return characters.slice(start, end);
     };
 
-    const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    const handleChange = (
+        _event: React.ChangeEvent<unknown>,
+        value: number,
+    ) => {
         setPage(value);
     };
 
@@ -71,7 +77,7 @@ const CharactersPage = () => {
                     <h2 className='main-title'>{layoutTitle}</h2>
                     <div className='main-description'>
                         This is the Characters page where you can create and
-                        manage your characters.
+                        manage all your characters.
                     </div>
                     <div className='buttons'>
                         <Button
@@ -114,7 +120,7 @@ const CharactersPage = () => {
                             type='button'
                             buttonText='Warrior'
                             onClick={() => {
-                                const filtered = characters.filter(
+                                const filtered = charactersArray.filter(
                                     (character) =>
                                         character.getCharClass() === 'Warrior',
                                 );
@@ -126,7 +132,7 @@ const CharactersPage = () => {
                             type='button'
                             buttonText='Ranger'
                             onClick={() => {
-                                const filtered = characters.filter(
+                                const filtered = charactersArray.filter(
                                     (character) =>
                                         character.getCharClass() === 'Ranger',
                                 );
@@ -138,7 +144,7 @@ const CharactersPage = () => {
                             type='button'
                             buttonText='Fighter'
                             onClick={() => {
-                                const filtered = characters.filter(
+                                const filtered = charactersArray.filter(
                                     (character) =>
                                         character.getCharClass() === 'Fighter',
                                 );
@@ -150,7 +156,7 @@ const CharactersPage = () => {
                             type='button'
                             buttonText='Mage'
                             onClick={() => {
-                                const filtered = characters.filter(
+                                const filtered = charactersArray.filter(
                                     (character) =>
                                         character.getCharClass() === 'Mage',
                                 );

@@ -2,7 +2,9 @@ module.exports = {
     root: true,
     env: {browser: true, es2020: true},
     extends: [
-        'eslint:recommended',
+        'airbnb',
+        'airbnb-typescript',
+        'airbnb/hooks',
         'plugin:@typescript-eslint/recommended',
         'plugin:react-hooks/recommended',
         'prettier',
@@ -10,7 +12,7 @@ module.exports = {
     ],
     ignorePatterns: ['dist', '.eslintrc.cjs'],
     parser: '@typescript-eslint/parser',
-    plugins: ['react-refresh', 'prettier'],
+    plugins: ['@typescript-eslint', 'react-refresh', 'prettier'],
     rules: {
         'prettier/prettier': ['error'],
         '@typescript-eslint/no-unused-vars': ['error'],

@@ -12,15 +12,18 @@ const MainLayout = ({children}: {children?: any}) => {
                 data-testid='main-layout-content-test-id'
             >
                 <Navbar />
-                <div className='main-layout-section'>
-                    <h2></h2>
-                    {children}
-                </div>
+                <div className='main-layout-section'>{children}</div>
             </div>
             <Footer />
         </div>
     );
 };
+
+MainLayout.defaultProps = {
+    title: 'Astral Odyssey',
+};
+
+export default MainLayout;
 
 // const MainLayout = ({props}: {props: MainLayoutProps}) => {
 //     return (
@@ -37,9 +40,3 @@ const MainLayout = ({children}: {children?: any}) => {
 //         </div>
 //     );
 // };
-
-MainLayout.defaultProps = {
-    title: 'Astral Odyssey',
-};
-
-export default MainLayout;

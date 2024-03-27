@@ -207,7 +207,7 @@ exports[`testing rendering of character form without character 1`] = `
       </form>
     </div>
   </div>,
-  "deqg": [Function],
+  "debug": [Function],
   "findAllByAltText": [Function],
   "findAllByDisplayValue": [Function],
   "findAllByLabelText": [Function],

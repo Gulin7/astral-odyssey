@@ -66,13 +66,19 @@ let character4: Character = new Character(
 
 let character5: Character = new Character(
     5,
-    'gabiTheLTaker',
+    'DanutVoinicut',
     'Warrior',
+    'Dwarf',
+    2,
+);
+
+let character6: Character = new Character(
+    6,
+    'gabiTheLTaker',
+    'Ranger',
     'Human',
     1,
 );
-
-let character6: Character = new Character(6, 'DanutMicut', 'Mage', 'Dwarf', 2);
 
 let character7: Character = new Character(7, 'ErikGod', 'Fighter', 'Human', 3);
 

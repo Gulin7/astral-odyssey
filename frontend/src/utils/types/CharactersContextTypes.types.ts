@@ -1,5 +1,5 @@
 import {ReactNode} from 'react';
-import Character from '../../models/Character';
+import Character from '../../../../models/Character';
 
 export type CharactersContextType = {
     characters: Character[];

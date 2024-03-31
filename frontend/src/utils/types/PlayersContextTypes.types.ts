@@ -1,5 +1,5 @@
 import {ReactNode} from 'react';
-import {Player} from '../../models/Player';
+import {Player} from '../../../../models/Player';
 
 export type PlayersContextType = {
     players: Player[];

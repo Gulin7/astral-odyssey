@@ -4,8 +4,8 @@ import '@testing-library/jest-dom';
 import {render, screen} from '@testing-library/react';
 
 import {BrowserRouter} from 'react-router-dom';
+import Character from '../../../../models/Character';
 import {CharactersContextProvider} from '../../contexts/CharactersContext';
-import Character from '../../models/Character';
 import CharactersPage from '../CharactersPage/CharactersPage';
 
 describe('CharacterPage component', () => {

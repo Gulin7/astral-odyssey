@@ -3,8 +3,8 @@ import {render, screen} from '@testing-library/react';
 import {expect, test} from 'vitest';
 
 import React from 'react';
+import {Player} from '../../../../models/Player';
 import {PlayerForm} from '../../features/CRUD/PlayerForm/PlayerForm';
-import {Player} from '../../models/Player';
 
 test('testing rendering of player form without player', () => {
     let idInput = React.createRef<HTMLInputElement>();

@@ -4,8 +4,8 @@ import '@testing-library/jest-dom';
 import {render, screen} from '@testing-library/react';
 
 import {BrowserRouter} from 'react-router-dom';
+import {Player} from '../../../../models/Player';
 import {PlayersContextProvider} from '../../contexts/PlayersContext';
-import {Player} from '../../models/Player';
 import PlayersPage from '../PlayersPage/PlayersPage';
 
 describe('PlayerPage component', () => {

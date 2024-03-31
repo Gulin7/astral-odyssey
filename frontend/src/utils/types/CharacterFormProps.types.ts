@@ -1,4 +1,4 @@
-import Character from '../../models/Character';
+import Character from '../../../../models/Character';
 
 export type CharacterFormType = {
     idInput: React.RefObject<HTMLInputElement>;

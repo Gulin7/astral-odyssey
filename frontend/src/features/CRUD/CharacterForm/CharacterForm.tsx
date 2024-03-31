@@ -1,4 +1,4 @@
-import Character from '../../../models/Character';
+import Character from '../../../../../models/Character';
 import {CharacterFormType} from '../../../utils/types/CharacterFormProps.types';
 
 import {FormEntryProps} from '../../../utils/types/FormEntryProps.types';

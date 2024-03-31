@@ -3,8 +3,8 @@ import {render, screen} from '@testing-library/react';
 import {expect, test} from 'vitest';
 
 import React from 'react';
+import Character from '../../../../models/Character';
 import {CharacterForm} from '../../features/CRUD/CharacterForm/CharacterForm';
-import Character from '../../models/Character';
 
 test('testing rendering of character form without character', () => {
     let idInput = React.createRef<HTMLInputElement>();

@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
+import Character from '../../../../models/Character';
 import Button from '../../components/Button/Button';
 import {CharactersContext} from '../../contexts/CharactersContext';
 import {CharacterForm} from '../../features/CRUD/CharacterForm/CharacterForm';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
-import Character from '../../models/Character';
 import './EditCharacterPage.css';
 
 function handleOnClick(

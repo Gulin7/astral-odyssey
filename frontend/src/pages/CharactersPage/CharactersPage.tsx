@@ -1,11 +1,11 @@
 import {Pagination} from '@mui/material';
 import {useContext, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import Character from '../../../../models/Character';
 import Button from '../../components/Button/Button';
 import {CharactersContext} from '../../contexts/CharactersContext';
 import CharacterCard from '../../features/CharacterCard/CharacterCard';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
-import Character from '../../models/Character';
 import './CharactersPage.css';
 
 const CharactersPage = () => {

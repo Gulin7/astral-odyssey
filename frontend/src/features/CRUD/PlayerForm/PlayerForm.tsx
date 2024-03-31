@@ -1,4 +1,4 @@
-import {Player} from '../../../../../models/Player';
+import {Player} from '../../../models/Player';
 import {FormEntryProps} from '../../../utils/types/FormEntryProps.types';
 import {PlayerFormType} from '../../../utils/types/PlayerFormProps.types';
 import {PlayerFormEntry} from '../PlayerFormEntry/PlayerFormEntry';

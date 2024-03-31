@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import {render, screen} from '@testing-library/react';
 import React from 'react';
 import {expect, test} from 'vitest';
-import Character from '../../../../models/Character';
+import Character from '../../models/Character';
 import {CharacterForm} from '../CRUD/CharacterForm/CharacterForm';
 
 test('testing rendering of user form without user', () => {

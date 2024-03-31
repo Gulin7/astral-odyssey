@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import {render, screen} from '@testing-library/react';
 
 import {BrowserRouter} from 'react-router-dom';
-import Character from '../../../../models/Character';
+import Character from '../../models/Character';
 import CharacterCard from '../CharacterCard/CharacterCard';
 
 const {mockedUeNavigate} = vi.hoisted(() => {

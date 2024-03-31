@@ -1,9 +1,9 @@
 import {useContext, useState} from 'react';
-import {Player} from '../../../../models/Player';
 import Button from '../../components/Button/Button';
 import {PlayersContext} from '../../contexts/PlayersContext';
 import PlayerCard from '../../features/PlayerCard/PlayerCard';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
+import {Player} from '../../models/Player';
 import './PlayersPage.css';
 
 const PlayersPage = () => {

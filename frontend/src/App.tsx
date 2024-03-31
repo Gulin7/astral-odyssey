@@ -1,10 +1,10 @@
 import {useState} from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import Character from '../../models/Character';
-import {Player} from '../../models/Player';
 import './App.css';
 import {CharactersContextProvider} from './contexts/CharactersContext';
 import {PlayersContextProvider} from './contexts/PlayersContext';
+import Character from './models/Character';
+import {Player} from './models/Player';
 import AddCharacterPage from './pages/AddCharacterPage/AddCharacterPage';
 import AddPlayerPage from './pages/AddPlayerPage/AddPlayerPage';
 import ArmorPage from './pages/ArmorsPage/ArmorsPage';

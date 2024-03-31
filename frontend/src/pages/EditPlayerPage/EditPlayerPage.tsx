@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import {Player} from '../../../../models/Player';
 import Button from '../../components/Button/Button';
 import {PlayersContext} from '../../contexts/PlayersContext';
 import {PlayerForm} from '../../features/CRUD/PlayerForm/PlayerForm';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
+import {Player} from '../../models/Player';
 import './EditPlayerPage.css';
 
 function handleOnClick(

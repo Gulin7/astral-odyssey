@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 })
 
 //routes
-app.use('/api/players', playerRoutes)
+app.use('/api', playerRoutes)
 
 //connect to mongodb
 mongoose

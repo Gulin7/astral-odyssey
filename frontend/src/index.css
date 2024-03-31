@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=New+Rocker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=New+Rocker&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'MedievalSharp', cursive;
+    background-color: #4c084f;
+}
+
+a {
+    text-decoration: none;
+}

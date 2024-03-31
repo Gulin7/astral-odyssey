@@ -1,0 +1,20 @@
+.header {
+    background:
+        linear-gradient(180deg, rgba(20, 20, 20, 0.8), rgba(20, 20, 20, 0.8))
+            no-repeat center,
+        url('../../assets/main-bg.gif') no-repeat center center/cover;
+    height: 160px;
+    font-size: 1.5rem;
+    text-align: center;
+    width: 100%;
+}
+
+.header-container {
+    height: 80%;
+    width: 80%;
+    margin: 0 auto;
+    color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}

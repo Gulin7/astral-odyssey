@@ -1,0 +1,262 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`testing rendering of character form without character 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="character-form-div"
+        data-testid="character-form-test-id"
+      >
+        <form
+          class="character-form"
+        >
+          <div
+            class="character-form-entry"
+            data-testid="character-form-entry-test-id"
+          >
+            <label
+              class="character-form-label"
+              for="Character ID"
+            >
+              Character ID
+            </label>
+            <input
+              class="character-form-input"
+              data-testid="character-form-input-test-id"
+              id="Character ID"
+              placeholder="Enter ID"
+              type="text"
+            />
+          </div>
+          <div
+            class="character-form-entry"
+            data-testid="character-form-entry-test-id"
+          >
+            <label
+              class="character-form-label"
+              for="Character Name"
+            >
+              Character Name
+            </label>
+            <input
+              class="character-form-input"
+              data-testid="character-form-input-test-id"
+              id="Character Name"
+              placeholder="Enter name"
+              type="text"
+            />
+          </div>
+          <div
+            class="character-form-entry"
+            data-testid="character-form-entry-test-id"
+          >
+            <label
+              class="character-form-label"
+              for="Character Class"
+            >
+              Character Class
+            </label>
+            <input
+              class="character-form-input"
+              data-testid="character-form-input-test-id"
+              id="Character Class"
+              placeholder="Enter class"
+              type="text"
+            />
+          </div>
+          <div
+            class="character-form-entry"
+            data-testid="character-form-entry-test-id"
+          >
+            <label
+              class="character-form-label"
+              for="Character Race"
+            >
+              Character Race
+            </label>
+            <input
+              class="character-form-input"
+              data-testid="character-form-input-test-id"
+              id="Character Race"
+              placeholder="Enter race"
+              type="text"
+            />
+          </div>
+          <div
+            class="character-form-entry"
+            data-testid="character-form-entry-test-id"
+          >
+            <label
+              class="character-form-label"
+              for="Player ID"
+            >
+              Player ID
+            </label>
+            <input
+              class="character-form-input"
+              data-testid="character-form-input-test-id"
+              id="Player ID"
+              placeholder="Enter player ID"
+              type="text"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="character-form-div"
+      data-testid="character-form-test-id"
+    >
+      <form
+        class="character-form"
+      >
+        <div
+          class="character-form-entry"
+          data-testid="character-form-entry-test-id"
+        >
+          <label
+            class="character-form-label"
+            for="Character ID"
+          >
+            Character ID
+          </label>
+          <input
+            class="character-form-input"
+            data-testid="character-form-input-test-id"
+            id="Character ID"
+            placeholder="Enter ID"
+            type="text"
+          />
+        </div>
+        <div
+          class="character-form-entry"
+          data-testid="character-form-entry-test-id"
+        >
+          <label
+            class="character-form-label"
+            for="Character Name"
+          >
+            Character Name
+          </label>
+          <input
+            class="character-form-input"
+            data-testid="character-form-input-test-id"
+            id="Character Name"
+            placeholder="Enter name"
+            type="text"
+          />
+        </div>
+        <div
+          class="character-form-entry"
+          data-testid="character-form-entry-test-id"
+        >
+          <label
+            class="character-form-label"
+            for="Character Class"
+          >
+            Character Class
+          </label>
+          <input
+            class="character-form-input"
+            data-testid="character-form-input-test-id"
+            id="Character Class"
+            placeholder="Enter class"
+            type="text"
+          />
+        </div>
+        <div
+          class="character-form-entry"
+          data-testid="character-form-entry-test-id"
+        >
+          <label
+            class="character-form-label"
+            for="Character Race"
+          >
+            Character Race
+          </label>
+          <input
+            class="character-form-input"
+            data-testid="character-form-input-test-id"
+            id="Character Race"
+            placeholder="Enter race"
+            type="text"
+          />
+        </div>
+        <div
+          class="character-form-entry"
+          data-testid="character-form-entry-test-id"
+        >
+          <label
+            class="character-form-label"
+            for="Player ID"
+          >
+            Player ID
+          </label>
+          <input
+            class="character-form-input"
+            data-testid="character-form-input-test-id"
+            id="Player ID"
+            placeholder="Enter player ID"
+            type="text"
+          />
+        </div>
+      </form>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

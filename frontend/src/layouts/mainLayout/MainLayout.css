@@ -1,0 +1,39 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 100%;
+    align-items: center;
+}
+
+.main-layout-content {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0.5rem;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.main-layout .navbar {
+    padding: 1rem;
+}
+
+.main-layout-section {
+    width: 80%;
+    margin: 0 auto;
+    background: #d0a9d4;
+}
+
+.footer {
+    margin-top: auto;
+}

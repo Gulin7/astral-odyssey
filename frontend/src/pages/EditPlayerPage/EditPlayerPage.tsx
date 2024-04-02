@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {useContext} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import Button from '../../components/Button/Button';
@@ -8,13 +9,13 @@ import {Player} from '../../models/Player';
 import './EditPlayerPage.css';
 
 function handleOnClick(
-    idInput: React.RefObject<HTMLInputElement>,
+    // idInput: React.RefObject<HTMLInputElement>,
     usernameInput: React.RefObject<HTMLInputElement>,
     nicknameInput: React.RefObject<HTMLInputElement>,
     pictureUrlInput: React.RefObject<HTMLInputElement>,
 ) {
     if (
-        !idInput.current ||
+        // !idInput.current ||
         !usernameInput.current ||
         !nicknameInput.current ||
         !pictureUrlInput.current
@@ -23,7 +24,7 @@ function handleOnClick(
     }
 
     if (
-        !idInput.current.value ||
+        // !idInput.current.value ||
         !usernameInput.current.value ||
         !nicknameInput.current.value ||
         !pictureUrlInput.current.value
@@ -31,23 +32,24 @@ function handleOnClick(
         throw new Error('You must provide values for each field');
     }
 
-    const playerId: number = parseInt(idInput.current.value);
+    // const playerId: number = parseInt(idInput.current.value);
     const playerUsername: string = usernameInput.current.value;
     const playerNickname: string = nicknameInput.current.value;
     const playerPictureUrl: string = pictureUrlInput.current.value;
 
-    return new Player(
-        playerId,
-        playerUsername,
-        playerNickname,
-        playerPictureUrl,
-    );
+    const fields = {
+        username: playerUsername,
+        nickname: playerNickname,
+        pictureURL: playerPictureUrl,
+    };
+
+    return fields;
 }
 
 const EditPlayerPage = () => {
     document.title = 'Astral Odyssey | Player Profile';
 
-    const idInput = React.createRef<HTMLInputElement>();
+    // const idInput = React.createRef<HTMLInputElement>();
     const usernameInput = React.createRef<HTMLInputElement>();
     const nicknameInput = React.createRef<HTMLInputElement>();
     const pictureUrlInput = React.createRef<HTMLInputElement>();
@@ -67,14 +69,24 @@ const EditPlayerPage = () => {
 
     const handleOnClickWrapper = () => {
         try {
-            const newPlayer = handleOnClick(
-                idInput,
+            const fields = handleOnClick(
+                // idInput,
                 usernameInput,
                 nicknameInput,
                 pictureUrlInput,
             );
-            playersContext.removePlayer(newPlayer.getId());
-            playersContext.addPlayer(newPlayer);
+            const id: Number = parseInt(playerId);
+            axios
+                .put(`http://localhost:5000/api/players/${id}`, fields)
+                .then((response) => {
+                    console.log('Player updated: ', response.data);
+                })
+                .catch((error) => {
+                    console.error('Error updating player: ', error);
+                });
+
+            // playersContext.removePlayer(newPlayer.getId());
+            // playersContext.addPlayer(newPlayer);
 
             navigate('/players');
         } catch (error) {
@@ -90,7 +102,7 @@ const EditPlayerPage = () => {
                 <div className='main-page-container'>
                     <h2 className='main-title'>{layoutTitle}</h2>
                     <PlayerForm
-                        idInput={idInput}
+                        // idInput={idInput}
                         usernameInput={usernameInput}
                         nicknameInput={nicknameInput}
                         urlInput={pictureUrlInput}

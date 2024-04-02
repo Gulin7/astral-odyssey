@@ -47,6 +47,7 @@ const CharactersPage = () => {
     useEffect(() => {
         setCharacters(charactersArray);
     }, [charactersContext.characters]);
+
     const navigate = useNavigate();
 
     // Pagination
@@ -122,7 +123,7 @@ const CharactersPage = () => {
                             onClick={() => {
                                 const filtered = charactersArray.filter(
                                     (character) =>
-                                        character.getCharClass() === 'Warrior',
+                                        character.getCharClass() === 'warrior',
                                 );
                                 setCharacters(filtered);
                             }}
@@ -134,7 +135,7 @@ const CharactersPage = () => {
                             onClick={() => {
                                 const filtered = charactersArray.filter(
                                     (character) =>
-                                        character.getCharClass() === 'Ranger',
+                                        character.getCharClass() === 'ranger',
                                 );
                                 setCharacters(filtered);
                             }}
@@ -146,7 +147,7 @@ const CharactersPage = () => {
                             onClick={() => {
                                 const filtered = charactersArray.filter(
                                     (character) =>
-                                        character.getCharClass() === 'Fighter',
+                                        character.getCharClass() === 'fighter',
                                 );
                                 setCharacters(filtered);
                             }}
@@ -158,7 +159,7 @@ const CharactersPage = () => {
                             onClick={() => {
                                 const filtered = charactersArray.filter(
                                     (character) =>
-                                        character.getCharClass() === 'Mage',
+                                        character.getCharClass() === 'mage',
                                 );
                                 setCharacters(filtered);
                             }}

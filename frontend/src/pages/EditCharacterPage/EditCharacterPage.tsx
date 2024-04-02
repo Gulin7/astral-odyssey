@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {useContext} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import Button from '../../components/Button/Button';
@@ -8,14 +9,14 @@ import Character from '../../models/Character';
 import './EditCharacterPage.css';
 
 function handleOnClick(
-    idInput: React.RefObject<HTMLInputElement>,
+    // idInput: React.RefObject<HTMLInputElement>,
     nameInput: React.RefObject<HTMLInputElement>,
     classInput: React.RefObject<HTMLInputElement>,
     raceInput: React.RefObject<HTMLInputElement>,
     playerIdInput: React.RefObject<HTMLInputElement>,
 ) {
     if (
-        !idInput.current ||
+        // !idInput.current ||
         !nameInput.current ||
         !classInput.current ||
         !raceInput.current ||
@@ -25,7 +26,7 @@ function handleOnClick(
     }
 
     if (
-        !idInput.current.value ||
+        // !idInput.current.value ||
         !nameInput.current.value ||
         !classInput.current.value ||
         !raceInput.current.value ||
@@ -34,25 +35,26 @@ function handleOnClick(
         throw new Error('You must provide values for each field');
     }
 
-    const characterId: number = parseInt(idInput.current!.value);
+    // const characterId: number = parseInt(idInput.current!.value);
     const characterName: string = nameInput.current!.value;
     const characterClass: string = classInput.current!.value;
     const characterRace: string = raceInput.current!.value;
     const characterPlayerId: number = parseInt(playerIdInput.current!.value);
 
-    return new Character(
-        characterId,
-        characterName,
-        characterClass,
-        characterRace,
-        characterPlayerId,
-    );
+    const characterFields = {
+        name: characterName,
+        charClass: characterClass,
+        race: characterRace,
+        playerId: characterPlayerId,
+    };
+
+    return characterFields;
 }
 
 const EditCharacterPage = () => {
     document.title = 'Astral Odyssey | Character Profile';
 
-    const idInput = React.createRef<HTMLInputElement>();
+    // const idInput = React.createRef<HTMLInputElement>();
     const nameInput = React.createRef<HTMLInputElement>();
     const classInput = React.createRef<HTMLInputElement>();
     const raceInput = React.createRef<HTMLInputElement>();
@@ -74,14 +76,24 @@ const EditCharacterPage = () => {
     const handleOnClickWrapper = () => {
         try {
             const newCharacter = handleOnClick(
-                idInput,
+                // idInput,
                 nameInput,
                 classInput,
                 raceInput,
                 playerIdInput,
             );
-            charactersContext.removeCharacter(newCharacter.getId());
-            charactersContext.addCharacter(newCharacter);
+
+            axios
+                .put(
+                    `http://localhost:5000/api/characters/${givenCharacter?.getId()}`,
+                    newCharacter,
+                )
+                .then((response) => {
+                    console.log('Character updated: ', response.data);
+                })
+                .catch((error) => {
+                    console.error('Error updating character: ', error);
+                });
 
             navigate('/characters');
         } catch (error) {
@@ -97,7 +109,7 @@ const EditCharacterPage = () => {
                 <div className='main-page-container'>
                     <h2 className='main-title'>{layoutTitle}</h2>
                     <CharacterForm
-                        idInput={idInput}
+                        // idInput={idInput}
                         nameInput={nameInput}
                         classInput={classInput}
                         raceInput={raceInput}

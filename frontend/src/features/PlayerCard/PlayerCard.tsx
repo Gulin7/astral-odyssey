@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import {PlayerCardPropsType} from '../../utils/types/PlayerCardProps.types';
@@ -15,6 +16,18 @@ const PlayerCard = ({givenPlayer, removePlayer}: PlayerCardPropsType) => {
     const removePlayerFunction = (e: any) => {
         e.stopPropagation();
         removePlayer(givenPlayer.getId());
+
+        const id = givenPlayer.getId();
+        console.log(id);
+        axios
+            .delete(`http://localhost:5000/api/players/${id}`)
+            .then((response) => {
+                console.log('Player removed');
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error('Error removing player: ', error);
+            });
     };
 
     return (

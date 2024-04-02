@@ -12,8 +12,8 @@ function handleOnClick(
     // idInput: React.RefObject<HTMLInputElement>,
     usernameInput: React.RefObject<HTMLInputElement>,
     nicknameInput: React.RefObject<HTMLInputElement>,
-    urlInput: React.RefObject<HTMLSelectElement>,
-): string[] {
+    urlInput: React.RefObject<HTMLInputElement>,
+): {username: string; nickname: string; pictureURL: string} {
     if (
         // !idInput.current ||
         !usernameInput.current ||
@@ -37,7 +37,11 @@ function handleOnClick(
     const playerNickname: string = nicknameInput.current!.value;
     const playerUrl: string = urlInput.current!.value;
 
-    const inputFields = [playerUsername, playerNickname, playerUrl];
+    const inputFields = {
+        username: playerUsername,
+        nickname: playerNickname,
+        pictureURL: playerUrl,
+    };
 
     return inputFields;
 }
@@ -48,7 +52,7 @@ const AddPlayerPage = () => {
     // const idInput = useRef<HTMLInputElement>(null);
     const usernameInput = useRef<HTMLInputElement>(null);
     const nicknameInput = useRef<HTMLInputElement>(null);
-    const urlInput = useRef<HTMLSelectElement>(null);
+    const urlInput = useRef<HTMLInputElement>(null);
 
     const navigate = useNavigate();
     const playersContext = useContext(PlayersContext)!;
@@ -61,39 +65,28 @@ const AddPlayerPage = () => {
                 nicknameInput,
                 urlInput,
             );
-            const inputPlayer = {
-                username: inputFields[0],
-                nickname: inputFields[1],
-                url: inputFields[2],
-            };
 
-            axios
-                .post('http://localhost:5000/api/addPlayer', inputPlayer)
-                .then((response) => {
-                    console.log(response);
-                    let fetchedPlayer: Player;
-                    axios
-                        .get(
-                            `http://localhost:5000/api/devices/${inputFields[0]}`,
-                        )
-                        .then((response) => {
-                            fetchedPlayer = response.data.map(
-                                (player: any) =>
-                                    new Player(
-                                        player.id,
-                                        player.username,
-                                        player.nickname,
-                                        player.pictureURL,
-                                    ),
-                            );
-                            playersContext.addPlayer(fetchedPlayer);
-                            console.log('My data is: ');
-                            console.log(response.data);
-                        })
-                        .catch((error) => {
-                            console.error('Error fetching players: ', error);
-                        });
-                });
+            console.log(inputFields);
+            try {
+                axios
+                    .post(
+                        'http://localhost:5000/api/players/addPlayer',
+                        inputFields,
+                    )
+                    .then((response) => {
+                        console.log(response.data);
+                        playersContext.addPlayer(
+                            new Player(
+                                response.data.id,
+                                response.data.username,
+                                response.data.nickname,
+                                response.data.pictureURL,
+                            ),
+                        );
+                    });
+            } catch (error) {
+                console.log('Error in POST request');
+            }
             navigate('/players');
         } catch (error) {
             alert(error);

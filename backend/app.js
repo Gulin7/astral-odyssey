@@ -1,6 +1,9 @@
 const cors = require('cors')
 const express = require('express')
+
+//routes
 const playerRoutes = require('./routes/players')
+const characterRoutes = require('./routes/characters')
 
 //express app
 const app = express()
@@ -16,7 +19,8 @@ app.use((req, res, next) => {
 })
 
 //routes
-app.use('/api', playerRoutes)
+app.use('/api/players', playerRoutes)
+app.use('/api/characters', characterRoutes)
 
 //exports
 module.exports = app

@@ -19,94 +19,10 @@ import PlayersPage from './pages/PlayersPage/PlayersPage';
 import PotionPage from './pages/PotionsPage/PotionsPage';
 import WeaponPage from './pages/WeaponsPage/WeaponsPage';
 
-// let player1: Player = new Player(1, 'suciub', 'sbbogdy', 'profile-1.png');
-// let player2: Player = new Player(
-//     2,
-//     'danutgolut',
-//     'xXDanFTWXx',
-//     'profile-2.png',
-// );
-// let player3: Player = new Player(
-//     3,
-//     'tudorgulin',
-//     'ClasTreyler27',
-//     'profile-3.png',
-// );
-// let player4: Player = new Player(
-//     4,
-//     'nimrod2003',
-//     'NimrodTheGoat',
-//     'profile-4.png',
-// );
-
-let character1: Character = new Character(
-    1,
-    'gabitzuMircea',
-    'Warrior',
-    'RasaMatii',
-    1,
-);
-
-let character2: Character = new Character(2, 'DanutGolut', 'Mage', 'Dwarf', 2);
-
-let character3: Character = new Character(
-    3,
-    'NinjaNarcis',
-    'Fighter',
-    'Human',
-    3,
-);
-
-let character4: Character = new Character(
-    4,
-    'NimrodTheGoat',
-    'Ranger',
-    'Elf',
-    4,
-);
-
-let character5: Character = new Character(
-    5,
-    'DanutVoinicut',
-    'Warrior',
-    'Dwarf',
-    2,
-);
-
-let character6: Character = new Character(
-    6,
-    'gabiTheLTaker',
-    'Ranger',
-    'Human',
-    1,
-);
-
-let character7: Character = new Character(7, 'ErikGod', 'Fighter', 'Human', 3);
-
-let character8: Character = new Character(8, 'GuguTheGoat', 'Mage', 'Elf', 4);
-
 function App() {
-    // let [players, setPlayers] = useState<Player[]>([
-    //     player1,
-    //     player2,
-    //     player3,
-    //     player4,
-    // ]);
-
-    let [characters, setCharacters] = useState<Character[]>([
-        character1,
-        character2,
-        character3,
-        character4,
-        character5,
-        character6,
-        character7,
-        character8,
-    ]);
-
     const [players, setPlayers] = useState<Player[]>([]);
 
-    const fetchDevices = async () => {
+    const fetchPlayers = async () => {
         await axios
             .get('http://localhost:5000/api/players')
             .then((response) => {
@@ -120,7 +36,7 @@ function App() {
                         ),
                 );
                 setPlayers(fetchedPlayers);
-                console.log('My data is: ');
+                console.log('My players are: ');
                 console.log(response.data);
             })
             .catch((error) => {
@@ -129,7 +45,38 @@ function App() {
     };
 
     useEffect(() => {
-        fetchDevices();
+        fetchPlayers();
+    }, []);
+
+    const [characters, setCharacters] = useState<Character[]>([]);
+
+    const fetchCharacters = async () => {
+        await axios
+            .get('http://localhost:5000/api/characters')
+            .then((response) => {
+                const fetchedCharacters = response.data.map(
+                    (character: any) =>
+                        new Character(
+                            character.id,
+                            character.name,
+                            character.charClass,
+                            character.race,
+                            character.playerId,
+                            character.skinURL,
+                            character.level,
+                        ),
+                );
+                setCharacters(fetchedCharacters);
+                console.log('My characters are: ');
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching characters: ', error);
+            });
+    };
+
+    useEffect(() => {
+        fetchCharacters();
     }, []);
 
     const addPlayer = (newPlayer: Player) => {

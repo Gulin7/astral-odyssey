@@ -10,21 +10,21 @@ const {
 	getPlayers,
 } = require('../controllers/playerController')
 
-const router = express.Router()
+const playersRouter = express.Router()
 
 // GET all players
-router.get('/players', getPlayers)
+playersRouter.get('/', getPlayers)
 
 // GET a single player
-router.get('/players/:id', getPlayer)
+playersRouter.get('/:id', getPlayer)
 
 // POST a new player
-router.post('/addPlayer', createPlayer)
+playersRouter.post('/addPlayer', createPlayer)
 
 // DELETE a player
-router.delete('/players/:id', deletePlayer)
+playersRouter.delete('/:id', deletePlayer)
 
 // UPDATE a player
-router.put('/players/:id', updatePlayer)
+playersRouter.put('/:id', updatePlayer)
 
-module.exports = router
+module.exports = playersRouter

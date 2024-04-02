@@ -4,7 +4,7 @@ class Character {
     private charClass: string;
     private race: string;
     private playerId: number;
-    private skinUrl: string;
+    private skinURL: string;
     private level: number;
 
     public constructor(
@@ -13,27 +13,31 @@ class Character {
         charClass: string,
         race: string,
         playerId: number,
+        skinURL: string,
+        level: number,
     ) {
         this.id = id;
         this.name = name;
-        this.charClass = charClass;
-        this.race = race;
+        this.charClass = charClass.toLowerCase();
+        this.race = race.toLowerCase();
         this.playerId = playerId;
-        this.skinUrl = this.getDefaultSkinUrl();
-        this.level = 1;
+        this.skinURL = skinURL;
+        this.level = level;
+        // this.skinURL = this.getDefaultSkinUrl();
+        // this.level = 1;
     }
 
     public getDefaultSkinUrl(): string {
-        if (this.charClass === 'Warrior') {
+        if (this.charClass.toLowerCase() === 'warrior') {
             return 'warrior-default.png';
-        } else if (this.charClass === 'Mage') {
+        } else if (this.charClass.toLowerCase() === 'mage') {
             return 'mage-default.png';
-        } else if (this.charClass === 'Fighter') {
+        } else if (this.charClass.toLowerCase() === 'fighter') {
             return 'fighter-default.png';
-        } else if (this.charClass === 'Ranger') {
+        } else if (this.charClass.toLowerCase() === 'ranger') {
             return 'ranger-default.png';
         }
-        return 'warrior-default';
+        return 'warrior-default.png';
     }
 
     public getId(): number {
@@ -78,11 +82,11 @@ class Character {
     }
 
     public getSkinUrl(): string {
-        return this.skinUrl;
+        return this.skinURL;
     }
 
     public setSkinUrl(newUrl: string): void {
-        this.skinUrl = newUrl;
+        this.skinURL = newUrl;
     }
 
     public getLevel(): number {

@@ -11,13 +11,13 @@ function setCharacterFormEntriesForCharacter(
     givenCharacter: Character | undefined,
 ) {
     if (givenCharacter !== undefined) {
-        formEntries[0].disabled = true;
+        // formEntries[0].disabled = true;
 
-        formEntries[0].defaultValue = givenCharacter.getId().toString();
-        formEntries[1].defaultValue = givenCharacter.getName();
-        formEntries[2].defaultValue = givenCharacter.getCharClass();
-        formEntries[3].defaultValue = givenCharacter.getRace();
-        formEntries[4].defaultValue = givenCharacter.getPlayerId().toString();
+        // formEntries[0].defaultValue = givenCharacter.getId().toString();
+        formEntries[0].defaultValue = givenCharacter.getName();
+        formEntries[1].defaultValue = givenCharacter.getCharClass();
+        formEntries[2].defaultValue = givenCharacter.getRace();
+        formEntries[3].defaultValue = givenCharacter.getPlayerId().toString();
     }
 
     return formEntries;
@@ -25,13 +25,13 @@ function setCharacterFormEntriesForCharacter(
 
 function createFormEntries(props: CharacterFormType) {
     let formEntries = [
-        {
-            label: 'Character ID',
-            ref: props.idInput,
-            placeHolder: 'Enter ID',
-            defaultValue: '',
-            disabled: false,
-        },
+        // {
+        //     label: 'Character ID',
+        //     ref: props.idInput,
+        //     placeHolder: 'Enter ID',
+        //     defaultValue: '',
+        //     disabled: false,
+        // },
         {
             label: 'Character Name',
             ref: props.nameInput,

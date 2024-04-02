@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import {CharacterCardPropsType} from '../../utils/types/CharacterCardProps.types';
@@ -18,6 +19,18 @@ const CharacterCard = ({
     const removeCharacterFunction = (e: any) => {
         e.stopPropagation();
         removeCharacter(givenCharacter.getId());
+
+        axios
+            .delete(
+                `http://localhost:8080/characters/${givenCharacter.getId()}`,
+            )
+            .then((response) => {
+                console.log('Character removed');
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error('Error removing character: ', error);
+            });
     };
     return (
         <div

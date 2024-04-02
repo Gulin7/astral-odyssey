@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {useContext, useRef} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Button from '../../components/Button/Button';
@@ -8,14 +9,14 @@ import Character from '../../models/Character';
 import './AddCharacterPage.css';
 
 function handleOnClick(
-    idInput: React.RefObject<HTMLInputElement>,
+    // idInput: React.RefObject<HTMLInputElement>,
     nameInput: React.RefObject<HTMLInputElement>,
     classInput: React.RefObject<HTMLInputElement>,
     raceInput: React.RefObject<HTMLInputElement>,
     playerIdInput: React.RefObject<HTMLInputElement>,
-): Character {
+): {name: string; charClass: string; race: string; playerId: number} {
     if (
-        !idInput.current!.value ||
+        // !idInput.current!.value ||
         !nameInput.current!.value ||
         !classInput.current!.value ||
         !raceInput.current!.value ||
@@ -24,25 +25,26 @@ function handleOnClick(
         throw new Error('All fields are required');
     }
 
-    const characterId: number = parseInt(idInput.current!.value);
+    // const characterId: number = parseInt(idInput.current!.value);
     const characterName: string = nameInput.current!.value;
     const characterClass: string = classInput.current!.value;
     const characterRace: string = raceInput.current!.value;
     const characterPlayerId: number = parseInt(playerIdInput.current!.value);
 
-    return new Character(
-        characterId,
-        characterName,
-        characterClass,
-        characterRace,
-        characterPlayerId,
-    );
+    const characterFields = {
+        name: characterName,
+        charClass: characterClass,
+        race: characterRace,
+        playerId: characterPlayerId,
+    };
+
+    return characterFields;
 }
 
 const AddCharacterPage = () => {
     document.title = 'Astral Odyssey | Add Character';
 
-    const idInput = useRef<HTMLInputElement>(null);
+    // const idInput = useRef<HTMLInputElement>(null);
     const nameInput = useRef<HTMLInputElement>(null);
     const classInput = useRef<HTMLInputElement>(null);
     const raceInput = useRef<HTMLInputElement>(null);
@@ -54,14 +56,33 @@ const AddCharacterPage = () => {
     const handleOnClickWrapper = () => {
         try {
             const inputCharacter = handleOnClick(
-                idInput,
+                // idInput,
                 nameInput,
                 classInput,
                 raceInput,
                 playerIdInput,
             );
-            console.log(idInput);
-            charactersContext.addCharacter(inputCharacter);
+
+            axios
+                .post(
+                    'http://localhost:5000/api/characters/addCharacter',
+                    inputCharacter,
+                )
+                .then((response) => {
+                    charactersContext.addCharacter(
+                        new Character(
+                            response.data.id,
+                            response.data.name,
+                            response.data.charClass,
+                            response.data.race,
+                            response.data.playerId,
+                            response.data.skinURL,
+                            response.data.level,
+                        ),
+                    );
+                    console.log('My characters are: ');
+                    console.log(response.data);
+                });
             navigate('/characters');
         } catch (error) {
             // alert('Smth went wrong');
@@ -77,7 +98,7 @@ const AddCharacterPage = () => {
                 <div className='main-page-container'>
                     <div className='main-title'>{layoutTitle}</div>
                     <CharacterForm
-                        idInput={idInput}
+                        // idInput={idInput}
                         nameInput={nameInput}
                         classInput={classInput}
                         raceInput={raceInput}

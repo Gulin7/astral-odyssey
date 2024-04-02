@@ -9,12 +9,12 @@ function setPlayerFormEntriesForPlayer(
     givenPlayer: Player | undefined,
 ) {
     if (givenPlayer !== undefined) {
-        formEntries[0].disabled = true;
+        // formEntries[0].disabled = true;
 
-        formEntries[0].defaultValue = givenPlayer.getId().toString();
-        formEntries[1].defaultValue = givenPlayer.getUsername();
-        formEntries[2].defaultValue = givenPlayer.getNickname();
-        formEntries[3].defaultValue = givenPlayer.getPictureUrl();
+        // formEntries[0].defaultValue = givenPlayer.getId().toString();
+        formEntries[0].defaultValue = givenPlayer.getUsername();
+        formEntries[1].defaultValue = givenPlayer.getNickname();
+        formEntries[2].defaultValue = givenPlayer.getPictureUrl();
     }
 
     return formEntries;
@@ -22,13 +22,13 @@ function setPlayerFormEntriesForPlayer(
 
 function createFormEntries(props: PlayerFormType) {
     let formEntries = [
-        {
-            label: 'ID',
-            ref: props.idInput,
-            placeHolder: 'Enter ID',
-            defaultValue: '',
-            disabled: false,
-        },
+        // {
+        //     label: 'ID',
+        //     ref: props.idInput,
+        //     placeHolder: 'Enter ID',
+        //     defaultValue: '',
+        //     disabled: false,
+        // },
         {
             label: 'Username',
             ref: props.usernameInput,

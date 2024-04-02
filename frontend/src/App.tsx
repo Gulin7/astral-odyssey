@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import axios from 'axios';
+import {useEffect, useState} from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import './App.css';
 import {CharactersContextProvider} from './contexts/CharactersContext';
@@ -18,25 +19,25 @@ import PlayersPage from './pages/PlayersPage/PlayersPage';
 import PotionPage from './pages/PotionsPage/PotionsPage';
 import WeaponPage from './pages/WeaponsPage/WeaponsPage';
 
-let player1: Player = new Player(1, 'suciub', 'sbbogdy', 'profile-1.png');
-let player2: Player = new Player(
-    2,
-    'danutgolut',
-    'xXDanFTWXx',
-    'profile-2.png',
-);
-let player3: Player = new Player(
-    3,
-    'tudorgulin',
-    'ClasTreyler27',
-    'profile-3.png',
-);
-let player4: Player = new Player(
-    4,
-    'nimrod2003',
-    'NimrodTheGoat',
-    'profile-4.png',
-);
+// let player1: Player = new Player(1, 'suciub', 'sbbogdy', 'profile-1.png');
+// let player2: Player = new Player(
+//     2,
+//     'danutgolut',
+//     'xXDanFTWXx',
+//     'profile-2.png',
+// );
+// let player3: Player = new Player(
+//     3,
+//     'tudorgulin',
+//     'ClasTreyler27',
+//     'profile-3.png',
+// );
+// let player4: Player = new Player(
+//     4,
+//     'nimrod2003',
+//     'NimrodTheGoat',
+//     'profile-4.png',
+// );
 
 let character1: Character = new Character(
     1,
@@ -85,12 +86,12 @@ let character7: Character = new Character(7, 'ErikGod', 'Fighter', 'Human', 3);
 let character8: Character = new Character(8, 'GuguTheGoat', 'Mage', 'Elf', 4);
 
 function App() {
-    let [players, setPlayers] = useState<Player[]>([
-        player1,
-        player2,
-        player3,
-        player4,
-    ]);
+    // let [players, setPlayers] = useState<Player[]>([
+    //     player1,
+    //     player2,
+    //     player3,
+    //     player4,
+    // ]);
 
     let [characters, setCharacters] = useState<Character[]>([
         character1,
@@ -102,6 +103,34 @@ function App() {
         character7,
         character8,
     ]);
+
+    const [players, setPlayers] = useState<Player[]>([]);
+
+    const fetchDevices = async () => {
+        await axios
+            .get('http://localhost:5000/api/players')
+            .then((response) => {
+                const fetchedPlayers = response.data.map(
+                    (player: any) =>
+                        new Player(
+                            player.id,
+                            player.username,
+                            player.nickname,
+                            player.pictureURL,
+                        ),
+                );
+                setPlayers(fetchedPlayers);
+                console.log('My data is: ');
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching players: ', error);
+            });
+    };
+
+    useEffect(() => {
+        fetchDevices();
+    }, []);
 
     const addPlayer = (newPlayer: Player) => {
         setPlayers((prevState: Player[]) => [...prevState, newPlayer]);

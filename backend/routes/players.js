@@ -1,5 +1,5 @@
 const express = require('express')
-const Player = require('../models/Player')
+const Player = require('../models/PlayerSchema')
 
 // require the controller
 const {
@@ -19,17 +19,7 @@ router.get('/players', getPlayers)
 router.get('/players/:id', getPlayer)
 
 // POST a new player
-router.post('/addPlayer', async (req, res) => {
-	const { id, username, nickname, pictureURL } = req.body
-
-	try {
-		const newPlayer = await Player.create({ id, username, nickname, pictureURL })
-		res.status(200).json(newPlayer)
-	} catch (error) {
-		// respond w 400, an error code
-		res.status(400).json({ error: error.message })
-	}
-})
+router.post('/addPlayer', createPlayer)
 
 // DELETE a player
 router.delete('/players/:id', deletePlayer)

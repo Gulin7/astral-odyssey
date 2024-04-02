@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {useContext, useRef} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Button from '../../components/Button/Button';
@@ -8,13 +9,22 @@ import {Player} from '../../models/Player';
 import './AddPlayerPage.css';
 
 function handleOnClick(
-    idInput: React.RefObject<HTMLInputElement>,
+    // idInput: React.RefObject<HTMLInputElement>,
     usernameInput: React.RefObject<HTMLInputElement>,
     nicknameInput: React.RefObject<HTMLInputElement>,
-    urlInput: React.RefObject<HTMLInputElement>,
-): Player {
+    urlInput: React.RefObject<HTMLSelectElement>,
+): string[] {
     if (
-        !idInput.current!.value ||
+        // !idInput.current ||
+        !usernameInput.current ||
+        !nicknameInput.current ||
+        !urlInput.current
+    ) {
+        throw new Error('Null references');
+    }
+
+    if (
+        // !idInput.current!.value ||
         !usernameInput.current!.value ||
         !nicknameInput.current!.value ||
         !urlInput.current!.value
@@ -22,34 +32,68 @@ function handleOnClick(
         throw new Error('All fields are required');
     }
 
-    const playerId: number = parseInt(idInput.current!.value);
+    // const playerId: number = parseInt(idInput.current!.value);
     const playerUsername: string = usernameInput.current!.value;
     const playerNickname: string = nicknameInput.current!.value;
     const playerUrl: string = urlInput.current!.value;
 
-    return new Player(playerId, playerUsername, playerNickname, playerUrl);
+    const inputFields = [playerUsername, playerNickname, playerUrl];
+
+    return inputFields;
 }
 
 const AddPlayerPage = () => {
     document.title = 'Astral Odyssey | Add Player';
 
-    const idInput = useRef<HTMLInputElement>(null);
+    // const idInput = useRef<HTMLInputElement>(null);
     const usernameInput = useRef<HTMLInputElement>(null);
     const nicknameInput = useRef<HTMLInputElement>(null);
-    const urlInput = useRef<HTMLInputElement>(null);
+    const urlInput = useRef<HTMLSelectElement>(null);
 
     const navigate = useNavigate();
     const playersContext = useContext(PlayersContext)!;
 
     const handleOnClickWrapper = () => {
         try {
-            const inputPlayer = handleOnClick(
-                idInput,
+            const inputFields = handleOnClick(
+                // idInput,
                 usernameInput,
                 nicknameInput,
                 urlInput,
             );
-            playersContext.addPlayer(inputPlayer);
+            const inputPlayer = {
+                username: inputFields[0],
+                nickname: inputFields[1],
+                url: inputFields[2],
+            };
+
+            axios
+                .post('http://localhost:5000/api/addPlayer', inputPlayer)
+                .then((response) => {
+                    console.log(response);
+                    let fetchedPlayer: Player;
+                    axios
+                        .get(
+                            `http://localhost:5000/api/devices/${inputFields[0]}`,
+                        )
+                        .then((response) => {
+                            fetchedPlayer = response.data.map(
+                                (player: any) =>
+                                    new Player(
+                                        player.id,
+                                        player.username,
+                                        player.nickname,
+                                        player.pictureURL,
+                                    ),
+                            );
+                            playersContext.addPlayer(fetchedPlayer);
+                            console.log('My data is: ');
+                            console.log(response.data);
+                        })
+                        .catch((error) => {
+                            console.error('Error fetching players: ', error);
+                        });
+                });
             navigate('/players');
         } catch (error) {
             alert(error);
@@ -64,7 +108,7 @@ const AddPlayerPage = () => {
                 <div className='main-page-container'>
                     <div className='main-title'>{layoutTitle}</div>
                     <PlayerForm
-                        idInput={idInput}
+                        // idInput={idInput}
                         usernameInput={usernameInput}
                         nicknameInput={nicknameInput}
                         urlInput={urlInput}

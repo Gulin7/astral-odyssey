@@ -9,6 +9,8 @@ import Character from '../../models/Character';
 import './CharactersPage.css';
 
 const CharactersPage = () => {
+    const navigate = useNavigate();
+
     document.title = 'Astral Odyssey | Characters';
 
     const charactersContext = useContext(CharactersContext)!;
@@ -47,8 +49,6 @@ const CharactersPage = () => {
     useEffect(() => {
         setCharacters(charactersArray);
     }, [charactersContext.characters]);
-
-    const navigate = useNavigate();
 
     // Pagination
     const [page, setPage] = useState(1);

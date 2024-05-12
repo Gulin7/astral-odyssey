@@ -1,7 +1,10 @@
+import {useNavigate} from 'react-router-dom';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
 import './WeaponsPage.css';
 
 const WeaponsPage = () => {
+    const navigate = useNavigate();
+
     document.title = 'WeaponsPage';
     return (
         <MainLayout>

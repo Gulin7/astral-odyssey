@@ -1,7 +1,10 @@
+import {useNavigate} from 'react-router-dom';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
 import './ArmorsPage.css';
 
 const ArmorsPage = () => {
+    const navigate = useNavigate();
+
     document.title = 'Astral Odyssey | Armors Shop';
     return (
         <MainLayout>

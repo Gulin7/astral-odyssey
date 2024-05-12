@@ -1,7 +1,10 @@
+import {useNavigate} from 'react-router-dom';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
 import './PotionsPage.css';
 
 const PotionsPage = () => {
+    const navigate = useNavigate();
+
     document.title = 'Astral Odyssey | Potions Shop';
     return (
         <MainLayout>

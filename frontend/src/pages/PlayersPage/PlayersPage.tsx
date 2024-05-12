@@ -1,4 +1,5 @@
 import {useContext, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import {PlayersContext} from '../../contexts/PlayersContext';
 import PlayerCard from '../../features/PlayerCard/PlayerCard';
@@ -7,6 +8,8 @@ import {Player} from '../../models/Player';
 import './PlayersPage.css';
 
 const PlayersPage = () => {
+    const navigate = useNavigate();
+
     document.title = 'Astral Odyssey | Players';
 
     const playersContext = useContext(PlayersContext)!;

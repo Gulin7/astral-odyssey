@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
-import {PlayerCardPropsType} from '../../utils/types/PlayerCardProps.types';
+import { PlayerCardPropsType } from '../../utils/types/PlayerCardProps.types';
 import './PlayerCard.css';
 
 const PlayerCard = ({givenPlayer, removePlayer}: PlayerCardPropsType) => {
@@ -37,12 +37,12 @@ const PlayerCard = ({givenPlayer, removePlayer}: PlayerCardPropsType) => {
             onClick={editPlayer}
         >
             <div className='player-image' data-testid='player-image-test-id'>
-                <img src={path} alt={givenPlayer.getUsername()} />
+                <img src={path} alt={givenPlayer.getNickname()} />
             </div>
             <div className='player-info'>
-                <div className='user-username'>
+                {/* <div className='user-username'>
                     UserName: {givenPlayer.getUsername()}
-                </div>
+                </div> */}
                 <div className='player-nickname'>
                     NickName: {givenPlayer.getNickname()}
                 </div>

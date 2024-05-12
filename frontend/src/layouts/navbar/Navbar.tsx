@@ -1,7 +1,19 @@
-import {Link} from 'react-router-dom';
+import {useContext} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
+import {UserContext} from '../../contexts/UserContext';
+import {User} from '../../models/User';
 import './Navbar.css';
 
 const Navbar = () => {
+    const navigate = useNavigate();
+    const userContext = useContext(UserContext)!;
+
+    function logout() {
+        localStorage.setItem('isLoggedIn', 'no');
+        userContext.setUser(new User(-1, '', '', '', false));
+        navigate('/login');
+    }
+
     return (
         <nav className='navbar' data-testid='navbar-test-id'>
             <h2 className='nav-title'>Astral Odyssey</h2>
@@ -46,6 +58,11 @@ const Navbar = () => {
                     <Link to='/potionShop' className='nav-link'>
                         Potions
                     </Link>
+                </div>
+                <div>
+                    <button className='nav-link button-dark' onClick={logout}>
+                        Log out
+                    </button>
                 </div>
             </div>
         </nav>

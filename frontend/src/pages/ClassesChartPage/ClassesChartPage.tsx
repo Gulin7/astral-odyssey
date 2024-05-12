@@ -1,9 +1,12 @@
 import {PieChart} from '@mui/x-charts/PieChart';
 import {useContext} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {CharactersContext} from '../../contexts/CharactersContext';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
 
 function ClassesChartPage() {
+    const navigate = useNavigate();
+
     document.title = 'Astral Odyssey | Classes Chart';
 
     const charactersContext = useContext(CharactersContext)!;

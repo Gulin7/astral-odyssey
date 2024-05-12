@@ -8,8 +8,8 @@ const playerSchema = new Schema({
 		required: true,
 		unique: true,
 	},
-	username: {
-		type: String,
+	user_id: {
+		type: Number,
 		required: true,
 	},
 	nickname: {

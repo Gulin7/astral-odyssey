@@ -1,7 +1,10 @@
+import {useNavigate} from 'react-router-dom';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
 import './HomePage.css';
 
 const HomePage = () => {
+    const navigate = useNavigate();
+
     return (
         <MainLayout>
             <div className='main-page'>

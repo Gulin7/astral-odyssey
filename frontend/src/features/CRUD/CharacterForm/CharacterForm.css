@@ -11,13 +11,13 @@
 }
 
 @media (max-width: 768px) {
-    .player-form-div {
+    .character-form-div {
         width: 60%;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    .player-form-div {
+    .character-form-div {
         width: 50%;
     }
 }

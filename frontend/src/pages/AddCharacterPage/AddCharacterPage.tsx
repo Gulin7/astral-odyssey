@@ -42,6 +42,8 @@ function handleOnClick(
 }
 
 const AddCharacterPage = () => {
+    const navigate = useNavigate();
+
     document.title = 'Astral Odyssey | Add Character';
 
     // const idInput = useRef<HTMLInputElement>(null);
@@ -50,7 +52,6 @@ const AddCharacterPage = () => {
     const raceInput = useRef<HTMLInputElement>(null);
     const playerIdInput = useRef<HTMLInputElement>(null);
 
-    const navigate = useNavigate();
     const charactersContext = useContext(CharactersContext)!;
 
     const handleOnClickWrapper = () => {

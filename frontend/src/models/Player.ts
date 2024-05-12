@@ -1,17 +1,17 @@
 export class Player {
     private id: number;
-    private username: string;
+    private userId: number;
     private nickname: string;
     private pictureUrl: string;
 
     public constructor(
         id: number,
-        username: string,
+        userId: number,
         nickname: string,
         pictureUrl: string,
     ) {
         this.id = id;
-        this.username = username;
+        this.userId = userId;
         this.nickname = nickname;
         this.pictureUrl = pictureUrl;
     }
@@ -24,12 +24,12 @@ export class Player {
         this.id = newId;
     }
 
-    public getUsername(): string {
-        return this.username;
+    public getuserId(): number {
+        return this.userId;
     }
 
-    public setUsername(newUsername: string): void {
-        this.username = newUsername;
+    public setuserId(newuserId: number): void {
+        this.userId = newuserId;
     }
 
     public getNickname(): string {

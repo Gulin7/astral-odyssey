@@ -10,13 +10,13 @@ import './AddPlayerPage.css';
 
 function handleOnClick(
     // idInput: React.RefObject<HTMLInputElement>,
-    usernameInput: React.RefObject<HTMLInputElement>,
+    // userIdInput: React.RefObject<HTMLInputElement>,
     nicknameInput: React.RefObject<HTMLInputElement>,
     urlInput: React.RefObject<HTMLInputElement>,
-): {username: string; nickname: string; pictureURL: string} {
+): {nickname: string; pictureURL: string} {
     if (
         // !idInput.current ||
-        !usernameInput.current ||
+        // !userIdInput.current ||
         !nicknameInput.current ||
         !urlInput.current
     ) {
@@ -25,7 +25,7 @@ function handleOnClick(
 
     if (
         // !idInput.current!.value ||
-        !usernameInput.current!.value ||
+        // !userIdInput.current!.value ||
         !nicknameInput.current!.value ||
         !urlInput.current!.value
     ) {
@@ -33,12 +33,12 @@ function handleOnClick(
     }
 
     // const playerId: number = parseInt(idInput.current!.value);
-    const playerUsername: string = usernameInput.current!.value;
+    // const playeruserId: string = userIdInput.current!.value;
     const playerNickname: string = nicknameInput.current!.value;
     const playerUrl: string = urlInput.current!.value;
 
     const inputFields = {
-        username: playerUsername,
+        // userId: playeruserId,
         nickname: playerNickname,
         pictureURL: playerUrl,
     };
@@ -47,21 +47,22 @@ function handleOnClick(
 }
 
 const AddPlayerPage = () => {
+    const navigate = useNavigate();
+
     document.title = 'Astral Odyssey | Add Player';
 
     // const idInput = useRef<HTMLInputElement>(null);
-    const usernameInput = useRef<HTMLInputElement>(null);
+    // const userIdInput = useRef<HTMLInputElement>(null);
     const nicknameInput = useRef<HTMLInputElement>(null);
     const urlInput = useRef<HTMLInputElement>(null);
 
-    const navigate = useNavigate();
     const playersContext = useContext(PlayersContext)!;
 
     const handleOnClickWrapper = () => {
         try {
             const inputFields = handleOnClick(
                 // idInput,
-                usernameInput,
+                // userIdInput,
                 nicknameInput,
                 urlInput,
             );
@@ -78,7 +79,7 @@ const AddPlayerPage = () => {
                         playersContext.addPlayer(
                             new Player(
                                 response.data.id,
-                                response.data.username,
+                                response.data.userId,
                                 response.data.nickname,
                                 response.data.pictureURL,
                             ),
@@ -102,7 +103,7 @@ const AddPlayerPage = () => {
                     <div className='main-title'>{layoutTitle}</div>
                     <PlayerForm
                         // idInput={idInput}
-                        usernameInput={usernameInput}
+                        // userIdInput={userIdInput}
                         nicknameInput={nicknameInput}
                         urlInput={urlInput}
                         data-testid='player-form-id'

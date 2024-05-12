@@ -10,13 +10,13 @@ import './EditPlayerPage.css';
 
 function handleOnClick(
     // idInput: React.RefObject<HTMLInputElement>,
-    usernameInput: React.RefObject<HTMLInputElement>,
+    // usernameInput: React.RefObject<HTMLInputElement>,
     nicknameInput: React.RefObject<HTMLInputElement>,
     pictureUrlInput: React.RefObject<HTMLInputElement>,
 ) {
     if (
         // !idInput.current ||
-        !usernameInput.current ||
+        // !usernameInput.current ||
         !nicknameInput.current ||
         !pictureUrlInput.current
     ) {
@@ -25,7 +25,7 @@ function handleOnClick(
 
     if (
         // !idInput.current.value ||
-        !usernameInput.current.value ||
+        // !usernameInput.current.value ||
         !nicknameInput.current.value ||
         !pictureUrlInput.current.value
     ) {
@@ -33,12 +33,12 @@ function handleOnClick(
     }
 
     // const playerId: number = parseInt(idInput.current.value);
-    const playerUsername: string = usernameInput.current.value;
+    // const playerUsername: string = usernameInput.current.value;
     const playerNickname: string = nicknameInput.current.value;
     const playerPictureUrl: string = pictureUrlInput.current.value;
 
     const fields = {
-        username: playerUsername,
+        // username: playerUsername,
         nickname: playerNickname,
         pictureURL: playerPictureUrl,
     };
@@ -50,7 +50,7 @@ const EditPlayerPage = () => {
     document.title = 'Astral Odyssey | Player Profile';
 
     // const idInput = React.createRef<HTMLInputElement>();
-    const usernameInput = React.createRef<HTMLInputElement>();
+    // const usernameInput = React.createRef<HTMLInputElement>();
     const nicknameInput = React.createRef<HTMLInputElement>();
     const pictureUrlInput = React.createRef<HTMLInputElement>();
 
@@ -71,7 +71,7 @@ const EditPlayerPage = () => {
         try {
             const fields = handleOnClick(
                 // idInput,
-                usernameInput,
+                // userIdInput,
                 nicknameInput,
                 pictureUrlInput,
             );
@@ -103,7 +103,7 @@ const EditPlayerPage = () => {
                     <h2 className='main-title'>{layoutTitle}</h2>
                     <PlayerForm
                         // idInput={idInput}
-                        usernameInput={usernameInput}
+                        // usernameInput={usernameInput}
                         nicknameInput={nicknameInput}
                         urlInput={pictureUrlInput}
                         givenPlayer={givenPlayer}

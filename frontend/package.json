@@ -33,6 +33,8 @@
         "react-router-dom": "^6.22.3",
         "semantic-ui-css": "^2.5.0",
         "semantic-ui-react": "^2.1.5",
+        "socket.io": "^4.7.5",
+        "socket.io-client": "^4.7.5",
         "sort-by": "^0.0.2"
     },
     "devDependencies": {

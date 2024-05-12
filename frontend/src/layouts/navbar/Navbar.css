@@ -40,3 +40,9 @@
     background-color: #555;
     border-radius: 5px;
 }
+
+.button-dark {
+    background-color: #333;
+    color: #f4f4f4;
+    transition: all 0.3s ease;
+}

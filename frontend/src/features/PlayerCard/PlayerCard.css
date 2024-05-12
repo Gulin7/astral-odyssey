@@ -2,8 +2,8 @@
     box-sizing: border-box;
 }
 .player-card {
-    width: 15rem;
-    height: 24rem;
+    width: 12rem;
+    height: 18rem;
 
     display: flex;
     flex-direction: column;
@@ -36,8 +36,8 @@
 }
 
 .player-image > img {
-    width: 10rem;
-    height: 10rem;
+    width: 8rem;
+    height: 8rem;
     border-radius: 8px;
     margin: 0.5rem;
 }

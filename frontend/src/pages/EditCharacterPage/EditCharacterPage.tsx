@@ -52,6 +52,8 @@ function handleOnClick(
 }
 
 const EditCharacterPage = () => {
+    const navigate = useNavigate();
+
     document.title = 'Astral Odyssey | Character Profile';
 
     // const idInput = React.createRef<HTMLInputElement>();
@@ -60,7 +62,6 @@ const EditCharacterPage = () => {
     const raceInput = React.createRef<HTMLInputElement>();
     const playerIdInput = React.createRef<HTMLInputElement>();
 
-    const navigate = useNavigate();
     const charactersContext = useContext(CharactersContext)!;
 
     const {characterId} = useParams();

@@ -1,11 +1,15 @@
 import axios from 'axios';
 import {useEffect, useState} from 'react';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
+import {io} from 'socket.io-client';
 import './App.css';
+import ConnectionStatus from './ConnectionStatus';
 import {CharactersContextProvider} from './contexts/CharactersContext';
 import {PlayersContextProvider} from './contexts/PlayersContext';
+import {UserContextProvider} from './contexts/UserContext';
 import Character from './models/Character';
 import {Player} from './models/Player';
+import {User} from './models/User';
 import AddCharacterPage from './pages/AddCharacterPage/AddCharacterPage';
 import AddPlayerPage from './pages/AddPlayerPage/AddPlayerPage';
 import ArmorPage from './pages/ArmorsPage/ArmorsPage';
@@ -14,13 +18,28 @@ import ClassesChartPage from './pages/ClassesChartPage/ClassesChartPage';
 import EditCharacterPage from './pages/EditCharacterPage/EditCharacterPage';
 import EditPlayerPage from './pages/EditPlayerPage/EditPlayerPage';
 import HomePage from './pages/HomePage/HomePage';
+import LoginPage from './pages/LoginPage/LoginPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import PlayersPage from './pages/PlayersPage/PlayersPage';
 import PotionPage from './pages/PotionsPage/PotionsPage';
+import SignupPage from './pages/SignupPage/SignupPage';
 import WeaponPage from './pages/WeaponsPage/WeaponsPage';
 
 function App() {
     const [players, setPlayers] = useState<Player[]>([]);
+
+    useEffect(() => {
+        const socket = io('http://localhost:5000', {transports: ['websocket']});
+        socket.on('player', (fields: any) => {
+            const player = new Player(
+                fields.id,
+                fields.userId,
+                fields.nickname,
+                fields.pictureURL,
+            );
+            setPlayers((prevPlayers) => [...prevPlayers, player]);
+        });
+    });
 
     const fetchPlayers = async () => {
         await axios
@@ -36,8 +55,8 @@ function App() {
                         ),
                 );
                 setPlayers(fetchedPlayers);
-                console.log('My players are: ');
-                console.log(response.data);
+                //console.log('My players are: ');
+                //console.log(response.data);
             })
             .catch((error) => {
                 console.error('Error fetching players: ', error);
@@ -67,8 +86,8 @@ function App() {
                         ),
                 );
                 setCharacters(fetchedCharacters);
-                console.log('My characters are: ');
-                console.log(response.data);
+                //console.log('My characters are: ');
+                //console.log(response.data);
             })
             .catch((error) => {
                 console.error('Error fetching characters: ', error);
@@ -78,6 +97,8 @@ function App() {
     useEffect(() => {
         fetchCharacters();
     }, []);
+
+    const [user, setUser] = useState<User>();
 
     const addPlayer = (newPlayer: Player) => {
         setPlayers((prevState: Player[]) => [...prevState, newPlayer]);
@@ -102,45 +123,147 @@ function App() {
     };
 
     return (
-        <PlayersContextProvider
-            playerContext={{players, addPlayer, removePlayer}}
-        >
-            <CharactersContextProvider
-                characterContext={{characters, addCharacter, removeCharacter}}
+        <UserContextProvider userContext={{user, setUser}}>
+            <PlayersContextProvider
+                playerContext={{players, addPlayer, removePlayer}}
             >
-                <BrowserRouter>
-                    <Routes>
-                        <Route path='/' element={<HomePage />} />
-                        <Route path='/players' element={<PlayersPage />} />
-                        <Route path='/addPlayer' element={<AddPlayerPage />} />
-                        <Route
-                            path='/editPlayer/:playerId'
-                            element={<EditPlayerPage />}
-                        />
-                        <Route
-                            path='/characters'
-                            element={<CharactersPage />}
-                        />
-                        <Route
-                            path='/addCharacter'
-                            element={<AddCharacterPage />}
-                        />
-                        <Route
-                            path='/editCharacter/:characterId'
-                            element={<EditCharacterPage />}
-                        />
-                        <Route
-                            path='/classesChart'
-                            element={<ClassesChartPage />}
-                        />
-                        <Route path='/armorShop' element={<ArmorPage />} />
-                        <Route path='/potionShop' element={<PotionPage />} />
-                        <Route path='/weaponShop' element={<WeaponPage />} />
-                        <Route path='*' element={<NotFoundPage />} />
-                    </Routes>
-                </BrowserRouter>
-            </CharactersContextProvider>
-        </PlayersContextProvider>
+                <CharactersContextProvider
+                    characterContext={{
+                        characters,
+                        addCharacter,
+                        removeCharacter,
+                    }}
+                >
+                    <BrowserRouter>
+                        <ConnectionStatus />
+                        <Routes>
+                            <Route
+                                path='/'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <HomePage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route path='/login' element={<LoginPage />} />
+                            <Route path='/signup' element={<SignupPage />} />
+                            <Route
+                                path='/players'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <PlayersPage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route
+                                path='/addPlayer'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <AddPlayerPage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route
+                                path='/editPlayer/:playerId'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <EditPlayerPage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route
+                                path='/characters'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <CharactersPage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route
+                                path='/addCharacter'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <AddCharacterPage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route
+                                path='/editCharacter/:characterId'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <EditCharacterPage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route
+                                path='/classesChart'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <ClassesChartPage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route
+                                path='/armorShop'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <ArmorPage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route
+                                path='/potionShop'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <PotionPage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route
+                                path='/weaponShop'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <WeaponPage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route
+                                path='*'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <NotFoundPage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                        </Routes>
+                    </BrowserRouter>
+                </CharactersContextProvider>
+            </PlayersContextProvider>
+        </UserContextProvider>
     );
 }
 

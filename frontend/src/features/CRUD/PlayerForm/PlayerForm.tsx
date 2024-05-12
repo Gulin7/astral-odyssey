@@ -12,9 +12,9 @@ function setPlayerFormEntriesForPlayer(
         // formEntries[0].disabled = true;
 
         // formEntries[0].defaultValue = givenPlayer.getId().toString();
-        formEntries[0].defaultValue = givenPlayer.getUsername();
-        formEntries[1].defaultValue = givenPlayer.getNickname();
-        formEntries[2].defaultValue = givenPlayer.getPictureUrl();
+        //formEntries[0].defaultValue = givenPlayer.getUsername();
+        formEntries[0].defaultValue = givenPlayer.getNickname();
+        formEntries[1].defaultValue = givenPlayer.getPictureUrl();
     }
 
     return formEntries;
@@ -29,13 +29,13 @@ function createFormEntries(props: PlayerFormType) {
         //     defaultValue: '',
         //     disabled: false,
         // },
-        {
-            label: 'Username',
-            ref: props.usernameInput,
-            placeHolder: 'Enter username',
-            defaultValue: '',
-            disabled: false,
-        },
+        //{
+        // label: 'Username',
+        //ref: props.usernameInput,
+        //placeHolder: 'Enter username',
+        //defaultValue: '',
+        //disabled: false,
+        //},
         {
             label: 'Nickname',
             ref: props.nicknameInput,

@@ -54,11 +54,11 @@ const getPlayer = async (req, res) => {
 // POST a new player
 const createPlayer = async (req, res) => {
 	console.log(req.body)
-	const { username, nickname, pictureURL } = req.body
+	const { userId, nickname, pictureURL } = req.body
 	// add doc to db
 	const id = await getFirstFreeId()
 	try {
-		const newPlayer = await Player.create({ id, username, nickname, pictureURL })
+		const newPlayer = await Player.create({ id, userId, nickname, pictureURL })
 		res.status(200).json(newPlayer)
 	} catch (error) {
 		res.status(400).json({ error: error.message })

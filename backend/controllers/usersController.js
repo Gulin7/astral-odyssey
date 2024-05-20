@@ -45,7 +45,7 @@ const loginUser = async (req, res) => {
 
 		res.status(200).json({ user: existingUser, token })
 	} catch (error) {
-		res.status(405).json({ error: error.message })
+		res.status(400).json({ error: error.message })
 	}
 }
 

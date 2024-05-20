@@ -19,7 +19,12 @@ app.use((req, res, next) => {
 	next()
 })
 
+//default route
+const defaultRoute = express.Router()
+defaultRoute.get()
+
 //routes
+app.use('/', defaultRoute)
 app.use('/api/user', userRoutes)
 app.use('/api/players', playerRoutes)
 app.use('/api/characters', characterRoutes)

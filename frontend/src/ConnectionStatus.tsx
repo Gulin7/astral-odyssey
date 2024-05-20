@@ -22,7 +22,10 @@ function ConnectionStatus() {
     useEffect(() => {
         const checkServerStatus = async () => {
             try {
-                await fetch('http://localhost:5000');
+                //const URL = 'http://localhost:5000';
+                const URL = 'http://3.79.63.224:5000';
+
+                await fetch(URL);
                 setIsServerDown(false);
             } catch (error) {
                 setIsServerDown(true);

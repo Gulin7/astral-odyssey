@@ -4,7 +4,9 @@ const User = require('../models/UserSchema')
 
 //generate JWT token
 const generateToken = (id) => {
-	return jwt.sign({ id: id }, process.env.JWT_SECRET, { expiresIn: '7d' })
+	const JWT_SECRET = process.env.JWT_SECRET || 'suP3rS3cr3tJWT12sojgj*&nfk'
+
+	return jwt.sign({ id: id }, JWT_SECRET, { expiresIn: '7d' })
 }
 
 //get first free

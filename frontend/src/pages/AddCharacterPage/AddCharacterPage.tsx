@@ -1,6 +1,6 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
-import {useContext, useRef} from 'react';
+import {useContext, useEffect, useRef} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import {CharactersContext} from '../../contexts/CharactersContext';
@@ -44,6 +44,13 @@ function handleOnClick(
 
 const AddCharacterPage = () => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('userToken');
+        if (!token) {
+            navigate('/login');
+        }
+    });
 
     document.title = 'Astral Odyssey | Add Character';
 

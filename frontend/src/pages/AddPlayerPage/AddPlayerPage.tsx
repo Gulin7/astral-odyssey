@@ -1,6 +1,6 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
-import {useContext, useRef} from 'react';
+import {useContext, useEffect, useRef} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import {PlayersContext} from '../../contexts/PlayersContext';
@@ -48,6 +48,13 @@ function handleOnClick(
 }
 
 const AddPlayerPage = () => {
+    useEffect(() => {
+        const token = sessionStorage.getItem('userToken');
+        if (!token) {
+            navigate('/login');
+        }
+    });
+
     axiosRetry(axios, {retries: 3});
 
     const navigate = useNavigate();

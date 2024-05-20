@@ -1,9 +1,17 @@
+import {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
 import './ArmorsPage.css';
 
 const ArmorsPage = () => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('userToken');
+        if (!token) {
+            navigate('/login');
+        }
+    });
 
     document.title = 'Astral Odyssey | Armors Shop';
     return (

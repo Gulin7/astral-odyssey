@@ -59,6 +59,10 @@ const LoginPage = () => {
                         );
                         userContext.setUser(currentUser);
                         localStorage.setItem('isLoggedIn', 'yes');
+                        sessionStorage.setItem(
+                            'userToken',
+                            JSON.stringify(response.data.token),
+                        );
                         navigate('/');
                     });
             } catch (error) {

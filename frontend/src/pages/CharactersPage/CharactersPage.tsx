@@ -25,6 +25,13 @@ const CharactersPage = () => {
 
     const [sortedByName, setSortedByName] = useState<boolean>(false);
 
+    useEffect(() => {
+        const token = sessionStorage.getItem('userToken');
+        if (!token) {
+            navigate('/login');
+        }
+    });
+
     // Console useEffect for characters
     useEffect(() => {
         console.log(characters);

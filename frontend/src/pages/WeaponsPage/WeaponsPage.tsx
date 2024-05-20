@@ -1,9 +1,17 @@
+import {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
 import './WeaponsPage.css';
 
 const WeaponsPage = () => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('userToken');
+        if (!token) {
+            navigate('/login');
+        }
+    });
 
     document.title = 'WeaponsPage';
     return (

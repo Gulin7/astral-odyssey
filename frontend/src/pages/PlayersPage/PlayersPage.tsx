@@ -22,6 +22,13 @@ const PlayersPage = () => {
 
     document.title = 'Astral Odyssey | Players';
 
+    useEffect(() => {
+        const token = sessionStorage.getItem('userToken');
+        if (!token) {
+            navigate('/login');
+        }
+    });
+
     const playersContext = useContext(PlayersContext)!;
 
     const layoutTitle: string = 'Players';

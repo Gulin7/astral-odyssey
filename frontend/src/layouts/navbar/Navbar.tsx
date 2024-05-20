@@ -11,6 +11,7 @@ const Navbar = () => {
     function logout() {
         localStorage.setItem('isLoggedIn', 'no');
         userContext.setUser(new User(-1, '', '', '', false));
+        sessionStorage.removeItem('userToken');
         navigate('/login');
     }
 

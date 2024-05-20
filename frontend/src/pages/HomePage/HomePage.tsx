@@ -1,9 +1,17 @@
+import {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
 import './HomePage.css';
 
 const HomePage = () => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('userToken');
+        if (!token) {
+            navigate('/login');
+        }
+    });
 
     return (
         <MainLayout>

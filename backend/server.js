@@ -47,7 +47,7 @@ const MONGO_URI =
 
 // connect to mongodb
 mongoose
-	.connect(process.env.MONGO_URI)
+	.connect(MONGO_URI)
 	.then(() => {
 		//listen for requests
 		server.listen(process.env.PORT, () => {

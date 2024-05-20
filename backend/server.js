@@ -41,6 +41,10 @@ io.on('connection', (socket) => {
 	}, 500000)
 })
 
+const MONGO_URI =
+	process.env.MONGO_URI ||
+	'mongodb+srv://gulin:mamaluinacho232@astral-odyssey-app.sexbors.mongodb.net/?retryWrites=true&w=majority&appName=astral-odyssey-app'
+
 // connect to mongodb
 mongoose
 	.connect(process.env.MONGO_URI)

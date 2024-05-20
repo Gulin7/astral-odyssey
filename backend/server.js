@@ -45,13 +45,15 @@ const MONGO_URI =
 	process.env.MONGO_URI ||
 	'mongodb+srv://gulin:mamaluinacho232@astral-odyssey-app.sexbors.mongodb.net/?retryWrites=true&w=majority&appName=astral-odyssey-app'
 
+const PORT = process.env.PORT || 5000
+
 // connect to mongodb
 mongoose
 	.connect(MONGO_URI)
 	.then(() => {
 		//listen for requests
-		server.listen(process.env.PORT, () => {
-			console.log('Server started on port ' + process.env.PORT)
+		server.listen(PORT, () => {
+			console.log('Server started on port ' + PORT)
 		})
 	})
 	.catch((err) => {

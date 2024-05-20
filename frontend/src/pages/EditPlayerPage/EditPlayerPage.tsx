@@ -83,8 +83,12 @@ const EditPlayerPage = () => {
                 pictureUrlInput,
             );
             const id: Number = parseInt(playerId);
+
+            //const URL = `http://localhost:5000/api/players/${id}`;
+            const URL = `http://3.79.63.224:5000/api/players/${id}`;
+
             axios
-                .put(`http://localhost:5000/api/players/${id}`, fields)
+                .put(URL, fields)
                 .then((response) => {
                     console.log('Player updated: ', response.data);
                 })

@@ -65,20 +65,21 @@ const SignupPage = () => {
                 passwordInput,
             );
             try {
-                axios
-                    .post('http://localhost:5000/api/user/signup', inputFields)
-                    .then((response) => {
-                        console.log(response.data);
-                        const user = new User(
-                            response.data.user.id,
-                            response.data.user.username,
-                            response.data.user.email,
-                            'password',
-                            response.data.user.role,
-                        );
-                        userContext.setUser(user);
-                        localStorage.setItem('isLoggedIn', 'yes');
-                    });
+                //const URL = 'http://localhost:5000/api/user/signup';
+                const URL = 'http://3.79.63.224:5000/api/user/signup';
+
+                axios.post(URL, inputFields).then((response) => {
+                    console.log(response.data);
+                    const user = new User(
+                        response.data.user.id,
+                        response.data.user.username,
+                        response.data.user.email,
+                        'password',
+                        response.data.user.role,
+                    );
+                    userContext.setUser(user);
+                    localStorage.setItem('isLoggedIn', 'yes');
+                });
             } catch (error) {
                 console.error(error);
             }

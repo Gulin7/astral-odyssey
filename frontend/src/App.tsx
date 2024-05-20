@@ -37,7 +37,10 @@ function App() {
     const [isServerOnline, setIsServerOnline] = useState(true);
 
     useEffect(() => {
-        const socket = io('http://localhost:5000', {transports: ['websocket']});
+        //const URL = 'http://localhost:5000';
+        const URL = 'http://3.79.63.224:5000';
+
+        const socket = io(URL, {transports: ['websocket']});
         socket.on('player', (fields: any) => {
             console.log('Received new player from server: ', fields);
             /*const player = new Player(
@@ -67,9 +70,12 @@ function App() {
     axiosRetry(axios, {retries: 3});
 
     const fetchPlayers = async () => {
+        // const URL = `http://localhost:5000/api/players?page=${page}`;
+        const URL = `http://3.79.63.224:5000/api/players?page=${page}`;
+
         await axios({
             method: 'GET',
-            url: `http://localhost:5000/api/players?page=${page}`,
+            url: URL,
             data: page,
         })
             //.get(`http://localhost:5000/api/players?page=${page}`)
@@ -122,8 +128,10 @@ function App() {
     const [characters, setCharacters] = useState<Character[]>([]);
 
     const fetchCharacters = async () => {
+        //const URL = 'http://localhost:5000/api/characters';
+        const URL = 'http://3.79.63.224:5000/api/characters';
         await axios
-            .get('http://localhost:5000/api/characters')
+            .get(URL)
             .then((response) => {
                 const fetchedCharacters = response.data.map(
                     (character: any) =>

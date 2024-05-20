@@ -86,19 +86,17 @@ const AddCharacterPage = () => {
                 ),
             );
 
+            //const URL = `http://localhost:5000/api/characters/addCharacter`;
+            const URL = `http://3.79.63.224:5000/api/characters/addCharacter`;
+
             axios({
                 method: 'POST',
-                url: `http://localhost:5000/api/characters/addCharacter`,
+                url: URL,
                 data: inputCharacter,
-            })
-                // .post(
-                //     'http://localhost:5000/api/characters/addCharacter',
-                //     inputCharacter,
-                // )
-                .then((response) => {
-                    console.log('My characters are: ');
-                    console.log(response.data);
-                });
+            }).then((response) => {
+                console.log('My characters are: ');
+                console.log(response.data);
+            });
             navigate('/characters');
         } catch (error) {
             // alert('Smth went wrong');

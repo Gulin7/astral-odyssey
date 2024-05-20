@@ -87,26 +87,25 @@ const AddPlayerPage = () => {
                         inputFields.pictureURL,
                     ),
                 );
+
+                //const URL = `http://localhost:5000/api/players/addPlayer`;
+                const URL = `http://3.79.63.224:5000/api/players/addPlayer`;
+
                 axios({
                     method: 'POST',
-                    url: `http://localhost:5000/api/players/addPlayer`,
+                    url: URL,
                     data: inputFields,
-                })
-                    // .post(
-                    //     'http://localhost:5000/api/players/addPlayer',
-                    //     inputFields,
-                    // )
-                    .then((response) => {
-                        console.log(response.data);
-                        // playersContext.addPlayer(
-                        //     new Player(
-                        //         response.data.id,
-                        //         response.data.userId,
-                        //         response.data.nickname,
-                        //         response.data.pictureURL,
-                        //     ),
-                        // );
-                    });
+                }).then((response) => {
+                    console.log(response.data);
+                    // playersContext.addPlayer(
+                    //     new Player(
+                    //         response.data.id,
+                    //         response.data.userId,
+                    //         response.data.nickname,
+                    //         response.data.pictureURL,
+                    //     ),
+                    // );
+                });
             } catch (error) {
                 console.log('Error in POST request');
             }

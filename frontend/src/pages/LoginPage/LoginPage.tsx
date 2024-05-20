@@ -46,25 +46,26 @@ const LoginPage = () => {
         try {
             const inputFields = handleOnClick(usernameInput, passwordInput);
             try {
-                axios
-                    .post('http://localhost:5000/api/user/login', inputFields)
-                    .then((response) => {
-                        console.log(response.data);
-                        const currentUser = new User(
-                            response.data.user.id,
-                            response.data.user.username,
-                            response.data.user.email,
-                            'password',
-                            response.data.user.role,
-                        );
-                        userContext.setUser(currentUser);
-                        localStorage.setItem('isLoggedIn', 'yes');
-                        sessionStorage.setItem(
-                            'userToken',
-                            JSON.stringify(response.data.token),
-                        );
-                        navigate('/');
-                    });
+                //const URL = 'http://localhost:5000/api/user/login';
+                const URL = 'http://3.79.63.224:5000/api/user/login';
+
+                axios.post(URL, inputFields).then((response) => {
+                    console.log(response.data);
+                    const currentUser = new User(
+                        response.data.user.id,
+                        response.data.user.username,
+                        response.data.user.email,
+                        'password',
+                        response.data.user.role,
+                    );
+                    userContext.setUser(currentUser);
+                    localStorage.setItem('isLoggedIn', 'yes');
+                    sessionStorage.setItem(
+                        'userToken',
+                        JSON.stringify(response.data.token),
+                    );
+                    navigate('/');
+                });
             } catch (error) {
                 console.error(error);
             }

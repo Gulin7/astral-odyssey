@@ -23,7 +23,7 @@ function ConnectionStatus() {
         const checkServerStatus = async () => {
             try {
                 //const URL = 'http://localhost:5000';
-                const URL = 'http://3.79.63.224:5000';
+                const URL = 'http://3.79.63.224:5000/api/players';
 
                 await fetch(URL);
                 setIsServerDown(false);

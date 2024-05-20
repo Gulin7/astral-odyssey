@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 import {useContext, useRef} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Button from '../../components/Button/Button';
@@ -47,6 +48,8 @@ function handleOnClick(
 }
 
 const AddPlayerPage = () => {
+    axiosRetry(axios, {retries: 3});
+
     const navigate = useNavigate();
 
     document.title = 'Astral Odyssey | Add Player';
@@ -69,21 +72,33 @@ const AddPlayerPage = () => {
 
             console.log(inputFields);
             try {
-                axios
-                    .post(
-                        'http://localhost:5000/api/players/addPlayer',
-                        inputFields,
-                    )
+                playersContext.addPlayer(
+                    new Player(
+                        4000,
+                        1,
+                        inputFields.nickname,
+                        inputFields.pictureURL,
+                    ),
+                );
+                axios({
+                    method: 'POST',
+                    url: `http://localhost:5000/api/players/addPlayer`,
+                    data: inputFields,
+                })
+                    // .post(
+                    //     'http://localhost:5000/api/players/addPlayer',
+                    //     inputFields,
+                    // )
                     .then((response) => {
                         console.log(response.data);
-                        playersContext.addPlayer(
-                            new Player(
-                                response.data.id,
-                                response.data.userId,
-                                response.data.nickname,
-                                response.data.pictureURL,
-                            ),
-                        );
+                        // playersContext.addPlayer(
+                        //     new Player(
+                        //         response.data.id,
+                        //         response.data.userId,
+                        //         response.data.nickname,
+                        //         response.data.pictureURL,
+                        //     ),
+                        // );
                     });
             } catch (error) {
                 console.log('Error in POST request');

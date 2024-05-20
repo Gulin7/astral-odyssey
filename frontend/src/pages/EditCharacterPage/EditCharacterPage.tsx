@@ -84,11 +84,15 @@ const EditCharacterPage = () => {
                 playerIdInput,
             );
 
-            axios
-                .put(
-                    `http://localhost:5000/api/characters/${givenCharacter?.getId()}`,
-                    newCharacter,
-                )
+            axios({
+                method: 'POST',
+                url: `http://localhost:5000/api/characters/${givenCharacter?.getId()}`,
+                data: newCharacter,
+            })
+                // .put(
+                //     `http://localhost:5000/api/characters/${givenCharacter?.getId()}`,
+                //     newCharacter,
+                // )
                 .then((response) => {
                     console.log('Character updated: ', response.data);
                 })

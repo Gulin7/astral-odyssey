@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 import {useContext, useRef} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Button from '../../components/Button/Button';
@@ -55,6 +56,8 @@ const AddCharacterPage = () => {
     const charactersContext = useContext(CharactersContext)!;
 
     const handleOnClickWrapper = () => {
+        axiosRetry(axios, {retries: 3});
+
         try {
             const inputCharacter = handleOnClick(
                 // idInput,
@@ -64,23 +67,28 @@ const AddCharacterPage = () => {
                 playerIdInput,
             );
 
-            axios
-                .post(
-                    'http://localhost:5000/api/characters/addCharacter',
-                    inputCharacter,
-                )
+            charactersContext.addCharacter(
+                new Character(
+                    100,
+                    inputCharacter.name,
+                    inputCharacter.charClass,
+                    inputCharacter.race,
+                    inputCharacter.playerId,
+                    'warrior-default.png',
+                    1,
+                ),
+            );
+
+            axios({
+                method: 'POST',
+                url: `http://localhost:5000/api/characters/addCharacter`,
+                data: inputCharacter,
+            })
+                // .post(
+                //     'http://localhost:5000/api/characters/addCharacter',
+                //     inputCharacter,
+                // )
                 .then((response) => {
-                    charactersContext.addCharacter(
-                        new Character(
-                            response.data.id,
-                            response.data.name,
-                            response.data.charClass,
-                            response.data.race,
-                            response.data.playerId,
-                            response.data.skinURL,
-                            response.data.level,
-                        ),
-                    );
                     console.log('My characters are: ');
                     console.log(response.data);
                 });

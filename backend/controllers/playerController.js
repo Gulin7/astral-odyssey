@@ -29,9 +29,18 @@ const isValidId = async (id) => {
 
 // GET all players
 const getPlayers = async (req, res) => {
-	const players = await Player.find().sort({ id: 1 })
+	try {
+		const page = parseInt(req.query.page) || 1
+		console.log(page)
+		const players = await Player.find()
+			.sort({ id: 1 })
+			.limit(50 * page)
 
-	res.status(200).json(players)
+		res.status(200).json(players)
+	} catch (error) {
+		console.error('Error getting devices: ', error)
+		res.status(500).json({ error: 'Internal error' })
+	}
 }
 
 // GET a single player

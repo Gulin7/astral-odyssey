@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 import {useEffect, useState} from 'react';
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
 import {io} from 'socket.io-client';
@@ -28,22 +29,50 @@ import WeaponPage from './pages/WeaponsPage/WeaponsPage';
 function App() {
     const [players, setPlayers] = useState<Player[]>([]);
 
+    const page = 0;
+
+    const [user, setUser] = useState<User>();
+
+    const [isOnline, setIsOnline] = useState(navigator.onLine);
+    const [isServerOnline, setIsServerOnline] = useState(true);
+
     useEffect(() => {
         const socket = io('http://localhost:5000', {transports: ['websocket']});
         socket.on('player', (fields: any) => {
-            const player = new Player(
+            console.log('Received new player from server: ', fields);
+            /*const player = new Player(
                 fields.id,
                 fields.userId,
                 fields.nickname,
                 fields.pictureURL,
             );
-            setPlayers((prevPlayers) => [...prevPlayers, player]);
+            setPlayers((prevPlayers) => [...prevPlayers, player]);*/
+        });
+
+        socket.on('connect_error', () => {
+            setIsServerOnline(false);
         });
     });
 
+    useEffect(() => {
+        window.addEventListener('online', () => setIsOnline(true));
+        window.addEventListener('offline', () => setIsOnline(false));
+
+        return () => {
+            window.removeEventListener('online', () => setIsOnline(true));
+            window.removeEventListener('offline', () => setIsOnline(false));
+        };
+    }, []);
+
+    axiosRetry(axios, {retries: 3});
+
     const fetchPlayers = async () => {
-        await axios
-            .get('http://localhost:5000/api/players')
+        await axios({
+            method: 'GET',
+            url: `http://localhost:5000/api/players?page=${page}`,
+            data: page,
+        })
+            //.get(`http://localhost:5000/api/players?page=${page}`)
             .then((response) => {
                 const fetchedPlayers = response.data.map(
                     (player: any) =>
@@ -54,18 +83,41 @@ function App() {
                             player.pictureURL,
                         ),
                 );
-                setPlayers(fetchedPlayers);
+                if (page === 0) {
+                    setPlayers(fetchedPlayers);
+                } else {
+                    setPlayers((prevPlayers) => [
+                        ...prevPlayers,
+                        ...fetchedPlayers,
+                    ]);
+                }
+
+                localStorage.setItem('players', JSON.stringify(fetchedPlayers));
+                setIsServerOnline(true);
+
+                //setPlayers(fetchedPlayers);
+
                 //console.log('My players are: ');
                 //console.log(response.data);
             })
             .catch((error) => {
                 console.error('Error fetching players: ', error);
+                const storedPlayers = JSON.parse(
+                    localStorage.getItem('players') || '[]',
+                );
+                const players = storedPlayers.map(
+                    (player: any) =>
+                        new Player(
+                            player.id,
+                            player.username,
+                            player.nickname,
+                            player.pictureURL,
+                        ),
+                );
+                setPlayers(players);
+                setIsServerOnline(false);
             });
     };
-
-    useEffect(() => {
-        fetchPlayers();
-    }, []);
 
     const [characters, setCharacters] = useState<Character[]>([]);
 
@@ -91,14 +143,14 @@ function App() {
             })
             .catch((error) => {
                 console.error('Error fetching characters: ', error);
+                setIsServerOnline(false);
             });
     };
 
     useEffect(() => {
+        fetchPlayers();
         fetchCharacters();
-    }, []);
-
-    const [user, setUser] = useState<User>();
+    }, [isServerOnline]);
 
     const addPlayer = (newPlayer: Player) => {
         setPlayers((prevState: Player[]) => [...prevState, newPlayer]);

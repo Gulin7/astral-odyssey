@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 
 //default route
 const defaultRoute = express.Router()
-defaultRoute.get('/')
+defaultRoute.get('/', 'good job nacho')
 
 //routes
 app.use('/', defaultRoute)

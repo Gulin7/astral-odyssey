@@ -25,21 +25,21 @@ const addPlayer = async () => {
 	if (id == 0) id = players.length + 1
 	console.log(id)
 	pictures = ['profile-1.png', 'profile-2.png', 'profile-3.png', 'profile-4.png']
-	const userId = faker.datatype.number()
+	const userId = 1
 	const nickname = faker.random.word()
 	const pictureURL = faker.random.arrayElement(pictures)
 	return { id, userId, nickname, pictureURL }
 }
 
-io.on('connection', (socket) => {
-	setInterval(async () => {
-		try {
-			let { id, userId, nickname, pictureURL } = await addPlayer()
-			const player = await Player.create({ id, user_id: userId, nickname, pictureURL })
-			socket.emit('player', { id, user_id: userId, nickname, pictureURL })
-		} catch (error) {}
-	}, 500000)
-})
+// io.on('connection', (socket) => {
+// 	setInterval(async () => {
+// 		try {
+// 			let { id, userId, nickname, pictureURL } = await addPlayer()
+// 			const player = await Player.create({ id, user_id: userId, nickname, pictureURL })
+// 			socket.emit('player', { id, user_id: userId, nickname, pictureURL })
+// 		} catch (error) {}
+// 	}, 500000)
+// })
 
 const MONGO_URI =
 	process.env.MONGO_URI ||

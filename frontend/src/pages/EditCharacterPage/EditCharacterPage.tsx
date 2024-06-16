@@ -1,9 +1,9 @@
 import axios from 'axios';
-import React, {useContext, useEffect} from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
-import {CharactersContext} from '../../contexts/CharactersContext';
-import {CharacterForm} from '../../features/CRUD/CharacterForm/CharacterForm';
+import { CharactersContext } from '../../contexts/CharactersContext';
+import { CharacterForm } from '../../features/CRUD/CharacterForm/CharacterForm';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
 import Character from '../../models/Character';
 import './EditCharacterPage.css';
@@ -53,7 +53,7 @@ function handleOnClick(
 
 const EditCharacterPage = () => {
     useEffect(() => {
-        const token = sessionStorage.getItem('userToken');
+        const token = localStorage.getItem('userToken');
         if (!token) {
             navigate('/login');
         }

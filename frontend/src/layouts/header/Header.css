@@ -3,8 +3,8 @@
         linear-gradient(180deg, rgba(20, 20, 20, 0.8), rgba(20, 20, 20, 0.8))
             no-repeat center,
         url('../../assets/main-bg.gif') no-repeat center center/cover;
-    height: 160px;
-    font-size: 1.5rem;
+    height: 120px;
+    font-size: 1.2rem;
     text-align: center;
     width: 100%;
 }

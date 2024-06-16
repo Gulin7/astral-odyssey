@@ -8,7 +8,7 @@ function ClassesChartPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = sessionStorage.getItem('userToken');
+        const token = localStorage.getItem('userToken');
         if (!token) {
             navigate('/login');
         }

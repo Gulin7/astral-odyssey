@@ -50,7 +50,7 @@ const EditPlayerPage = () => {
     document.title = 'Astral Odyssey | Player Profile';
 
     useEffect(() => {
-        const token = sessionStorage.getItem('userToken');
+        const token = localStorage.getItem('userToken');
         if (!token) {
             navigate('/login');
         }

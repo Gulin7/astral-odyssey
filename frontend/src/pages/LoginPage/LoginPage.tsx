@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {useContext, useRef} from 'react';
+import {useContext, useEffect, useRef} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import {UserContext} from '../../contexts/UserContext';
@@ -42,6 +42,18 @@ const LoginPage = () => {
 
     const userContext = useContext(UserContext)!;
 
+    const handleKeyPress = (event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            // Call your login function here
+            handleOnClickWrapper();
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('keypress', handleKeyPress);
+    });
+
     const handleOnClickWrapper = () => {
         try {
             const inputFields = handleOnClick(usernameInput, passwordInput);
@@ -62,7 +74,7 @@ const LoginPage = () => {
                     );
                     userContext.setUser(currentUser);
                     localStorage.setItem('isLoggedIn', 'yes');
-                    sessionStorage.setItem(
+                    localStorage.setItem(
                         'userToken',
                         JSON.stringify(response.data.token),
                     );

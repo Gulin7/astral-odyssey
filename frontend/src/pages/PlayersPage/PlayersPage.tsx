@@ -1,11 +1,11 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
-import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { PlayersContext } from '../../contexts/PlayersContext';
+import React, {useContext, useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {PlayersContext} from '../../contexts/PlayersContext';
 import PlayerCard from '../../features/PlayerCard/PlayerCard';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
-import { Player } from '../../models/Player';
+import {Player} from '../../models/Player';
 import './PlayersPage.css';
 
 const PlayersPage = () => {
@@ -23,7 +23,7 @@ const PlayersPage = () => {
     document.title = 'Astral Odyssey | Players';
 
     useEffect(() => {
-        const token = sessionStorage.getItem('userToken');
+        const token = localStorage.getItem('userToken');
         if (!token) {
             navigate('/login');
         }
@@ -36,7 +36,7 @@ const PlayersPage = () => {
     let playersArray: Player[] = playersContext.players;
     const removePlayer = playersContext.removePlayer;
 
-    const [numToShow, setNumToShow] = useState(5);
+    const [numToShow, setNumToShow] = useState(1);
 
     const handleShowMore = () => {
         setNumToShow((prevNum) => prevNum + 5);

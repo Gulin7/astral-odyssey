@@ -24,7 +24,7 @@ const userSchema = new Schema({
 		required: true,
 	},
 	role: {
-		type: Boolean,
+		type: Number,
 		required: true,
 	},
 })
@@ -41,6 +41,8 @@ userSchema.statics.signup = async function (id, username, email, password, role 
 	if (!validator.isEmail(email)) throw Error('Invalid email')
 
 	if (password.length < 6) throw Error('Password is too short')
+
+	if (role < 1 || role > 3) throw Error('Invalid role')
 
 	if (!validator.isAlphanumeric(username)) throw Error('Username must be alphanumeric')
 

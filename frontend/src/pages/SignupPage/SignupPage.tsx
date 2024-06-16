@@ -38,6 +38,7 @@ function handleOnClick(
         username: userUsername,
         email: userEmail,
         password: userPassword,
+        role: 3,
     };
 
     return inputFields;

@@ -1,5 +1,5 @@
 const express = require('express')
-const Armor = require('../models/armorSchema')
+const Armor = require('../models/ArmorSchema')
 
 //require the controller
 const {
@@ -8,7 +8,7 @@ const {
 	deleteArmor,
 	getArmor,
 	getArmors,
-} = require('../controllers/ArmorsController')
+} = require('../controllers/armorsController')
 
 const armorsRouter = express.Router()
 

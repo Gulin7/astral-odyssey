@@ -5,6 +5,9 @@ const express = require('express')
 const playerRoutes = require('./routes/players')
 const characterRoutes = require('./routes/characters')
 const userRoutes = require('./routes/users')
+const armorRoutes = require('./routes/armors')
+const potionRoutes = require('./routes/potions')
+const weaponRoutes = require('./routes/weapons')
 
 //express app
 const app = express()
@@ -23,6 +26,9 @@ app.use((req, res, next) => {
 app.use('/api/user', userRoutes)
 app.use('/api/players', playerRoutes)
 app.use('/api/characters', characterRoutes)
+app.use('/api/armosr', armorRoutes)
+app.use('./api/weapons', weaponRoutes)
+app.use('./api/potions', potionRoutes)
 
 //exports
 module.exports = app

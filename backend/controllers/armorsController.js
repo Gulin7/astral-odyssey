@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 const Armor = require('../models/armorSchema')
 
 const isValidId = async (id) => {
-	const Armor = await Armor.findOne({ id: id })
-	if (Armor) {
+	const armor = await Armor.findOne({ id: id })
+	if (armor) {
 		return true
 	}
 	return false
@@ -11,24 +11,24 @@ const isValidId = async (id) => {
 
 const getFirstFreeId = async () => {
 	let myId = -1
-	const Armors = await Armor.find().sort({ id: 1 })
-	for (let i = 0; i < Armors.length; i++) {
-		if (Armors[i].id != i + 1) {
+	const armors = await Armor.find().sort({ id: 1 })
+	for (let i = 0; i < armors.length; i++) {
+		if (armors[i].id != i + 1) {
 			myId = i + 1
 			break
 		}
 	}
 	if (myId == -1) {
-		myId = Armors.length + 1
+		myId = armors.length + 1
 	}
 	return myId
 }
 
 // get all Armors
 const getArmors = async (req, res) => {
-	const Armors = await Armor.find().sort({ id: 1 })
+	const armors = await Armor.find().sort({ id: 1 })
 
-	res.status(200).json(Armors)
+	res.status(200).json(armors)
 }
 
 // get a single Armor
@@ -39,21 +39,35 @@ const getArmor = async (req, res) => {
 		return res.status(404).json({ error: 'Armor not found' })
 	}
 
-	const Armor = await Armor.findOne({ id: id })
+	const armor = await Armor.findOne({ id: id })
 
-	if (!Armor) {
+	if (!armor) {
 		return res.status(404).json({ error: 'Armor not found' })
 	}
-	res.status(200).json(Armor)
+	res.status(200).json(armor)
 }
 
 // create a new Armor
 const createArmor = async (req, res) => {
 	//TO DO
+	console.log(req.body)
+	let { itemName, primaryStat, itemRarity, classes, itemDescription, itemPrice } = req.body
+
 	const id = await getFirstFreeId()
+
 	try {
+		const newArmor = await Armor.create({
+			id,
+			itemName,
+			primaryStat,
+			itemRarity,
+			classes,
+			itemDescription,
+			itemPrice,
+		})
+		res.status(200).json(newArmor)
 	} catch (error) {
-		res.status(500).json({ error: 'Internal server error' })
+		res.status(500).json({ error: error.message })
 	}
 }
 
@@ -64,7 +78,13 @@ const deleteArmor = async (req, res) => {
 		return res.status(404).json({ error: 'Armor not found' })
 	}
 
-	const Armor = await Armor.findOneAndDelete({ id: id })
+	const armor = await Armor.findOneAndDelete({ id: id })
+
+	if (!armor) {
+		return res.status(404).json({ error: 'Armor not found!' })
+	}
+
+	res.status(200).json(armor)
 }
 
 const updateArmor = async (req, res) => {
@@ -74,7 +94,7 @@ const updateArmor = async (req, res) => {
 		return res.status(404).json({ error: 'Armor not found' })
 	}
 
-	const Armor = await Armor.findOneAndUpdate({ id: id }, { ...req.body })
+	const armor = await Armor.findOneAndUpdate({ id: id }, { ...req.body })
 
 	if (!armor) {
 		return res.status(404).json({ error: 'Armor not found' })

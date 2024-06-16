@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Potion = require('../models/potionSchema')
+const Potion = require('../models/PotionSchema')
 
 const isValidId = async (id) => {
 	const potion = await Potion.findOne({ id: id })

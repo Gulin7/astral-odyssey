@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Weapon = require('../models/weaponSchema')
+const Weapon = require('../models/WeaponSchema')
 
 const isValidId = async (id) => {
 	const weapon = await Weapon.findOne({ id: id })

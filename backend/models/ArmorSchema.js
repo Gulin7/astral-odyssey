@@ -24,6 +24,7 @@ const armorSchema = new Schema({
 	classes: {
 		type: [String],
 		required: true,
+		unique: false,
 	},
 	itemDescription: {
 		type: String,
@@ -35,4 +36,4 @@ const armorSchema = new Schema({
 	},
 })
 
-module.exports = mongoose.model('Armor', armorSchema)
+module.exports = mongoose.models.Armor || mongoose.model('Armor', armorSchema)

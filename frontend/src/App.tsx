@@ -16,14 +16,20 @@ import AddPlayerPage from './pages/AddPlayerPage/AddPlayerPage';
 import ArmorPage from './pages/ArmorsPage/ArmorsPage';
 import CharactersPage from './pages/CharactersPage/CharactersPage';
 import ClassesChartPage from './pages/ClassesChartPage/ClassesChartPage';
+import ClassesPage from './pages/ClassesPage/ClassesPage';
 import EditCharacterPage from './pages/EditCharacterPage/EditCharacterPage';
 import EditPlayerPage from './pages/EditPlayerPage/EditPlayerPage';
+import FighterPage from './pages/FighterPage/FighterPage';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
+import MagePage from './pages/MagePage/MagePage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import PlayersPage from './pages/PlayersPage/PlayersPage';
 import PotionPage from './pages/PotionsPage/PotionsPage';
+import RacesPage from './pages/RacesPage/RacesPage';
+import RangerPage from './pages/RangerPage/RangerPage';
 import SignupPage from './pages/SignupPage/SignupPage';
+import WarriorPage from './pages/WarriorPage/WarriorPage';
 import WeaponPage from './pages/WeaponsPage/WeaponsPage';
 
 function App() {
@@ -304,6 +310,66 @@ function App() {
                                 element={
                                     user && user.getId() > 0 ? (
                                         <WeaponPage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route
+                                path='/characterClasses'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <ClassesPage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route
+                                path='/characterRaces'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <RacesPage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route
+                                path='/warriorClass'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <WarriorPage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route
+                                path='/rangerClass'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <RangerPage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route
+                                path='/mageClass'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <MagePage />
+                                    ) : (
+                                        <Navigate to='/login' replace />
+                                    )
+                                }
+                            />
+                            <Route
+                                path='/fighterClass'
+                                element={
+                                    user && user.getId() > 0 ? (
+                                        <FighterPage />
                                     ) : (
                                         <Navigate to='/login' replace />
                                     )

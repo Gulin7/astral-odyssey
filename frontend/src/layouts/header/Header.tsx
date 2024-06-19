@@ -8,7 +8,7 @@ const Header = () => {
                 className='header-container'
                 data-testid='header-container-test-id'
             >
-                <h1>Astral Odyssey</h1>
+                {/* <h1>Astral Odyssey</h1> */}
             </div>
         </header>
     );

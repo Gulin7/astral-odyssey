@@ -41,13 +41,23 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div>
+                    <Link to='/characterClasses' className='nav-link'>
+                        Classes
+                    </Link>
+                </div>
+                <div>
+                    <Link to='/characterRaces' className='nav-link'>
+                        Races
+                    </Link>
+                </div>
+                <div>
                     <Link to='/addCharacter' className='nav-link'>
                         Add Character
                     </Link>
                 </div>
                 <div>
                     <Link to='/armorShop' className='nav-link'>
-                        Armor
+                        Armors
                     </Link>
                 </div>
                 <div>

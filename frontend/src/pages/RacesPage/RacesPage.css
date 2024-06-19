@@ -1,0 +1,169 @@
+.main-page-container {
+    display: flex;
+    flex-flow: column wrap;
+
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.main-title-races {
+    font-size: 1.4rem;
+    font-weight: 700;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+    animation-delay: 0.7s;
+}
+
+.main-description-races {
+    text-align: center;
+    margin: 1rem 0;
+    font-size: 12pt;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+    animation-delay: 1s;
+}
+
+.underline {
+    display: block;
+    margin: 0 auto;
+    width: 40%;
+    height: 2vw;
+    filter: invert(100%);
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+    animation-delay: 1s;
+}
+.container-races {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px; /* Adjust as needed */
+    column-gap: 160;
+    animation: fadeIn 1s forwards;
+    animation-delay: 1.4s;
+}
+
+.top-left,
+.bottom-left,
+.top-right,
+.bottom-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+    position: relative;
+    opacity: 0;
+    margin: 16px;
+}
+
+.top-left {
+    grid-area: 1 / 1 / 2 / 2;
+    animation: leftSlide 2s forwards;
+    animation-delay: 1.9s;
+}
+
+.bottom-left {
+    grid-area: 2 / 1 / 3 / 2;
+    animation: leftSlide 2s forwards;
+    animation-delay: 2.2s;
+}
+
+.top-right {
+    grid-area: 1 / 2 / 2 / 3;
+    animation: rightSlide 2s forwards;
+    animation-delay: 2.5s;
+}
+
+.bottom-right {
+    grid-area: 2 / 2 / 3 / 3;
+    animation: rightSlide 2s forwards;
+    animation-delay: 2.8s;
+}
+
+/* .bottom-right-frame {
+    grid-area: 2 / 2 / 3 / 3;
+    animation: rightSlide 2s forwards;
+    animation-delay: 3.1s;
+    z-index: 2;
+}
+
+.bottom-right-frame:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 1vw white;
+    transition-duration: 1s;
+} */
+
+.top-left:hover,
+.bottom-left:hover,
+.top-right:hover,
+.bottom-right:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 1vw white;
+    transition-duration: 1s;
+    cursor: pointer;
+}
+
+.race-title {
+    text-align: center;
+    padding: 4px;
+    color: #222;
+}
+
+.race-description {
+    text-align: center;
+    padding: 4px;
+    color: #444;
+}
+
+@keyframes intro {
+    100% {
+        bottom: 0;
+    }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes leftSlide {
+    100% {
+        left: 0;
+    }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes rightSlide {
+    100% {
+        right: 0;
+    }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

@@ -35,8 +35,8 @@ function handleOnClick(
 
     // const playerId: number = parseInt(idInput.current!.value);
     // const playeruserId: string = userIdInput.current!.value;
-    const playerNickname: string = nicknameInput.current!.value;
-    const playerUrl: string = urlInput.current!.value;
+    const playerNickname: string = nicknameInput.current?.value || '';
+    const playerUrl: string = urlInput.current?.value || '';
 
     const inputFields = {
         // userId: playeruserId,
@@ -76,11 +76,18 @@ const AddPlayerPage = () => {
                 nicknameInput,
                 urlInput,
             );
+            const userId: number = parseInt(
+                localStorage.getItem('userId') ?? '0',
+            );
 
             console.log(inputFields);
             try {
                 playersContext.addPlayer(
-                    new Player(1, inputFields.nickname, inputFields.pictureURL),
+                    new Player(
+                        userId,
+                        inputFields.nickname,
+                        inputFields.pictureURL,
+                    ),
                 );
 
                 //const URL = `http://localhost:5000/api/players/addPlayer`;
@@ -89,7 +96,7 @@ const AddPlayerPage = () => {
                 axios({
                     method: 'POST',
                     url: URL,
-                    data: inputFields,
+                    data: [userId, inputFields],
                 }).then((response) => {
                     console.log(response.data);
                     // playersContext.addPlayer(

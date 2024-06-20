@@ -2,7 +2,6 @@ import axios from 'axios';
 import axiosRetry from 'axios-retry';
 import {useEffect, useState} from 'react';
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
-import {io} from 'socket.io-client';
 import './App.css';
 import ConnectionStatus from './ConnectionStatus';
 import {ArmorsContextProvider} from './contexts/ArmorsContext';
@@ -55,26 +54,27 @@ function App() {
     const [weapons, setWeapons] = useState<Weapon[]>([]);
     const [potions, setPotions] = useState<Potion[]>([]);
 
-    useEffect(() => {
-        //const URL = 'http://localhost:5000';
-        const URL = 'http://3.79.63.224:5000';
+    // Socket.io for adding players
+    // useEffect(() => {
+    //     //const URL = 'http://localhost:5000';
+    //     const URL = 'http://3.79.63.224:5000';
 
-        const socket = io(URL, {transports: ['websocket']});
-        socket.on('player', (fields: any) => {
-            console.log('Received new player from server: ', fields);
-            /*const player = new Player(
-                fields.id,
-                fields.userId,
-                fields.nickname,
-                fields.pictureURL,
-            );
-            setPlayers((prevPlayers) => [...prevPlayers, player]);*/
-        });
+    //     const socket = io(URL, {transports: ['websocket']});
+    //     socket.on('player', (fields: any) => {
+    //         console.log('Received new player from server: ', fields);
+    //         /*const player = new Player(
+    //             fields.id,
+    //             fields.userId,
+    //             fields.nickname,
+    //             fields.pictureURL,
+    //         );
+    //         setPlayers((prevPlayers) => [...prevPlayers, player]);*/
+    //     });
 
-        socket.on('connect_error', () => {
-            setIsServerOnline(false);
-        });
-    });
+    //     socket.on('connect_error', () => {
+    //         setIsServerOnline(false);
+    //     });
+    // });
 
     useEffect(() => {
         window.addEventListener('online', () => setIsOnline(true));

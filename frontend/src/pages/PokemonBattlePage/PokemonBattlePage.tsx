@@ -209,7 +209,9 @@ const FighterPage = () => {
                     <div className='pokemon-container'>
                         <div
                             className={
-                                isPlaying ? 'pokemon-view' : 'pokemon-view init'
+                                !isPlaying
+                                    ? 'pokemon-view'
+                                    : 'pokemon-view init'
                             }
                             ref={pokemonViewRef}
                         >

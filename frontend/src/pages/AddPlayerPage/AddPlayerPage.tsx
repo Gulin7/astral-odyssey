@@ -93,10 +93,16 @@ const AddPlayerPage = () => {
                 //const URL = `http://localhost:5000/api/players/addPlayer`;
                 const URL = `http://3.79.63.224:5000/api/players/addPlayer`;
 
+                const postBody = {
+                    userId: userId,
+                    nickname: inputFields.nickname,
+                    pictureURL: inputFields.pictureURL,
+                };
+
                 axios({
                     method: 'POST',
                     url: URL,
-                    data: [userId, inputFields],
+                    data: postBody,
                 }).then((response) => {
                     console.log(response.data);
                     // playersContext.addPlayer(

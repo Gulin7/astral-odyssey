@@ -76,12 +76,11 @@ const AddCharacterPage = () => {
 
             charactersContext.addCharacter(
                 new Character(
-                    100,
                     inputCharacter.name,
                     inputCharacter.charClass,
                     inputCharacter.race,
                     inputCharacter.playerId,
-                    'warrior-default.png',
+                    `${inputCharacter.charClass}-default.png`,
                     1,
                 ),
             );

@@ -3,17 +3,14 @@ export class Player {
     private userId: number;
     private nickname: string;
     private pictureUrl: string;
+    private static staticId: number = 1;
 
-    public constructor(
-        id: number,
-        userId: number,
-        nickname: string,
-        pictureUrl: string,
-    ) {
-        this.id = id;
+    public constructor(userId: number, nickname: string, pictureUrl: string) {
+        this.id = Player.staticId;
         this.userId = userId;
         this.nickname = nickname;
         this.pictureUrl = pictureUrl;
+        Player.staticId++;
     }
 
     public getId(): number {

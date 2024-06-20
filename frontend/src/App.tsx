@@ -102,7 +102,7 @@ function App() {
                 const fetchedPlayers = response.data.map(
                     (player: any) =>
                         new Player(
-                            player.id,
+                            // player.id,
                             player.username,
                             player.nickname,
                             player.pictureURL,
@@ -133,7 +133,7 @@ function App() {
                 const players = storedPlayers.map(
                     (player: any) =>
                         new Player(
-                            player.id,
+                            // player.id,
                             player.username,
                             player.nickname,
                             player.pictureURL,
@@ -153,7 +153,7 @@ function App() {
                 const fetchedCharacters = response.data.map(
                     (character: any) =>
                         new Character(
-                            character.id,
+                            // character.id,
                             character.name,
                             character.charClass,
                             character.race,

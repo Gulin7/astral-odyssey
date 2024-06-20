@@ -80,12 +80,7 @@ const AddPlayerPage = () => {
             console.log(inputFields);
             try {
                 playersContext.addPlayer(
-                    new Player(
-                        4000,
-                        1,
-                        inputFields.nickname,
-                        inputFields.pictureURL,
-                    ),
+                    new Player(1, inputFields.nickname, inputFields.pictureURL),
                 );
 
                 //const URL = `http://localhost:5000/api/players/addPlayer`;

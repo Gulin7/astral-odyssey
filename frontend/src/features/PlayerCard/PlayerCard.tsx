@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import Button from '../../components/Button/Button';
-import { PlayerCardPropsType } from '../../utils/types/PlayerCardProps.types';
+import {PlayerCardPropsType} from '../../utils/types/PlayerCardProps.types';
 import './PlayerCard.css';
 
 const PlayerCard = ({givenPlayer, removePlayer}: PlayerCardPropsType) => {
@@ -46,7 +46,7 @@ const PlayerCard = ({givenPlayer, removePlayer}: PlayerCardPropsType) => {
                 <div className='player-nickname'>
                     NickName: {givenPlayer.getNickname()}
                 </div>
-                <div className='player-id'>Id: {givenPlayer.getId()}</div>
+                {/* <div className='player-id'>Id: {givenPlayer.getId()}</div> */}
             </div>
             <Button
                 type='button'

@@ -45,7 +45,7 @@ const MONGO_URI =
 	process.env.MONGO_URI ||
 	'mongodb+srv://gulin:mamaluinacho232@astral-odyssey-app.sexbors.mongodb.net/?retryWrites=true&w=majority&appName=astral-odyssey-app'
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 6000
 
 // connect to mongodb
 mongoose

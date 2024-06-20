@@ -6,9 +6,9 @@ class Character {
     private playerId: number;
     private skinURL: string;
     private level: number;
+    private static staticId: number = 1;
 
     public constructor(
-        id: number,
         name: string,
         charClass: string,
         race: string,
@@ -16,13 +16,14 @@ class Character {
         skinURL: string,
         level: number,
     ) {
-        this.id = id;
+        this.id = Character.staticId;
         this.name = name;
         this.charClass = charClass.toLowerCase();
         this.race = race.toLowerCase();
         this.playerId = playerId;
         this.skinURL = skinURL;
         this.level = level;
+        Character.staticId++;
         // this.skinURL = this.getDefaultSkinUrl();
         // this.level = 1;
     }

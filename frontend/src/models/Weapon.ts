@@ -1,28 +1,31 @@
 class Weapon {
     private id: number;
-    private name: string;
-    private damage: number;
+    private itemName: string;
+    private primaryStat: number;
     private classes: Array<string>;
+    private itemDescription: string;
+    private itemRarity: string;
+    private itemPrice: number;
     private skinURL: string;
-    private cost: number;
-    private rarity: string;
 
     public constructor(
         id: number,
-        name: string,
-        damage: number,
+        itemName: string,
+        primaryStat: number,
         classes: Array<string>,
+        itemDescription: string,
+        itemRarity: string,
+        itemPrice: number,
         skinURL: string,
-        cost: number,
-        rarity: string,
     ) {
         this.id = id;
-        this.name = name;
-        this.damage = damage;
+        this.itemName = itemName;
+        this.primaryStat = primaryStat;
         this.classes = classes;
+        this.itemDescription = itemDescription;
         this.skinURL = skinURL;
-        this.cost = cost;
-        this.rarity = rarity;
+        this.itemPrice = itemPrice;
+        this.itemRarity = itemRarity;
     }
 
     public getId(): number {
@@ -33,20 +36,20 @@ class Weapon {
         this.id = newId;
     }
 
-    public getName(): string {
-        return this.name;
+    public getItemName(): string {
+        return this.itemName;
     }
 
-    public setName(newName: string): void {
-        this.name = newName;
+    public setItemName(newItemName: string): void {
+        this.itemName = newItemName;
     }
 
-    public getDamage(): number {
-        return this.damage;
+    public getPrimaryStat(): number {
+        return this.primaryStat;
     }
 
-    public setDamage(newDamage: number): void {
-        this.damage = newDamage;
+    public setPrimaryStat(newprimaryStat: number): void {
+        this.primaryStat = newprimaryStat;
     }
 
     public getClasses(): Array<string> {
@@ -57,6 +60,14 @@ class Weapon {
         this.classes = newClasses;
     }
 
+    public getItemDescription(): string {
+        return this.itemDescription;
+    }
+
+    public setItemDescription(newDescription: string): void {
+        this.itemDescription = newDescription;
+    }
+
     public getSkinUrl(): string {
         return this.skinURL;
     }
@@ -65,20 +76,20 @@ class Weapon {
         this.skinURL = newUrl;
     }
 
-    public getCost(): number {
-        return this.cost;
+    public getItemPrice(): number {
+        return this.itemPrice;
     }
 
-    public setCost(newCost: number): void {
-        this.cost = newCost;
+    public setItemPrice(newCost: number): void {
+        this.itemPrice = newCost;
     }
 
-    public getRarity(): string {
-        return this.rarity;
+    public getItemRarity(): string {
+        return this.itemRarity;
     }
 
-    public setRarity(newRarity: string): void {
-        this.rarity = newRarity;
+    public setItemRarity(newRarity: string): void {
+        this.itemRarity = newRarity;
     }
 }
 

@@ -1,25 +1,25 @@
 class Potion {
     private id: number;
-    private name: string;
-    private effect: string;
+    private itemName: string;
+    private itemRarity: string;
+    private itemDescription: string;
+    private itemPrice: number;
     private skinURL: string;
-    private cost: number;
-    private rarity: string;
 
     public constructor(
         id: number,
-        name: string,
-        effect: string,
+        itemName: string,
+        itemRarity: string,
+        itemDescription: string,
+        itemPrice: number,
         skinURL: string,
-        cost: number,
-        rarity: string,
     ) {
         this.id = id;
-        this.name = name;
-        this.effect = effect;
+        this.itemName = itemName;
+        this.itemDescription = itemDescription;
         this.skinURL = skinURL;
-        this.cost = cost;
-        this.rarity = rarity;
+        this.itemPrice = itemPrice;
+        this.itemRarity = itemRarity;
     }
 
     public getId(): number {
@@ -30,20 +30,20 @@ class Potion {
         this.id = newId;
     }
 
-    public getName(): string {
-        return this.name;
+    public getItemName(): string {
+        return this.itemName;
     }
 
-    public setName(newName: string): void {
-        this.name = newName;
+    public setItemName(newName: string): void {
+        this.itemName = newName;
     }
 
-    public getEffect(): string {
-        return this.effect;
+    public getItemDescription(): string {
+        return this.itemDescription;
     }
 
-    public setEffect(newEffect: string): void {
-        this.effect = newEffect;
+    public setItemDescription(newItemDescription: string): void {
+        this.itemDescription = newItemDescription;
     }
 
     public getSkinUrl(): string {
@@ -54,20 +54,20 @@ class Potion {
         this.skinURL = newUrl;
     }
 
-    public getCost(): number {
-        return this.cost;
+    public getItemPrice(): number {
+        return this.itemPrice;
     }
 
-    public setCost(newCost: number): void {
-        this.cost = newCost;
+    public setItemPrice(newitemPrice: number): void {
+        this.itemPrice = newitemPrice;
     }
 
-    public getRarity(): string {
-        return this.rarity;
+    public getItemRarity(): string {
+        return this.itemRarity;
     }
 
-    public setRarity(newRarity: string): void {
-        this.rarity = newRarity;
+    public setItemRarity(newitemRarity: string): void {
+        this.itemRarity = newitemRarity;
     }
 }
 

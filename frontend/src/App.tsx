@@ -5,12 +5,18 @@ import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
 import {io} from 'socket.io-client';
 import './App.css';
 import ConnectionStatus from './ConnectionStatus';
+import {ArmorsContextProvider} from './contexts/ArmorsContext';
 import {CharactersContextProvider} from './contexts/CharactersContext';
 import {PlayersContextProvider} from './contexts/PlayersContext';
+import {PotionsContextProvider} from './contexts/PotionsContext';
 import {UserContextProvider} from './contexts/UserContext';
+import {WeaponsContextProvider} from './contexts/WeaponsContext';
+import Armor from './models/Armor';
 import Character from './models/Character';
 import {Player} from './models/Player';
+import Potion from './models/Potion';
 import {User} from './models/User';
+import Weapon from './models/Weapon';
 import AddCharacterPage from './pages/AddCharacterPage/AddCharacterPage';
 import AddPlayerPage from './pages/AddPlayerPage/AddPlayerPage';
 import ArmorPage from './pages/ArmorsPage/ArmorsPage';
@@ -20,11 +26,13 @@ import ClassesPage from './pages/ClassesPage/ClassesPage';
 import EditCharacterPage from './pages/EditCharacterPage/EditCharacterPage';
 import EditPlayerPage from './pages/EditPlayerPage/EditPlayerPage';
 import FighterPage from './pages/FighterPage/FighterPage';
+import GamesPage from './pages/GamesPage/GamesPage';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MagePage from './pages/MagePage/MagePage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import PlayersPage from './pages/PlayersPage/PlayersPage';
+import PokemonBattlePage from './pages/PokemonBattlePage/PokemonBattlePage';
 import PotionPage from './pages/PotionsPage/PotionsPage';
 import RacesPage from './pages/RacesPage/RacesPage';
 import RangerPage from './pages/RangerPage/RangerPage';
@@ -33,14 +41,19 @@ import WarriorPage from './pages/WarriorPage/WarriorPage';
 import WeaponPage from './pages/WeaponsPage/WeaponsPage';
 
 function App() {
-    const [players, setPlayers] = useState<Player[]>([]);
-
     const page = 0;
 
     const [user, setUser] = useState<User>();
 
     const [isOnline, setIsOnline] = useState(navigator.onLine);
     const [isServerOnline, setIsServerOnline] = useState(true);
+
+    // Entities states
+    const [characters, setCharacters] = useState<Character[]>([]);
+    const [players, setPlayers] = useState<Player[]>([]);
+    const [armors, setArmors] = useState<Armor[]>([]);
+    const [weapons, setWeapons] = useState<Weapon[]>([]);
+    const [potions, setPotions] = useState<Potion[]>([]);
 
     useEffect(() => {
         //const URL = 'http://localhost:5000';
@@ -131,8 +144,6 @@ function App() {
             });
     };
 
-    const [characters, setCharacters] = useState<Character[]>([]);
-
     const fetchCharacters = async () => {
         //const URL = 'http://localhost:5000/api/characters';
         const URL = 'http://3.79.63.224:5000/api/characters';
@@ -161,9 +172,97 @@ function App() {
             });
     };
 
+    const fetchArmors = async () => {
+        //const URL = 'http://localhost:5000/api/armors';
+        const URL = 'http://3.79.63.224:5000/api/armors';
+
+        const path = 'src/assets/armors/';
+        await axios
+            .get(URL)
+            .then((response) => {
+                const fetchedArmors = response.data.map(
+                    (armor: any) =>
+                        new Armor(
+                            armor.id,
+                            armor.itemName,
+                            armor.primaryStat,
+                            armor.itemRarity,
+                            armor.classes,
+                            armor.itemDescription,
+                            armor.itemPrice,
+                            path + armor.ItemName,
+                        ),
+                );
+                setArmors(fetchedArmors);
+            })
+            .catch((error) => {
+                console.error('Error fetching armors: ', error);
+                setIsServerOnline(false);
+            });
+    };
+
+    const fetchWeapons = async () => {
+        //const URL = 'http://localhost:5000/api/weapons';
+        const URL = 'http://3.79.63.224:5000/api/weapons';
+        const path = 'src/assets/weapons/';
+        await axios
+            .get(URL)
+            .then((response) => {
+                const fetchedWeapons = response.data.map(
+                    (weapon: any) =>
+                        new Armor(
+                            weapon.id,
+                            weapon.itemName,
+                            weapon.primaryStat,
+                            weapon.itemRarity,
+                            weapon.classes,
+                            weapon.itemDescription,
+                            weapon.itemPrice,
+                            path + weapon.ItemName,
+                        ),
+                );
+                setWeapons(fetchedWeapons);
+            })
+            .catch((error) => {
+                console.error('Error fetching weapons: ', error);
+                setIsServerOnline(false);
+            });
+    };
+
+    const fetchPotions = async () => {
+        //const URL = 'http://localhost:5000/api/armors';
+        const URL = 'http://3.79.63.224:5000/api/potions';
+        const path = 'src/assets/potions/';
+        await axios
+            .get(URL)
+            .then((response) => {
+                const fetchedPotions = response.data.map(
+                    (potion: any) =>
+                        new Armor(
+                            potion.id,
+                            potion.itemName,
+                            potion.primaryStat,
+                            potion.itemRarity,
+                            potion.classes,
+                            potion.itemDescription,
+                            potion.itemPrice,
+                            path + potion.ItemName,
+                        ),
+                );
+                setPotions(fetchedPotions);
+            })
+            .catch((error) => {
+                console.error('Error fetching potions: ', error);
+                setIsServerOnline(false);
+            });
+    };
+
     useEffect(() => {
         fetchPlayers();
         fetchCharacters();
+        fetchArmors();
+        fetchWeapons();
+        fetchPotions();
     }, [isServerOnline]);
 
     const addPlayer = (newPlayer: Player) => {
@@ -188,6 +287,36 @@ function App() {
         );
     };
 
+    const addArmor = (newArmor: Armor) => {
+        setArmors((prevState: Armor[]) => [...prevState, newArmor]);
+    };
+
+    const removeArmor = (armorId: number) => {
+        setArmors((prevState: Armor[]) =>
+            prevState.filter((armor: Armor) => armor.getId() !== armorId),
+        );
+    };
+
+    const addWeapon = (newWeapon: Weapon) => {
+        setWeapons((prevState: Weapon[]) => [...prevState, newWeapon]);
+    };
+
+    const removeWeapon = (weaponId: number) => {
+        setWeapons((prevState: Weapon[]) =>
+            prevState.filter((weapon: Weapon) => weapon.getId() !== weaponId),
+        );
+    };
+
+    const addPotion = (newPotion: Potion) => {
+        setPotions((prevState: Potion[]) => [...prevState, newPotion]);
+    };
+
+    const removePotion = (potionId: number) => {
+        setPotions((prevState: Potion[]) =>
+            prevState.filter((potion: Potion) => potion.getId() !== potionId),
+        );
+    };
+
     return (
         <UserContextProvider userContext={{user, setUser}}>
             <PlayersContextProvider
@@ -200,193 +329,303 @@ function App() {
                         removeCharacter,
                     }}
                 >
-                    <BrowserRouter>
-                        <ConnectionStatus />
-                        <Routes>
-                            <Route
-                                path='/'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <HomePage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route path='/login' element={<LoginPage />} />
-                            <Route path='/signup' element={<SignupPage />} />
-                            <Route
-                                path='/players'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <PlayersPage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route
-                                path='/addPlayer'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <AddPlayerPage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route
-                                path='/editPlayer/:playerId'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <EditPlayerPage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route
-                                path='/characters'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <CharactersPage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route
-                                path='/addCharacter'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <AddCharacterPage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route
-                                path='/editCharacter/:characterId'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <EditCharacterPage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route
-                                path='/classesChart'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <ClassesChartPage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route
-                                path='/armorShop'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <ArmorPage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route
-                                path='/potionShop'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <PotionPage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route
-                                path='/weaponShop'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <WeaponPage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route
-                                path='/characterClasses'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <ClassesPage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route
-                                path='/characterRaces'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <RacesPage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route
-                                path='/warriorClass'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <WarriorPage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route
-                                path='/rangerClass'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <RangerPage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route
-                                path='/mageClass'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <MagePage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route
-                                path='/fighterClass'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <FighterPage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                            <Route
-                                path='*'
-                                element={
-                                    user && user.getId() > 0 ? (
-                                        <NotFoundPage />
-                                    ) : (
-                                        <Navigate to='/login' replace />
-                                    )
-                                }
-                            />
-                        </Routes>
-                    </BrowserRouter>
+                    <ArmorsContextProvider
+                        armorContext={{
+                            armors,
+                            addArmor,
+                            removeArmor,
+                        }}
+                    >
+                        <WeaponsContextProvider
+                            weaponContext={{
+                                weapons,
+                                addWeapon,
+                                removeWeapon,
+                            }}
+                        >
+                            <PotionsContextProvider
+                                potionContext={{
+                                    potions,
+                                    addPotion,
+                                    removePotion,
+                                }}
+                            >
+                                <BrowserRouter>
+                                    <ConnectionStatus />
+                                    <Routes>
+                                        <Route
+                                            path='/'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <HomePage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/login'
+                                            element={<LoginPage />}
+                                        />
+                                        <Route
+                                            path='/signup'
+                                            element={<SignupPage />}
+                                        />
+                                        <Route
+                                            path='/players'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <PlayersPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/addPlayer'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <AddPlayerPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/editPlayer/:playerId'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <EditPlayerPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/characters'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <CharactersPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/addCharacter'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <AddCharacterPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/editCharacter/:characterId'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <EditCharacterPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/classesChart'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <ClassesChartPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/armorShop'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <ArmorPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/potionShop'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <PotionPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/weaponShop'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <WeaponPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/characterClasses'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <ClassesPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/characterRaces'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <RacesPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/warriorClass'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <WarriorPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/rangerClass'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <RangerPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/mageClass'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <MagePage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/fighterClass'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <FighterPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/arcade'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <GamesPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/pokemonArcade'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <PokemonBattlePage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='*'
+                                            element={
+                                                user && user.getId() > 0 ? (
+                                                    <NotFoundPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                    </Routes>
+                                </BrowserRouter>
+                            </PotionsContextProvider>
+                        </WeaponsContextProvider>
+                    </ArmorsContextProvider>
                 </CharactersContextProvider>
             </PlayersContextProvider>
         </UserContextProvider>

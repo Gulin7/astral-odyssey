@@ -1,0 +1,19 @@
+.armor-form-entry {
+    display: flex;
+    flex-direction: column;
+
+    padding: 0.5rem;
+}
+
+.armor-form-label {
+    padding: 0.2em;
+    font-size: 12pt;
+    font-weight: 500;
+}
+
+.armor-form-input {
+    padding: 1rem;
+    border-radius: 4px;
+
+    background-color: #f4f4f4;
+}

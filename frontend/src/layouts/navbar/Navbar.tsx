@@ -71,6 +71,11 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div>
+                    <Link to='/arcade' className='nav-link'>
+                        Arcade
+                    </Link>
+                </div>
+                <div>
                     <button className='nav-link button-dark' onClick={logout}>
                         Log out
                     </button>

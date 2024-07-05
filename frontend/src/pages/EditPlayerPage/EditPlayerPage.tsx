@@ -84,8 +84,8 @@ const EditPlayerPage = () => {
             );
             const id: Number = parseInt(playerId);
 
-            //const URL = `http://localhost:5000/api/players/${id}`;
-            const URL = `http://3.79.63.224:5000/api/players/${id}`;
+            const URL = `http://localhost:5000/api/players/${id}`;
+            // const URL = `http://3.79.63.224:5000/api/players/${id}`;
 
             axios
                 .put(URL, fields)

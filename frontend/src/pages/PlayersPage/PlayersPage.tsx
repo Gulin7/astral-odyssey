@@ -1,11 +1,11 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
-import React, {useContext, useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import {PlayersContext} from '../../contexts/PlayersContext';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { PlayersContext } from '../../contexts/PlayersContext';
 import PlayerCard from '../../features/PlayerCard/PlayerCard';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
-import {Player} from '../../models/Player';
+import { Player } from '../../models/Player';
 import './PlayersPage.css';
 
 const PlayersPage = () => {
@@ -84,8 +84,8 @@ const PlayersPage = () => {
         try {
             const nextPage = page + 1;
 
-            //const URL = `http://localhost:5000/api/players?page=${nextPage}`;
-            const URL = `http://3.79.63.224:5000/api/players?page=${nextPage}`;
+            const URL = `http://localhost:5000/api/players?page=${nextPage}`;
+            // const URL = `http://3.79.63.224:5000/api/players?page=${nextPage}`;
 
             axios({
                 method: 'GET',

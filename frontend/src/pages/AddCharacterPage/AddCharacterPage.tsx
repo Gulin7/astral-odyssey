@@ -85,8 +85,8 @@ const AddCharacterPage = () => {
                 ),
             );
 
-            //const URL = `http://localhost:5000/api/characters/addCharacter`;
-            const URL = `http://3.79.63.224:5000/api/characters/addCharacter`;
+            const URL = `http://localhost:5000/api/characters/addCharacter`;
+            // const URL = `http://3.79.63.224:5000/api/characters/addCharacter`;
 
             axios({
                 method: 'POST',

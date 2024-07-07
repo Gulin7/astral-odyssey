@@ -1,12 +1,56 @@
 const mongoose = require('mongoose')
-const jwt = require('jsonwebtoken')
 const User = require('../models/UserSchema')
+const generateToken = require('../utils/generateToken')
 
-//generate JWT token
-const generateToken = (id) => {
-	const JWT_SECRET = process.env.JWT_SECRET || 'suP3rS3cr3tJWT12sojgj*&nfk'
+//login user
+const loginUser = async (req, res) => {
+	const { username, password } = req.body
 
-	return jwt.sign({ id: id }, JWT_SECRET, { expiresIn: '7d' })
+	try {
+		const existingUser = await User.login(username, password)
+
+		//create JWT
+		generateToken(existingUser._id, existingUser.role, res)
+
+		res.status(200).json({
+			_id: existingUser._id,
+			username: existingUser.username,
+			role: existingUser.role,
+		})
+	} catch (error) {
+		res.status(400).json({ error: error.message })
+	}
+}
+
+//signup user
+const signupUser = async (req, res) => {
+	const { username, email, password, confirmPassword, role } = req.body
+
+	if (password !== confirmPassword) {
+		return res.status(400).json({ error: 'Passwords do not match' })
+	}
+
+	try {
+		// const id = await getFirstFreeId()
+
+		const user = await User.signup(username, email, password, role)
+
+		generateToken(user._id, user.role, res)
+
+		res.status(200).json({
+			_id: user._id,
+			username: user.username,
+			email: user.email,
+			role: user.role,
+		})
+	} catch (error) {
+		res.status(400).json({ error: error.message })
+	}
+}
+
+module.exports = {
+	loginUser,
+	signupUser,
 }
 
 // //get first free
@@ -34,45 +78,3 @@ const generateToken = (id) => {
 // 	}
 // 	return false
 // }
-
-//login user
-const loginUser = async (req, res) => {
-	const { username, password } = req.body
-
-	try {
-		const existingUser = await User.login(username, password)
-
-		//create JWT
-		const token = generateToken(existingUser.username)
-
-		res.status(200).json({ user: existingUser, token })
-	} catch (error) {
-		res.status(400).json({ error: error.message })
-	}
-}
-
-//signup user
-const signupUser = async (req, res) => {
-	const { username, email, password, confirmPassword, role } = req.body
-
-	if (password !== confirmPassword) {
-		return res.status(400).json({ error: 'Passwords do not match' })
-	}
-
-	try {
-		// const id = await getFirstFreeId()
-
-		const user = await User.signup(username, email, password, role)
-
-		const token = generateToken(user.username)
-
-		res.status(200).json({ user, token })
-	} catch (error) {
-		res.status(400).json({ error: error.message })
-	}
-}
-
-module.exports = {
-	loginUser,
-	signupUser,
-}

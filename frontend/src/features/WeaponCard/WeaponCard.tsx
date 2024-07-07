@@ -18,7 +18,7 @@ const WeaponCard = ({givenWeapon, removeWeapon}: WeaponCardPropsType) => {
         removeWeapon(givenWeapon.getId());
 
         axios
-            .delete(`http://localhost:8080/weapons/${givenWeapon.getId()}`)
+            .delete(`http://localhost:5000/weapons/${givenWeapon.getId()}`)
             .then((response) => {
                 console.log('Weapon removed');
                 console.log(response.data);

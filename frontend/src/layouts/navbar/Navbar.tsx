@@ -50,11 +50,11 @@ const Navbar = () => {
                         Players
                     </Link>
                 </div>
-                {/* <div>
+                <div>
                     <Link to='/addPlayer' className='nav-link'>
                         Add Player
                     </Link>
-                </div> */}
+                </div>
                 <div>
                     <Link to='/chat' className='nav-link'>
                         Chat
@@ -96,13 +96,28 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div>
+                    <Link to='/addArmor' className='nav-link'>
+                        Add Armor
+                    </Link>
+                </div>
+                <div>
                     <Link to='/weaponShop' className='nav-link'>
                         Weapons
                     </Link>
                 </div>
                 <div>
+                    <Link to='/addWeapon' className='nav-link'>
+                        Add Weapon
+                    </Link>
+                </div>
+                <div>
                     <Link to='/potionShop' className='nav-link'>
                         Potions
+                    </Link>
+                </div>
+                <div>
+                    <Link to='/addPotion' className='nav-link'>
+                        Add Potion
                     </Link>
                 </div>
                 <div>

@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
 
-const AddAreaPage = () => {
+const GuildChat = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -16,12 +16,13 @@ const AddAreaPage = () => {
         <MainLayout>
             <div className='main-page'>
                 <div className='main-page-container'>
-                    <h2 className='main-title'>Add Area</h2>
+                    <h2 className='main-title'>Guild chat</h2>
                     <div
                         className='main-description'
                         data-testid='home-description-test-id'
                     >
-                        Add a new Area
+                        Guild chat is a place where you can talk to other
+                        members of your guild.
                     </div>
                 </div>
             </div>
@@ -29,4 +30,4 @@ const AddAreaPage = () => {
     );
 };
 
-export default AddAreaPage;
+export default GuildChat;

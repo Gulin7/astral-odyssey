@@ -18,7 +18,7 @@ const ArmorCard = ({givenArmor, removeArmor}: ArmorCardPropsType) => {
         removeArmor(givenArmor.getId());
 
         axios
-            .delete(`http://localhost:8080/armors/${givenArmor.getId()}`)
+            .delete(`http://localhost:5000/armors/${givenArmor.getId()}`)
             .then((response) => {
                 console.log('Armor removed');
                 console.log(response.data);

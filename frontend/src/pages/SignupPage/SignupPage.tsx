@@ -61,8 +61,10 @@ const SignupPage = () => {
 
     // console.log(isLoggedIn);
 
+    const token = localStorage.getItem('token');
+
     useEffect(() => {
-        if (localStorage.isSet('token')) {
+        if (token) {
             navigate('/');
         }
     }, [navigate]);

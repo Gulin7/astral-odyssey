@@ -13,8 +13,6 @@ const ArmorsPage = () => {
 
     const armorsContext = useContext(ArmorsContext)!;
 
-    const layoutTitle: string = 'Armors';
-
     const removeArmor = armorsContext.removeArmor;
 
     const armorsArray: Armor[] = armorsContext.armors;

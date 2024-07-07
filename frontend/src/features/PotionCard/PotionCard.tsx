@@ -18,7 +18,7 @@ const PotionCard = ({givenPotion, removePotion}: PotionCardPropsType) => {
         removePotion(givenPotion.getId());
 
         axios
-            .delete(`http://localhost:8080/potions/${givenPotion.getId()}`)
+            .delete(`http://localhost:5000/potions/${givenPotion.getId()}`)
             .then((response) => {
                 console.log('Potion removed');
                 console.log(response.data);

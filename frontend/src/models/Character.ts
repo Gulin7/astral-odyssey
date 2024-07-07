@@ -1,28 +1,26 @@
-import { Player } from './Player';
-
 class Character {
     private _id: string;
     private name: string;
     private charClass: string;
     private race: string;
-    private player: Player;
+    private playerId: string;
     private skinURL: string;
     private level: number;
 
     public constructor(
-        id:string,
+        _id: string,
         name: string,
         charClass: string,
         race: string,
-        player: Player,
+        playerId: string,
         skinURL: string,
         level: number,
     ) {
-        this._id = id;
+        this._id = _id;
         this.name = name;
         this.charClass = charClass.toLowerCase();
         this.race = race.toLowerCase();
-        this.player = player;
+        this.playerId = playerId;
         this.skinURL = skinURL;
         this.level = level;
         // this.skinURL = this.getDefaultSkinUrl();
@@ -75,12 +73,12 @@ class Character {
         this.race = newRace;
     }
 
-    public getplayer(): Player {
-        return this.player;
+    public getPlayerId(): String {
+        return this.playerId;
     }
 
-    public setplayer(newplayer: Player): void {
-        this.player = newplayer;
+    public setPlayerId(newPlayerId: string): void {
+        this.playerId = newPlayerId;
     }
 
     public getSkinUrl(): string {

@@ -22,7 +22,7 @@ const CharacterCard = ({
 
         axios
             .delete(
-                `http://localhost:8080/characters/${givenCharacter.getId()}`,
+                `http://localhost:5000/characters/${givenCharacter.getId()}`,
             )
             .then((response) => {
                 console.log('Character removed');
@@ -51,10 +51,10 @@ const CharacterCard = ({
                 <div className='character-race'>
                     Race: {givenCharacter.getRace()}
                 </div>
-                <div className='character-id'>ID: {givenCharacter.getId()}</div>
-                <div className='character-player-id'>
+                {/* <div className='character-id'>ID: {givenCharacter.getId()}</div> */}
+                {/* <div className='character-player-id'>
                     Player ID: {givenCharacter.getPlayerId()}
-                </div>
+                </div> */}
                 <div className='character-level'>
                     Level: {givenCharacter.getLevel()}
                 </div>

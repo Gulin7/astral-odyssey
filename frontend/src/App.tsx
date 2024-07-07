@@ -1,7 +1,7 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
 import {useEffect, useState} from 'react';
-import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import './App.css';
 import ConnectionStatus from './ConnectionStatus';
 import {ArmorsContextProvider} from './contexts/ArmorsContext';
@@ -16,8 +16,14 @@ import {Player} from './models/Player';
 import Potion from './models/Potion';
 import {User} from './models/User';
 import Weapon from './models/Weapon';
+import AddAreaPage from './pages/AddAreaPage/AddAreaPage';
+import AddArmorPage from './pages/AddArmorPage/AddArmorPage';
 import AddCharacterPage from './pages/AddCharacterPage/AddCharacterPage';
+import AddMonsterPage from './pages/AddMonsterPage/AddMonsterPage';
 import AddPlayerPage from './pages/AddPlayerPage/AddPlayerPage';
+import AddPotionPage from './pages/AddPotionPage/AddPotionPage';
+import AddWeaponPage from './pages/AddWeaponPage/AddWeaponPage';
+import AreasPage from './pages/AreasPage/AreasPage';
 import ArmorPage from './pages/ArmorsPage/ArmorsPage';
 import CharactersPage from './pages/CharactersPage/CharactersPage';
 import ChatPage from './pages/ChatPage/ChatPage';
@@ -27,10 +33,12 @@ import EditCharacterPage from './pages/EditCharacterPage/EditCharacterPage';
 import EditPlayerPage from './pages/EditPlayerPage/EditPlayerPage';
 import FighterPage from './pages/FighterPage/FighterPage';
 import GamesPage from './pages/GamesPage/GamesPage';
+import GuildChat from './pages/GuildChat/GuildChat';
 import GuildsPage from './pages/GuildsPage/GuildsPage';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MagePage from './pages/MagePage/MagePage';
+import MonsterPage from './pages/MonstersPage/MonsterPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import PlayersPage from './pages/PlayersPage/PlayersPage';
 import PotionPage from './pages/PotionsPage/PotionsPage';
@@ -180,6 +188,10 @@ function App() {
                                             element={<GuildsPage />}
                                         />
                                         <Route
+                                            path='/guildChat'
+                                            element={<GuildChat />}
+                                        />
+                                        <Route
                                             path='/chat'
                                             element={<ChatPage />}
                                         />
@@ -225,16 +237,7 @@ function App() {
                                         />
                                         <Route
                                             path='/warriorClass'
-                                            element={
-                                                user ? (
-                                                    <WarriorPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<WarriorPage />}
                                         />
                                         <Route
                                             path='/rangerClass'
@@ -252,7 +255,34 @@ function App() {
                                             path='/arcade'
                                             element={<GamesPage />}
                                         />
-
+                                        <Route
+                                            path='/addPotion'
+                                            element={<AddPotionPage />}
+                                        />
+                                        <Route
+                                            path='/addArea'
+                                            element={<AddAreaPage />}
+                                        />
+                                        <Route
+                                            path='/addWeapon'
+                                            element={<AddWeaponPage />}
+                                        />
+                                        <Route
+                                            path='/addArmor'
+                                            element={<AddArmorPage />}
+                                        />
+                                        <Route
+                                            path='/addMonster'
+                                            element={<AddMonsterPage />}
+                                        />
+                                        <Route
+                                            path='/monsters'
+                                            element={<MonsterPage />}
+                                        />
+                                        <Route
+                                            path='/areas'
+                                            element={<AreasPage />}
+                                        />
                                         <Route
                                             path='*'
                                             element={<NotFoundPage />}

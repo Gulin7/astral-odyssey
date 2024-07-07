@@ -4,13 +4,15 @@ class PlayerClass {
 	nickname
 	pictureUrl
 	guildId
+	balance
 
-	constructor(_id, userId, nickname, pictureUrl, guildId) {
+	constructor(_id, userId, nickname, pictureUrl, guildId, balance) {
 		this._id = _id
 		this.userId = userId
 		this.nickname = nickname
 		this.pictureUrl = pictureUrl
 		this.guildId = guildId
+		this.balance = balance
 	}
 
 	getId() {
@@ -47,6 +49,14 @@ class PlayerClass {
 
 	setGuildId(newGuildId) {
 		this.guildId = newGuildId
+	}
+
+	getBalance() {
+		return this.balance
+	}
+
+	setBalance(newBalance) {
+		this.balance = newBalance
 	}
 }
 

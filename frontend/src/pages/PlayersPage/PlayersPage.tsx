@@ -1,11 +1,11 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
-import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { PlayersContext } from '../../contexts/PlayersContext';
+import React, {useContext, useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {PlayersContext} from '../../contexts/PlayersContext';
 import PlayerCard from '../../features/PlayerCard/PlayerCard';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
-import { Player } from '../../models/Player';
+import {Player} from '../../models/Player';
 import './PlayersPage.css';
 
 const PlayersPage = () => {
@@ -13,23 +13,72 @@ const PlayersPage = () => {
 
     const navigate = useNavigate();
 
-    // const [page, setPage] = useState(1);
-    // const [hasMore, setHasMore] = useState(true);
-
-    // const fetchMoreData = () => {
-    //     setPage(page + 1);
-    // };
+    const [players, setPlayers] = useState<Player[]>([]);
 
     document.title = 'Astral Odyssey | Players';
 
     useEffect(() => {
-        const token = localStorage.getItem('userToken');
+        const token = localStorage.getItem('token');
         if (!token) {
             navigate('/login');
         }
     });
 
     const playersContext = useContext(PlayersContext)!;
+
+    const fetchPlayers = async () => {
+        const URL = `http://localhost:5000/api/players?page=${page}`;
+        // const URL = `http://3.79.63.224:5000/api/players?page=${page}`;
+
+        await axios({
+            method: 'GET',
+            url: URL,
+            data: page,
+        })
+            //.get(`http://localhost:5000/api/players?page=${page}`)
+            .then((response) => {
+                const fetchedPlayers = response.data.map(
+                    (player: any) =>
+                        new Player(
+                            player.id,
+                            player.user,
+                            player.nickname,
+                            player.pictureURL,
+                        ),
+                );
+                if (page === 0) {
+                    setPlayers(fetchedPlayers);
+                } else {
+                    setPlayers((prevPlayers) => [
+                        ...prevPlayers,
+                        ...fetchedPlayers,
+                    ]);
+                }
+
+                localStorage.setItem('players', JSON.stringify(fetchedPlayers));
+
+                //setPlayers(fetchedPlayers);
+
+                //console.log('My players are: ');
+                //console.log(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching players: ', error);
+                const storedPlayers = JSON.parse(
+                    localStorage.getItem('players') || '[]',
+                );
+                const players = storedPlayers.map(
+                    (player: any) =>
+                        new Player(
+                            player.id,
+                            player.user,
+                            player.nickname,
+                            player.pictureURL,
+                        ),
+                );
+                setPlayers(players);
+            });
+    };
 
     const layoutTitle: string = 'Players';
 
@@ -75,7 +124,7 @@ const PlayersPage = () => {
         };
     }, [isLoading]);
 
-    const [fetchedPlayersIds, setfetchedPlayersIds] = React.useState<number[]>(
+    const [fetchedPlayersIds, setfetchedPlayersIds] = React.useState<string[]>(
         [],
     );
 

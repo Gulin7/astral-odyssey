@@ -53,7 +53,7 @@ function handleOnClick(
 
 const EditCharacterPage = () => {
     useEffect(() => {
-        const token = localStorage.getItem('userToken');
+        const token = localStorage.getItem('token');
         if (!token) {
             navigate('/login');
         }
@@ -78,7 +78,7 @@ const EditCharacterPage = () => {
     }
 
     const givenCharacter = charactersContext.characters.find(
-        (character: Character) => character.getId() === parseInt(characterId),
+        (character: Character) => character.getId() === characterId,
     );
 
     const handleOnClickWrapper = () => {

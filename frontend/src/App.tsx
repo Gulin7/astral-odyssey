@@ -41,9 +41,7 @@ import WarriorPage from './pages/WarriorPage/WarriorPage';
 import WeaponPage from './pages/WeaponsPage/WeaponsPage';
 
 function App() {
-    const page = 0;
-
-    const [user, setUser] = useState<User>();
+    const [user, setUser] = useState<User | null>();
 
     const [isOnline, setIsOnline] = useState(navigator.onLine);
     const [isServerOnline, setIsServerOnline] = useState(true);
@@ -54,28 +52,6 @@ function App() {
     const [armors, setArmors] = useState<Armor[]>([]);
     const [weapons, setWeapons] = useState<Weapon[]>([]);
     const [potions, setPotions] = useState<Potion[]>([]);
-
-    // Socket.io for adding players automatically
-    // useEffect(() => {
-    //     //const URL = 'http://localhost:5000';
-    //     const URL = 'http://3.79.63.224:5000';
-
-    //     const socket = io(URL, {transports: ['websocket']});
-    //     socket.on('player', (fields: any) => {
-    //         console.log('Received new player from server: ', fields);
-    //         /*const player = new Player(
-    //             fields.id,
-    //             fields.user,
-    //             fields.nickname,
-    //             fields.pictureURL,
-    //         );
-    //         setPlayers((prevPlayers) => [...prevPlayers, player]);*/
-    //     });
-
-    //     socket.on('connect_error', () => {
-    //         setIsServerOnline(false);
-    //     });
-    // });
 
     useEffect(() => {
         window.addEventListener('online', () => setIsOnline(true));
@@ -89,182 +65,7 @@ function App() {
 
     axiosRetry(axios, {retries: 3});
 
-    const fetchPlayers = async () => {
-        const URL = `http://localhost:5000/api/players?page=${page}`;
-        // const URL = `http://3.79.63.224:5000/api/players?page=${page}`;
-
-        await axios({
-            method: 'GET',
-            url: URL,
-            data: page,
-        })
-            //.get(`http://localhost:5000/api/players?page=${page}`)
-            .then((response) => {
-                const fetchedPlayers = response.data.map(
-                    (player: any) =>
-                        new Player(
-                            player.id,
-                            player.user,
-                            player.nickname,
-                            player.pictureURL,
-                        ),
-                );
-                if (page === 0) {
-                    setPlayers(fetchedPlayers);
-                } else {
-                    setPlayers((prevPlayers) => [
-                        ...prevPlayers,
-                        ...fetchedPlayers,
-                    ]);
-                }
-
-                localStorage.setItem('players', JSON.stringify(fetchedPlayers));
-                setIsServerOnline(true);
-
-                //setPlayers(fetchedPlayers);
-
-                //console.log('My players are: ');
-                //console.log(response.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching players: ', error);
-                const storedPlayers = JSON.parse(
-                    localStorage.getItem('players') || '[]',
-                );
-                const players = storedPlayers.map(
-                    (player: any) =>
-                        new Player(
-                            player.id,
-                            player.user,
-                            player.nickname,
-                            player.pictureURL,
-                        ),
-                );
-                setPlayers(players);
-                setIsServerOnline(false);
-            });
-    };
-
-    const fetchCharacters = async () => {
-        const URL = 'http://localhost:5000/api/characters';
-        // const URL = 'http://3.79.63.224:5000/api/characters';
-        await axios
-            .get(URL)
-            .then((response) => {
-                const fetchedCharacters = response.data.map(
-                    (character: any) =>
-                        new Character(
-                            character.id,
-                            character.name,
-                            character.charClass,
-                            character.race,
-                            character.player,
-                            character.skinURL,
-                            character.level,
-                        ),
-                );
-                setCharacters(fetchedCharacters);
-                //console.log('My characters are: ');
-                //console.log(response.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching characters: ', error);
-                setIsServerOnline(false);
-            });
-    };
-
-    const fetchArmors = async () => {
-        const URL = 'http://localhost:5000/api/armors';
-        // const URL = 'http://3.79.63.224:5000/api/armors';
-
-        const path = 'src/assets/armors/';
-        await axios
-            .get(URL)
-            .then((response) => {
-                const fetchedArmors = response.data.map(
-                    (armor: any) =>
-                        new Armor(
-                            armor.id,
-                            armor.itemName,
-                            armor.primaryStat,
-                            armor.itemRarity,
-                            armor.classes,
-                            armor.itemDescription,
-                            armor.itemPrice,
-                            path + armor.ItemName,
-                        ),
-                );
-                setArmors(fetchedArmors);
-            })
-            .catch((error) => {
-                console.error('Error fetching armors: ', error);
-                setIsServerOnline(false);
-            });
-    };
-
-    const fetchWeapons = async () => {
-        const URL = 'http://localhost:5000/api/weapons';
-        // const URL = 'http://3.79.63.224:5000/api/weapons';
-        const path = 'src/assets/weapons/';
-        await axios
-            .get(URL)
-            .then((response) => {
-                const fetchedWeapons = response.data.map(
-                    (weapon: any) =>
-                        new Armor(
-                            weapon.id,
-                            weapon.itemName,
-                            weapon.primaryStat,
-                            weapon.itemRarity,
-                            weapon.classes,
-                            weapon.itemDescription,
-                            weapon.itemPrice,
-                            path + weapon.ItemName,
-                        ),
-                );
-                setWeapons(fetchedWeapons);
-            })
-            .catch((error) => {
-                console.error('Error fetching weapons: ', error);
-                setIsServerOnline(false);
-            });
-    };
-
-    const fetchPotions = async () => {
-        const URL = 'http://localhost:5000/api/armors';
-        // const URL = 'http://3.79.63.224:5000/api/potions';
-        const path = 'src/assets/potions/';
-        await axios
-            .get(URL)
-            .then((response) => {
-                const fetchedPotions = response.data.map(
-                    (potion: any) =>
-                        new Armor(
-                            potion.id,
-                            potion.itemName,
-                            potion.primaryStat,
-                            potion.itemRarity,
-                            potion.classes,
-                            potion.itemDescription,
-                            potion.itemPrice,
-                            path + potion.ItemName,
-                        ),
-                );
-                setPotions(fetchedPotions);
-            })
-            .catch((error) => {
-                console.error('Error fetching potions: ', error);
-                setIsServerOnline(false);
-            });
-    };
-
-    useEffect(() => {
-        // fetchPlayers();
-        // fetchCharacters();
-        // fetchArmors();
-        // fetchWeapons();
-        // fetchPotions();
-    }, [isServerOnline]);
+    useEffect(() => {}, [isServerOnline]);
 
     const addPlayer = (newPlayer: Player) => {
         setPlayers((prevState: Player[]) => [...prevState, newPlayer]);
@@ -356,16 +157,7 @@ function App() {
                                     <Routes>
                                         <Route
                                             path='/'
-                                            element={
-                                                user ? (
-                                                    <HomePage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<HomePage />}
                                         />
                                         <Route
                                             path='/login'
@@ -377,185 +169,59 @@ function App() {
                                         />
                                         <Route
                                             path='/players'
-                                            element={
-                                                user ? (
-                                                    <PlayersPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<PlayersPage />}
                                         />
                                         <Route
                                             path='/addPlayer'
-                                            element={
-                                                user ? (
-                                                    <AddPlayerPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<AddPlayerPage />}
                                         />
                                         <Route
                                             path='/guilds'
-                                            element={
-                                                user ? (
-                                                    <GuildsPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<GuildsPage />}
                                         />
                                         <Route
                                             path='/chat'
-                                            element={
-                                                user ? (
-                                                    <ChatPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<ChatPage />}
                                         />
                                         <Route
                                             path='/editPlayer/:playerId'
-                                            element={
-                                                user ? (
-                                                    <EditPlayerPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<EditPlayerPage />}
                                         />
                                         <Route
                                             path='/characters'
-                                            element={
-                                                user ? (
-                                                    <CharactersPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<CharactersPage />}
                                         />
                                         <Route
                                             path='/addCharacter'
-                                            element={
-                                                user ? (
-                                                    <AddCharacterPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<AddCharacterPage />}
                                         />
                                         <Route
                                             path='/editCharacter/:characterId'
-                                            element={
-                                                user ? (
-                                                    <EditCharacterPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<EditCharacterPage />}
                                         />
                                         <Route
                                             path='/classesChart'
-                                            element={
-                                                user ? (
-                                                    <ClassesChartPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<ClassesChartPage />}
                                         />
                                         <Route
                                             path='/armorShop'
-                                            element={
-                                                user ? (
-                                                    <ArmorPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<ArmorPage />}
                                         />
                                         <Route
                                             path='/potionShop'
-                                            element={
-                                                user ? (
-                                                    <PotionPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<PotionPage />}
                                         />
                                         <Route
                                             path='/weaponShop'
-                                            element={
-                                                user ? (
-                                                    <WeaponPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<WeaponPage />}
                                         />
                                         <Route
                                             path='/characterClasses'
-                                            element={
-                                                user ? (
-                                                    <ClassesPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<ClassesPage />}
                                         />
                                         <Route
                                             path='/characterRaces'
-                                            element={
-                                                user ? (
-                                                    <RacesPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<RacesPage />}
                                         />
                                         <Route
                                             path='/warriorClass'
@@ -572,69 +238,24 @@ function App() {
                                         />
                                         <Route
                                             path='/rangerClass'
-                                            element={
-                                                user ? (
-                                                    <RangerPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<RangerPage />}
                                         />
                                         <Route
                                             path='/mageClass'
-                                            element={
-                                                user ? (
-                                                    <MagePage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<MagePage />}
                                         />
                                         <Route
                                             path='/fighterClass'
-                                            element={
-                                                user ? (
-                                                    <FighterPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<FighterPage />}
                                         />
                                         <Route
                                             path='/arcade'
-                                            element={
-                                                user ? (
-                                                    <GamesPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<GamesPage />}
                                         />
 
                                         <Route
                                             path='*'
-                                            element={
-                                                user ? (
-                                                    <NotFoundPage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
+                                            element={<NotFoundPage />}
                                         />
                                     </Routes>
                                 </BrowserRouter>
@@ -648,3 +269,25 @@ function App() {
 }
 
 export default App;
+
+// // SOCKET.IO Used for adding players automatically
+// useEffect(() => {
+//     //const URL = 'http://localhost:5000';
+//     const URL = 'http://3.79.63.224:5000';
+
+//     const socket = io(URL, {transports: ['websocket']});
+//     socket.on('player', (fields: any) => {
+//         console.log('Received new player from server: ', fields);
+//         /*const player = new Player(
+//             fields.id,
+//             fields.user,
+//             fields.nickname,
+//             fields.pictureURL,
+//         );
+//         setPlayers((prevPlayers) => [...prevPlayers, player]);*/
+//     });
+
+//     socket.on('connect_error', () => {
+//         setIsServerOnline(false);
+//     });
+// });

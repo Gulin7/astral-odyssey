@@ -59,12 +59,10 @@ const SignupPage = () => {
     const navigate = useNavigate();
     const userContext = useContext(UserContext)!;
 
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-
     // console.log(isLoggedIn);
 
     useEffect(() => {
-        if (isLoggedIn === 'yes') {
+        if (localStorage.isSet('token')) {
             navigate('/');
         }
     }, [navigate]);

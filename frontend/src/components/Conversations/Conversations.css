@@ -1,0 +1,6 @@
+.conversations {
+    padding: 16px 0px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}

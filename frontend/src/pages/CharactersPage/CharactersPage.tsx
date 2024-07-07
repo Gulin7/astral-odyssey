@@ -1,4 +1,5 @@
 import {Pagination} from '@mui/material';
+import axios from 'axios';
 import {useContext, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Button from '../../components/Button/Button';
@@ -26,11 +27,42 @@ const CharactersPage = () => {
     const [sortedByName, setSortedByName] = useState<boolean>(false);
 
     useEffect(() => {
-        const token = localStorage.getItem('userToken');
+        const token = localStorage.getItem('token');
         if (!token) {
             navigate('/login');
         }
     });
+
+    const fetchCharacters = async () => {
+        const URL = 'http://localhost:5000/api/characters';
+        // const URL = 'http://3.79.63.224:5000/api/characters';
+        await axios
+            .get(URL)
+            .then((response) => {
+                const fetchedCharacters = response.data.map(
+                    (character: any) =>
+                        new Character(
+                            character.id,
+                            character.name,
+                            character.charClass,
+                            character.race,
+                            character.player,
+                            character.skinURL,
+                            character.level,
+                        ),
+                );
+                setCharacters(fetchedCharacters);
+                //console.log('My characters are: ');
+                //console.log(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching characters: ', error);
+            });
+    };
+
+    useEffect(() => {
+        fetchCharacters();
+    }, []);
 
     // Console useEffect for characters
     useEffect(() => {

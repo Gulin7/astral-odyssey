@@ -1,11 +1,11 @@
 import axios from 'axios';
-import React, {useContext, useEffect} from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
-import {PlayersContext} from '../../contexts/PlayersContext';
-import {PlayerForm} from '../../features/CRUD/PlayerForm/PlayerForm';
+import { PlayersContext } from '../../contexts/PlayersContext';
+import { PlayerForm } from '../../features/CRUD/PlayerForm/PlayerForm';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
-import {Player} from '../../models/Player';
+import { Player } from '../../models/Player';
 import './EditPlayerPage.css';
 
 function handleOnClick(
@@ -50,7 +50,7 @@ const EditPlayerPage = () => {
     document.title = 'Astral Odyssey | Player Profile';
 
     useEffect(() => {
-        const token = localStorage.getItem('userToken');
+        const token = localStorage.getItem('token');
         if (!token) {
             navigate('/login');
         }
@@ -71,7 +71,7 @@ const EditPlayerPage = () => {
     }
 
     const givenPlayer = playersContext.players.find(
-        (player: Player) => player.getId() === parseInt(playerId),
+        (player: Player) => player.getId() === playerId,
     );
 
     const handleOnClickWrapper = () => {

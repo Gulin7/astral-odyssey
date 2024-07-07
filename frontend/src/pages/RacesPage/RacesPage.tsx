@@ -9,7 +9,7 @@ const RacesPage = () => {
     let framePath: string = 'src/assets/frames/';
 
     useEffect(() => {
-        const token = localStorage.getItem('userToken');
+        const token = localStorage.getItem('token');
         if (!token) {
             navigate('/login');
         }

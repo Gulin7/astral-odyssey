@@ -1,19 +1,17 @@
-import {User} from './User';
-
 export class Player {
     private _id: string;
-    private user: User;
+    private userId: string;
     private nickname: string;
     private pictureUrl: string;
 
     public constructor(
         id: string,
-        user: User,
+        userId: string,
         nickname: string,
         pictureUrl: string,
     ) {
         this._id = id;
-        this.user = user;
+        this.userId = userId;
         this.nickname = nickname;
         this.pictureUrl = pictureUrl;
     }
@@ -26,12 +24,12 @@ export class Player {
         this._id = newId;
     }
 
-    public getUser(): User {
-        return this.user;
+    public getUserId(): string {
+        return this.userId;
     }
 
-    public setUser(newUser: User): void {
-        this.user = newUser;
+    public setUserId(newUserId: string): void {
+        this.userId = newUserId;
     }
 
     public getNickname(): string {

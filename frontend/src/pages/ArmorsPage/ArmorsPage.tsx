@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {useContext, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {ArmorsContext} from '../../contexts/ArmorsContext';
@@ -23,16 +24,48 @@ const ArmorsPage = () => {
     const [sortedByRarity, setSortedByRarity] = useState<boolean>(false);
 
     useEffect(() => {
-        const token = localStorage.getItem('userToken');
+        const token = localStorage.getItem('token');
         if (!token) {
             navigate('/login');
         }
     });
 
+    const fetchArmors = async () => {
+        const URL = 'http://localhost:5000/api/armors';
+        // const URL = 'http://3.79.63.224:5000/api/armors';
+
+        const path = 'src/assets/armors/';
+        await axios
+            .get(URL)
+            .then((response) => {
+                const fetchedArmors = response.data.map(
+                    (armor: any) =>
+                        new Armor(
+                            armor.id,
+                            armor.itemName,
+                            armor.primaryStat,
+                            armor.itemRarity,
+                            armor.classes,
+                            armor.itemDescription,
+                            armor.itemPrice,
+                            path + armor.ItemName,
+                        ),
+                );
+                setArmors(fetchedArmors);
+            })
+            .catch((error) => {
+                console.error('Error fetching armors: ', error);
+            });
+    };
+
     // Console useEffect for armors
     useEffect(() => {
         console.log(armors);
     }, [armors]);
+
+    useEffect(() => {
+        fetchArmors();
+    }, []);
 
     // Sorted useEffect
     useEffect(() => {

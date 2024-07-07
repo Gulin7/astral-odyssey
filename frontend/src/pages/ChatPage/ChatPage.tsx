@@ -1,12 +1,14 @@
 import {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
+import MessageContainer from '../../components/MessageContainer/MessageContainer';
+import Sidebar from '../../components/Sidebar/Sidebar';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
 
 const ChatPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = localStorage.getItem('userToken');
+        const token = localStorage.getItem('token');
         if (!token) {
             navigate('/login');
         }
@@ -34,6 +36,10 @@ const ChatPage = () => {
                         data-testid='home-description-test-id'
                     >
                         Here you can see all of your chats and messages.
+                    </div>
+                    <div className='chat-container'>
+                        <Sidebar />
+                        <MessageContainer />
                     </div>
                 </div>
             </div>

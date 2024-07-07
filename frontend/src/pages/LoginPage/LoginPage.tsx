@@ -61,8 +61,6 @@ const LoginPage = () => {
                 const URL = 'http://localhost:5000/api/users/login';
                 // const URL = `http://3.79.63.224:5000/api/users/login`;
 
-                // console.log(inputFields);
-
                 axios.post(URL, inputFields).then((response) => {
                     console.log(response.data);
                     const currentUser = new User(
@@ -72,7 +70,6 @@ const LoginPage = () => {
                         response.data.role,
                     );
                     userContext.setUser(currentUser);
-                    localStorage.setItem('isLoggedIn', 'yes');
                     localStorage.setItem(
                         'token',
                         JSON.stringify(response.data.token),

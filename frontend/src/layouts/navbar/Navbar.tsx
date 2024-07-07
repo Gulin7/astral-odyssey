@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {useContext} from 'react';
+import {RiLogoutBoxLine} from 'react-icons/ri';
 import {Link, useNavigate} from 'react-router-dom';
 import {UserContext} from '../../contexts/UserContext';
 import './Navbar.css';
@@ -23,6 +24,7 @@ const Navbar = () => {
 
             localStorage.setItem('isLoggedIn', 'no');
             sessionStorage.removeItem('userToken');
+            userContext.setUser(null);
         } catch (error) {
             console.error(error);
         }
@@ -110,6 +112,7 @@ const Navbar = () => {
                 </div>
                 <div>
                     <button className='nav-link button-dark' onClick={logout}>
+                        <RiLogoutBoxLine />
                         Log out
                     </button>
                 </div>

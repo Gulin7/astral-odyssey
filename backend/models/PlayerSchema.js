@@ -20,7 +20,11 @@ const playerSchema = new Schema({
 	guildId: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Guild',
-		required: true,
+		default: null,
+	},
+	balance: {
+		type: Number,
+		default: 0,
 	},
 })
 

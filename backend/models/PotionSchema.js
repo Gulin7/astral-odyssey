@@ -3,11 +3,6 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const potionSchema = new Schema({
-	id: {
-		type: Number,
-		required: true,
-		unique: true,
-	},
 	itemName: {
 		type: String,
 		required: true,
@@ -16,6 +11,7 @@ const potionSchema = new Schema({
 	itemRarity: {
 		type: String,
 		required: true,
+		enum: ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary'],
 	},
 	itemDescription: {
 		type: String,

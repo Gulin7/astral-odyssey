@@ -4,11 +4,6 @@ const validator = require('validator')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
-	id: {
-		type: Number,
-		required: true,
-		unique: true,
-	},
 	username: {
 		type: String,
 		required: true,
@@ -26,13 +21,13 @@ const userSchema = new Schema({
 	role: {
 		type: Number,
 		required: true,
+		enum: [1, 2, 3],
 	},
 })
 
 // static signup method
-userSchema.statics.signup = async function (id, username, email, password, role = false) {
+userSchema.statics.signup = async function (username, email, password, role = 2) {
 	// validation
-	if (!id) throw Error('Missing id')
 	if (!email) throw Error('Missing email')
 	if (!password) throw Error('Missing password')
 	if (!username) throw Error('Missing username')
@@ -55,7 +50,7 @@ userSchema.statics.signup = async function (id, username, email, password, role 
 	const salt = await bcrypt.genSalt(10)
 	const hash = await bcrypt.hash(password, salt)
 
-	const user = await this.create({ id, username, email, password: hash, role })
+	const user = await this.create({ username, email, password: hash, role })
 
 	return user
 }

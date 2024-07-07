@@ -1,32 +1,37 @@
+import {User} from './User';
+
 export class Player {
-    private id: number;
-    private userId: number;
+    private _id: string;
+    private user: User;
     private nickname: string;
     private pictureUrl: string;
-    private static staticId: number = 1;
 
-    public constructor(userId: number, nickname: string, pictureUrl: string) {
-        this.id = Player.staticId;
-        this.userId = userId;
+    public constructor(
+        id: string,
+        user: User,
+        nickname: string,
+        pictureUrl: string,
+    ) {
+        this._id = id;
+        this.user = user;
         this.nickname = nickname;
         this.pictureUrl = pictureUrl;
-        Player.staticId++;
     }
 
-    public getId(): number {
-        return this.id;
+    public getId(): string {
+        return this._id;
     }
 
-    public setId(newId: number): void {
-        this.id = newId;
+    public setId(newId: string): void {
+        this._id = newId;
     }
 
-    public getuserId(): number {
-        return this.userId;
+    public getUser(): User {
+        return this.user;
     }
 
-    public setuserId(newuserId: number): void {
-        this.userId = newuserId;
+    public setUser(newUser: User): void {
+        this.user = newUser;
     }
 
     public getNickname(): string {

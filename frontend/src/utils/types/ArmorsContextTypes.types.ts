@@ -4,7 +4,7 @@ import Armor from '../../models/Armor';
 export type ArmorsContextType = {
     armors: Armor[];
     addArmor: (armors: Armor) => void;
-    removeArmor: (armorId: number) => void;
+    removeArmor: (armorId: string) => void;
 };
 
 export type ProviderType = {

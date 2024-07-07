@@ -66,11 +66,11 @@ const SignupPage = () => {
                 passwordInput,
             );
             try {
-                //const URL = 'http://localhost:5000/api/user/signup';
-                const URL = 'http://3.79.63.224:5000/api/user/signup';
+                const URL = 'http://localhost:5000/api/users/signup';
+                // const URL = 'http://3.79.63.224:5000/api/users/signup';
 
                 axios.post(URL, inputFields).then((response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     const user = new User(
                         response.data.user.id,
                         response.data.user.username,

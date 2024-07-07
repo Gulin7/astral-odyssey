@@ -58,10 +58,10 @@ const LoginPage = () => {
         try {
             const inputFields = handleOnClick(usernameInput, passwordInput);
             try {
-                const URL = 'http://localhost:5000/api/user/login';
-                // const URL = `http://3.79.63.224:5000/api/user/login`;
+                const URL = 'http://localhost:5000/api/users/login';
+                // const URL = `http://3.79.63.224:5000/api/users/login`;
 
-                console.log(inputFields);
+                // console.log(inputFields);
 
                 axios.post(URL, inputFields).then((response) => {
                     console.log(response.data);

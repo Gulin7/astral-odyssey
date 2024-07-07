@@ -3,11 +3,6 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const characterSchema = new Schema({
-	id: {
-		type: Number,
-		required: true,
-		unique: true,
-	},
 	name: {
 		type: String,
 		required: true,
@@ -15,13 +10,16 @@ const characterSchema = new Schema({
 	charClass: {
 		type: String,
 		required: true,
+		enum: ['Warrior', 'Mage', 'Rogue', 'Ranger'],
 	},
 	race: {
 		type: String,
 		required: true,
+		enum: ['Human', 'Elf', 'Dwarf', 'Orc'],
 	},
-	playerId: {
-		type: Number,
+	player: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Player',
 		required: true,
 	},
 	skinURL: {
@@ -31,6 +29,7 @@ const characterSchema = new Schema({
 	level: {
 		type: Number,
 		required: true,
+		default: 1,
 	},
 })
 

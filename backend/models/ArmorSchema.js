@@ -3,11 +3,6 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const armorSchema = new Schema({
-	id: {
-		type: Number,
-		required: true,
-		unique: true,
-	},
 	itemName: {
 		type: String,
 		required: true,
@@ -20,11 +15,11 @@ const armorSchema = new Schema({
 	itemRarity: {
 		type: String,
 		required: true,
+		enum: ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary'],
 	},
 	classes: {
 		type: [String],
 		required: true,
-		unique: false,
 	},
 	itemDescription: {
 		type: String,

@@ -1,30 +1,26 @@
 export class User {
-    private id: number;
+    private _id: string;
     private username: string;
     private email: string;
     private password: string;
     private role: boolean;
 
     public constructor(
-        id: number,
+        _id: string,
         username: string,
         email: string,
         password: string,
         role: boolean,
     ) {
-        this.id = id;
+        this._id = _id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
     }
 
-    public getId(): number {
-        return this.id;
-    }
-
-    public setId(newId: number): void {
-        this.id = newId;
+    public getId(): string {
+        return this._id;
     }
 
     public getUsername(): string {

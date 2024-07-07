@@ -63,7 +63,7 @@ function App() {
     //         console.log('Received new player from server: ', fields);
     //         /*const player = new Player(
     //             fields.id,
-    //             fields.userId,
+    //             fields.user,
     //             fields.nickname,
     //             fields.pictureURL,
     //         );
@@ -101,8 +101,8 @@ function App() {
                 const fetchedPlayers = response.data.map(
                     (player: any) =>
                         new Player(
-                            // player.id,
-                            player.username,
+                            player.id,
+                            player.user,
                             player.nickname,
                             player.pictureURL,
                         ),
@@ -132,8 +132,8 @@ function App() {
                 const players = storedPlayers.map(
                     (player: any) =>
                         new Player(
-                            // player.id,
-                            player.username,
+                            player.id,
+                            player.user,
                             player.nickname,
                             player.pictureURL,
                         ),
@@ -152,11 +152,11 @@ function App() {
                 const fetchedCharacters = response.data.map(
                     (character: any) =>
                         new Character(
-                            // character.id,
+                            character.id,
                             character.name,
                             character.charClass,
                             character.race,
-                            character.playerId,
+                            character.player,
                             character.skinURL,
                             character.level,
                         ),
@@ -257,18 +257,18 @@ function App() {
     };
 
     useEffect(() => {
-        fetchPlayers();
-        fetchCharacters();
-        fetchArmors();
-        fetchWeapons();
-        fetchPotions();
+        // fetchPlayers();
+        // fetchCharacters();
+        // fetchArmors();
+        // fetchWeapons();
+        // fetchPotions();
     }, [isServerOnline]);
 
     const addPlayer = (newPlayer: Player) => {
         setPlayers((prevState: Player[]) => [...prevState, newPlayer]);
     };
 
-    const removePlayer = (playerId: number) => {
+    const removePlayer = (playerId: string) => {
         setPlayers((prevState: Player[]) =>
             prevState.filter((player: Player) => player.getId() !== playerId),
         );
@@ -278,7 +278,7 @@ function App() {
         setCharacters((prevState: Character[]) => [...prevState, newCharacter]);
     };
 
-    const removeCharacter = (characterId: number) => {
+    const removeCharacter = (characterId: string) => {
         setCharacters((prevState: Character[]) =>
             prevState.filter(
                 (character: Character) => character.getId() !== characterId,
@@ -290,7 +290,7 @@ function App() {
         setArmors((prevState: Armor[]) => [...prevState, newArmor]);
     };
 
-    const removeArmor = (armorId: number) => {
+    const removeArmor = (armorId: string) => {
         setArmors((prevState: Armor[]) =>
             prevState.filter((armor: Armor) => armor.getId() !== armorId),
         );
@@ -300,7 +300,7 @@ function App() {
         setWeapons((prevState: Weapon[]) => [...prevState, newWeapon]);
     };
 
-    const removeWeapon = (weaponId: number) => {
+    const removeWeapon = (weaponId: string) => {
         setWeapons((prevState: Weapon[]) =>
             prevState.filter((weapon: Weapon) => weapon.getId() !== weaponId),
         );
@@ -310,7 +310,7 @@ function App() {
         setPotions((prevState: Potion[]) => [...prevState, newPotion]);
     };
 
-    const removePotion = (potionId: number) => {
+    const removePotion = (potionId: string) => {
         setPotions((prevState: Potion[]) =>
             prevState.filter((potion: Potion) => potion.getId() !== potionId),
         );
@@ -355,7 +355,7 @@ function App() {
                                         <Route
                                             path='/'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <HomePage />
                                                 ) : (
                                                     <Navigate
@@ -376,7 +376,7 @@ function App() {
                                         <Route
                                             path='/players'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <PlayersPage />
                                                 ) : (
                                                     <Navigate
@@ -389,7 +389,7 @@ function App() {
                                         <Route
                                             path='/addPlayer'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <AddPlayerPage />
                                                 ) : (
                                                     <Navigate
@@ -402,7 +402,7 @@ function App() {
                                         <Route
                                             path='/editPlayer/:playerId'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <EditPlayerPage />
                                                 ) : (
                                                     <Navigate
@@ -415,7 +415,7 @@ function App() {
                                         <Route
                                             path='/characters'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <CharactersPage />
                                                 ) : (
                                                     <Navigate
@@ -428,7 +428,7 @@ function App() {
                                         <Route
                                             path='/addCharacter'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <AddCharacterPage />
                                                 ) : (
                                                     <Navigate
@@ -441,7 +441,7 @@ function App() {
                                         <Route
                                             path='/editCharacter/:characterId'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <EditCharacterPage />
                                                 ) : (
                                                     <Navigate
@@ -454,7 +454,7 @@ function App() {
                                         <Route
                                             path='/classesChart'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <ClassesChartPage />
                                                 ) : (
                                                     <Navigate
@@ -467,7 +467,7 @@ function App() {
                                         <Route
                                             path='/armorShop'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <ArmorPage />
                                                 ) : (
                                                     <Navigate
@@ -480,7 +480,7 @@ function App() {
                                         <Route
                                             path='/potionShop'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <PotionPage />
                                                 ) : (
                                                     <Navigate
@@ -493,7 +493,7 @@ function App() {
                                         <Route
                                             path='/weaponShop'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <WeaponPage />
                                                 ) : (
                                                     <Navigate
@@ -506,7 +506,7 @@ function App() {
                                         <Route
                                             path='/characterClasses'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <ClassesPage />
                                                 ) : (
                                                     <Navigate
@@ -519,7 +519,7 @@ function App() {
                                         <Route
                                             path='/characterRaces'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <RacesPage />
                                                 ) : (
                                                     <Navigate
@@ -532,7 +532,7 @@ function App() {
                                         <Route
                                             path='/warriorClass'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <WarriorPage />
                                                 ) : (
                                                     <Navigate
@@ -545,7 +545,7 @@ function App() {
                                         <Route
                                             path='/rangerClass'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <RangerPage />
                                                 ) : (
                                                     <Navigate
@@ -558,7 +558,7 @@ function App() {
                                         <Route
                                             path='/mageClass'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <MagePage />
                                                 ) : (
                                                     <Navigate
@@ -571,7 +571,7 @@ function App() {
                                         <Route
                                             path='/fighterClass'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <FighterPage />
                                                 ) : (
                                                     <Navigate
@@ -584,7 +584,7 @@ function App() {
                                         <Route
                                             path='/arcade'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <GamesPage />
                                                 ) : (
                                                     <Navigate
@@ -598,7 +598,7 @@ function App() {
                                         <Route
                                             path='*'
                                             element={
-                                                user && user.getId() > 0 ? (
+                                                user ? (
                                                     <NotFoundPage />
                                                 ) : (
                                                     <Navigate

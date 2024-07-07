@@ -2,29 +2,29 @@ const Character = require('../models/CharacterSchema')
 const mongoose = require('mongoose')
 
 // get the first free id
-const getFirstFreeId = async () => {
-	let myId = -1
-	const characters = await Character.find().sort({ id: 1 })
-	for (let i = 0; i < characters.length; i++) {
-		if (characters[i].id != i + 1) {
-			myId = i + 1
-			break
-		}
-	}
-	if (myId == -1) {
-		myId = characters.length + 1
-	}
-	return myId
-}
+// const getFirstFreeId = async () => {
+// 	let myId = -1
+// 	const characters = await Character.find().sort({ id: 1 })
+// 	for (let i = 0; i < characters.length; i++) {
+// 		if (characters[i].id != i + 1) {
+// 			myId = i + 1
+// 			break
+// 		}
+// 	}
+// 	if (myId == -1) {
+// 		myId = characters.length + 1
+// 	}
+// 	return myId
+// }
 
 // find if an id is valid
-const isValidId = async (id) => {
-	const character = await Character.findOne({ id: id })
-	if (character) {
-		return true
-	}
-	return false
-}
+// const isValidId = async (id) => {
+// 	const character = await Character.findOne({ id: id })
+// 	if (character) {
+// 		return true
+// 	}
+// 	return false
+// }
 
 // get default skin url
 const getDefaultSkinUrl = (charClass) => {
@@ -42,20 +42,20 @@ const getDefaultSkinUrl = (charClass) => {
 
 // GET all characters
 const getCharacters = async (req, res) => {
-	const characters = await Character.find().sort({ id: 1 })
+	const characters = await Character.find().sort({ name: 1 })
 
 	res.status(200).json(characters)
 }
 
 // GET a single character
 const getCharacter = async (req, res) => {
-	const { id } = req.params
+	const { name } = req.params
 
-	if (!isValidId(id)) {
-		return res.status(404).json({ error: 'Character not found' })
-	}
+	// if (!isValidId(id)) {
+	// 	return res.status(404).json({ error: 'Character not found' })
+	// }
 
-	const character = await Character.findOne({ id: id })
+	const character = await Character.findOne({ name: name })
 
 	if (!character) {
 		return res.status(404).json({ error: 'Character not found' })
@@ -77,7 +77,6 @@ const createCharacter = async (req, res) => {
 	const id = await getFirstFreeId()
 	try {
 		const newCharacter = await Character.create({
-			id,
 			name,
 			charClass,
 			race,
@@ -93,13 +92,13 @@ const createCharacter = async (req, res) => {
 
 // DELETE a character
 const deleteCharacter = async (req, res) => {
-	const { id } = req.params
+	const { name } = req.params
 
-	if (isValidId(id) == false) {
-		return res.status(404).json({ error: 'Character not found' })
-	}
+	// if (isValidId(id) == false) {
+	// 	return res.status(404).json({ error: 'Character not found' })
+	// }
 
-	const character = await Character.findOneAndDelete({ id: id })
+	const character = await Character.findOneAndDelete({ name: name })
 
 	if (!character) {
 		return res.status(404).json({ error: 'Character not found' })
@@ -110,15 +109,15 @@ const deleteCharacter = async (req, res) => {
 
 // UPDATE a character
 const updateCharacter = async (req, res) => {
-	const { id } = req.params
+	const { name } = req.params
 
-	if (isValidId(id) == false) {
-		return res.status(404).json({ error: 'Character not found' })
-	}
+	// if (isValidId(id) == false) {
+	// 	return res.status(404).json({ error: 'Character not found' })
+	// }
 
 	console.log(req.body)
 
-	const character = await Character.findOneAndUpdate({ id: id }, { ...req.body })
+	const character = await Character.findOneAndUpdate({ name: name }, { ...req.body })
 
 	if (!character) {
 		return res.status(404).json({ error: 'Character not found' })

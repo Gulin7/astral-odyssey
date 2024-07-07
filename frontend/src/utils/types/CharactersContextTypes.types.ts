@@ -4,7 +4,7 @@ import Character from '../../models/Character';
 export type CharactersContextType = {
     characters: Character[];
     addCharacter: (characters: Character) => void;
-    removeCharacter: (characterId: number) => void;
+    removeCharacter: (characterId: string) => void;
 };
 
 export type ProviderType = {

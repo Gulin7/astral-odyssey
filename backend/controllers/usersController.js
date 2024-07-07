@@ -9,31 +9,31 @@ const generateToken = (id) => {
 	return jwt.sign({ id: id }, JWT_SECRET, { expiresIn: '7d' })
 }
 
-//get first free
-const getFirstFreeId = async () => {
-	let myId = -1
-	const users = await User.find().sort({ id: 1 })
-	for (let i = 0; i < users.length; i++) {
-		if (users[i].id != i + 1) {
-			myId = i + 1
-			break
-		}
-	}
-	if (myId == -1) {
-		myId = users.length + 1
-	}
-	return myId
-}
+// //get first free
+// const getFirstFreeId = async () => {
+// 	let myId = -1
+// 	const users = await User.find().sort({ id: 1 })
+// 	for (let i = 0; i < users.length; i++) {
+// 		if (users[i].id != i + 1) {
+// 			myId = i + 1
+// 			break
+// 		}
+// 	}
+// 	if (myId == -1) {
+// 		myId = users.length + 1
+// 	}
+// 	return myId
+// }
 
-// find if an id is valid
-const isValidId = async (id) => {
-	const user = await User.findOne({ id: id })
+// //find if an id is valid
+// const isValidId = async (id) => {
+// 	const user = await User.findOne({ id: id })
 
-	if (user) {
-		return true
-	}
-	return false
-}
+// 	if (user) {
+// 		return true
+// 	}
+// 	return false
+// }
 
 //login user
 const loginUser = async (req, res) => {
@@ -43,7 +43,7 @@ const loginUser = async (req, res) => {
 		const existingUser = await User.login(username, password)
 
 		//create JWT
-		const token = generateToken(existingUser.id)
+		const token = generateToken(existingUser.username)
 
 		res.status(200).json({ user: existingUser, token })
 	} catch (error) {
@@ -53,14 +53,18 @@ const loginUser = async (req, res) => {
 
 //signup user
 const signupUser = async (req, res) => {
-	const { username, email, password, role } = req.body
+	const { username, email, password, confirmPassword, role } = req.body
+
+	if (password !== confirmPassword) {
+		return res.status(400).json({ error: 'Passwords do not match' })
+	}
 
 	try {
-		const id = await getFirstFreeId()
+		// const id = await getFirstFreeId()
 
-		const user = await User.signup(id, username, email, password, role)
+		const user = await User.signup(username, email, password, role)
 
-		const token = generateToken(user.id)
+		const token = generateToken(user.username)
 
 		res.status(200).json({ user, token })
 	} catch (error) {

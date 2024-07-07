@@ -1,5 +1,5 @@
 class Weapon {
-    private id: number;
+    private _id: string;
     private itemName: string;
     private primaryStat: number;
     private classes: Array<string>;
@@ -9,7 +9,7 @@ class Weapon {
     private skinURL: string;
 
     public constructor(
-        id: number,
+        _id: string,
         itemName: string,
         primaryStat: number,
         classes: Array<string>,
@@ -18,7 +18,7 @@ class Weapon {
         itemPrice: number,
         skinURL: string,
     ) {
-        this.id = id;
+        this._id = _id;
         this.itemName = itemName;
         this.primaryStat = primaryStat;
         this.classes = classes;
@@ -28,12 +28,12 @@ class Weapon {
         this.itemRarity = itemRarity;
     }
 
-    public getId(): number {
-        return this.id;
+    public getId(): string {
+        return this._id;
     }
 
-    public setId(newId: number): void {
-        this.id = newId;
+    public setId(newId: string): void {
+        this._id = newId;
     }
 
     public getItemName(): string {

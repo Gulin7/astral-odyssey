@@ -1,29 +1,30 @@
+import { Player } from './Player';
+
 class Character {
-    private id: number;
+    private _id: string;
     private name: string;
     private charClass: string;
     private race: string;
-    private playerId: number;
+    private player: Player;
     private skinURL: string;
     private level: number;
-    private static staticId: number = 1;
 
     public constructor(
+        id:string,
         name: string,
         charClass: string,
         race: string,
-        playerId: number,
+        player: Player,
         skinURL: string,
         level: number,
     ) {
-        this.id = Character.staticId;
+        this._id = id;
         this.name = name;
         this.charClass = charClass.toLowerCase();
         this.race = race.toLowerCase();
-        this.playerId = playerId;
+        this.player = player;
         this.skinURL = skinURL;
         this.level = level;
-        Character.staticId++;
         // this.skinURL = this.getDefaultSkinUrl();
         // this.level = 1;
     }
@@ -41,12 +42,12 @@ class Character {
         return 'warrior-default.png';
     }
 
-    public getId(): number {
-        return this.id;
+    public getId(): string {
+        return this._id;
     }
 
-    public setId(newId: number): void {
-        this.id = newId;
+    public setId(newId: string): void {
+        this._id = newId;
     }
 
     public getName(): string {
@@ -74,12 +75,12 @@ class Character {
         this.race = newRace;
     }
 
-    public getPlayerId(): number {
-        return this.playerId;
+    public getplayer(): Player {
+        return this.player;
     }
 
-    public setPlayerId(newPlayerId: number): void {
-        this.playerId = newPlayerId;
+    public setplayer(newplayer: Player): void {
+        this.player = newplayer;
     }
 
     public getSkinUrl(): string {

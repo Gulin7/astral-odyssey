@@ -4,26 +4,17 @@ class PlayerClass {
 	nickname
 	pictureUrl
 
-	constructor(id, userId, nickname, pictureUrl) {
-		this.id = id
+	constructor(userId, nickname, pictureUrl) {
 		this.userId = userId
 		this.nickname = nickname
 		this.pictureUrl = pictureUrl
 	}
 
-	getId() {
-		return this.id
-	}
-
-	setId(newId) {
-		this.id = newId
-	}
-
-	getuserId() {
+	getUserId() {
 		return this.userId
 	}
 
-	setuserId(newuserId) {
+	setUserId(newuserId) {
 		this.userId = newuserId
 	}
 

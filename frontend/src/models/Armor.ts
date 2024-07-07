@@ -1,5 +1,5 @@
 class Armor {
-    private id: number;
+    private _id: string;
     private itemName: string;
     private primaryStat: number;
     private itemRarity: string;
@@ -9,7 +9,7 @@ class Armor {
     private skinURL: string;
 
     public constructor(
-        id: number,
+        _id: string,
         itemName: string,
         primaryStat: number,
         itemRarity: string,
@@ -18,7 +18,7 @@ class Armor {
         itemPrice: number,
         skinURL: string,
     ) {
-        this.id = id;
+        this._id = _id;
         this.itemName = itemName;
         this.primaryStat = primaryStat;
         this.itemRarity = itemRarity;
@@ -28,12 +28,12 @@ class Armor {
         this.itemPrice = itemPrice;
     }
 
-    public getId(): number {
-        return this.id;
+    public getId(): string {
+        return this._id;
     }
 
-    public setId(newId: number): void {
-        this.id = newId;
+    public setId(newId: string): void {
+        this._id = newId;
     }
 
     public getItemName(): string {

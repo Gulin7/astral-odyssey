@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 })
 
 //routes
-app.use('/api/user', userRoutes)
+app.use('/api/users', userRoutes)
 app.use('/api/players', playerRoutes)
 app.use('/api/characters', characterRoutes)
 app.use('/api/armors', armorRoutes)

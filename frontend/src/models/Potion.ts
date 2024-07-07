@@ -1,5 +1,5 @@
 class Potion {
-    private id: number;
+    private _id: string;
     private itemName: string;
     private itemRarity: string;
     private itemDescription: string;
@@ -7,14 +7,14 @@ class Potion {
     private skinURL: string;
 
     public constructor(
-        id: number,
+        _id: string,
         itemName: string,
         itemRarity: string,
         itemDescription: string,
         itemPrice: number,
         skinURL: string,
     ) {
-        this.id = id;
+        this._id = _id;
         this.itemName = itemName;
         this.itemDescription = itemDescription;
         this.skinURL = skinURL;
@@ -22,12 +22,8 @@ class Potion {
         this.itemRarity = itemRarity;
     }
 
-    public getId(): number {
-        return this.id;
-    }
-
-    public setId(newId: number): void {
-        this.id = newId;
+    public getId(): string {
+        return this._id;
     }
 
     public getItemName(): string {

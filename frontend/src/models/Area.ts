@@ -1,30 +1,30 @@
 export class Area {
-    private id: number;
+    private _id: string;
     private name: string;
     private description: string;
     private difficulty: number;
-    private url: string;
+    private pictureUrl: string;
 
     public constructor(
-        id: number,
+        _id: string,
         name: string,
         description: string,
         difficulty: number,
-        url: string,
+        pictureUrl: string,
     ) {
-        this.id = id;
+        this._id = _id;
         this.name = name;
         this.description = description;
         this.difficulty = difficulty;
-        this.url = url;
+        this.pictureUrl = pictureUrl;
     }
 
-    public getId(): number {
-        return this.id;
+    public getId(): string {
+        return this._id;
     }
 
-    public setId(newId: number): void {
-        this.id = newId;
+    public setId(newId: string): void {
+        this._id = newId;
     }
 
     public getName(): string {
@@ -51,11 +51,11 @@ export class Area {
         this.difficulty = newDifficulty;
     }
 
-    public getUrl(): string {
-        return this.url;
+    public getpictureUrl(): string {
+        return this.pictureUrl;
     }
 
-    public setUrl(newUrl: string): void {
-        this.url = newUrl;
+    public setpictureUrl(newpictureUrl: string): void {
+        this.pictureUrl = newpictureUrl;
     }
 }

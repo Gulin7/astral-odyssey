@@ -4,7 +4,7 @@ import {Player} from '../../models/Player';
 export type PlayersContextType = {
     players: Player[];
     addPlayer: (players: Player) => void;
-    removePlayer: (playerId: number) => void;
+    removePlayer: (playerId: string) => void;
 };
 
 export type ProviderType = {

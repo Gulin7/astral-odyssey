@@ -1,17 +1,19 @@
-import {Chat} from './Chat';
-import {User} from './User';
-
 export class Message {
     private _id: string;
-    private sender: User;
-    private content: string;
-    private chat: Chat;
+    private senderId: string;
+    private receiverId: string;
+    private message: string;
 
-    public constructor(_id: string, sender: User, content: string, chat: Chat) {
-        this._id = _id;
-        this.sender = sender;
-        this.content = content;
-        this.chat = chat;
+    public constructor(
+        id: string,
+        senderId: string,
+        receiverId: string,
+        message: string,
+    ) {
+        this._id = id;
+        this.senderId = senderId;
+        this.receiverId = receiverId;
+        this.message = message;
     }
 
     public getId(): string {
@@ -22,27 +24,19 @@ export class Message {
         this._id = newId;
     }
 
-    public getSender(): User {
-        return this.sender;
+    public getSenderId(): string {
+        return this.senderId;
     }
 
-    public setSender(newSender: User): void {
-        this.sender = newSender;
+    public setSenderId(newSenderId: string): void {
+        this.senderId = newSenderId;
     }
 
-    public getContent(): string {
-        return this.content;
+    public getReceiverId(): string {
+        return this.receiverId;
     }
 
-    public setContent(newContent: string): void {
-        this.content = newContent;
-    }
-
-    public getChat(): Chat {
-        return this.chat;
-    }
-
-    public setChat(newChat: Chat): void {
-        this.chat = newChat;
+    public setReceiverId(newReceiverId: string): void {
+        this.receiverId = newReceiverId;
     }
 }

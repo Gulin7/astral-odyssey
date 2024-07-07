@@ -1,5 +1,7 @@
 const express = require('express')
 const Potion = require('../models/PotionSchema')
+const protectRoute = require('../middleware/protectRoute')
+
 
 //require the controller
 const {

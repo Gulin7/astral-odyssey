@@ -21,12 +21,11 @@ const userSchema = new Schema({
 	role: {
 		type: Number,
 		required: true,
-		enum: [1, 2, 3],
 	},
 })
 
 // static signup method
-userSchema.statics.signup = async function (username, email, password, role = 2) {
+userSchema.statics.signup = async function (username, email, password, role = 3) {
 	// validation
 	if (!email) throw Error('Missing email')
 	if (!password) throw Error('Missing password')
@@ -49,6 +48,8 @@ userSchema.statics.signup = async function (username, email, password, role = 2)
 
 	const salt = await bcrypt.genSalt(10)
 	const hash = await bcrypt.hash(password, salt)
+
+	console.log('User data correct')
 
 	const user = await this.create({ username, email, password: hash, role })
 

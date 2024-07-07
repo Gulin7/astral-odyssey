@@ -1,5 +1,6 @@
 const express = require('express')
 const Armor = require('../models/ArmorSchema')
+const protectRoute = require('../middleware/protectRoute')
 
 //require the controller
 const {

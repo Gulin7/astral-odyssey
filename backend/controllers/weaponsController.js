@@ -1,29 +1,6 @@
 const mongoose = require('mongoose')
 const Weapon = require('../models/WeaponSchema')
 
-const isValidId = async (id) => {
-	const weapon = await Weapon.findOne({ id: id })
-	if (weapon) {
-		return true
-	}
-	return false
-}
-
-const getFirstFreeId = async () => {
-	let myId = -1
-	const weapons = await Weapon.find().sort({ id: 1 })
-	for (let i = 0; i < Weapons.length; i++) {
-		if (weapons[i].id != i + 1) {
-			myId = i + 1
-			break
-		}
-	}
-	if (myId == -1) {
-		myId = weapons.length + 1
-	}
-	return myId
-}
-
 // get all Weapons
 const getWeapons = async (req, res) => {
 	const weapons = await Weapon.find().sort({ id: 1 })
@@ -57,7 +34,6 @@ const createWeapon = async (req, res) => {
 
 	try {
 		const newWeapon = await Weapon.create({
-			id,
 			itemName,
 			primaryStat,
 			itemRarity,
@@ -74,11 +50,7 @@ const createWeapon = async (req, res) => {
 const deleteWeapon = async (req, res) => {
 	const { id } = req.params
 
-	if (isValidId(id) == false) {
-		return res.status(404).json({ error: 'Weapon not found' })
-	}
-
-	const weapon = await Weapon.findOneAndDelete({ id: id })
+	const weapon = await Weapon.findOneAndDelete({ _id: id })
 
 	if (!weapon) {
 		return res.status(404).json({ error: 'Weapon not found!' })
@@ -90,11 +62,7 @@ const deleteWeapon = async (req, res) => {
 const updateWeapon = async (req, res) => {
 	const { id } = req.params
 
-	if (isValidId(id) == false) {
-		return res.status(404).json({ error: 'Weapon not found' })
-	}
-
-	const weapon = await Weapon.findOneAndUpdate({ id: id }, { ...req.body })
+	const weapon = await Weapon.findOneAndUpdate({ _id: id }, { ...req.body })
 
 	if (!weapon) {
 		return res.status(404).json({ error: 'Weapon not found' })

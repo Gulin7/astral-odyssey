@@ -1,5 +1,6 @@
 const express = require('express')
 const Character = require('../models/CharacterSchema')
+const protectRoute = require('../middleware/protectRoute')
 
 // require the controller
 const {

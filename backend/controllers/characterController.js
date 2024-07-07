@@ -1,31 +1,6 @@
 const Character = require('../models/CharacterSchema')
 const mongoose = require('mongoose')
 
-// get the first free id
-// const getFirstFreeId = async () => {
-// 	let myId = -1
-// 	const characters = await Character.find().sort({ id: 1 })
-// 	for (let i = 0; i < characters.length; i++) {
-// 		if (characters[i].id != i + 1) {
-// 			myId = i + 1
-// 			break
-// 		}
-// 	}
-// 	if (myId == -1) {
-// 		myId = characters.length + 1
-// 	}
-// 	return myId
-// }
-
-// find if an id is valid
-// const isValidId = async (id) => {
-// 	const character = await Character.findOne({ id: id })
-// 	if (character) {
-// 		return true
-// 	}
-// 	return false
-// }
-
 // get default skin url
 const getDefaultSkinUrl = (charClass) => {
 	if (charClass === 'warrior') {
@@ -134,3 +109,28 @@ module.exports = {
 	deleteCharacter,
 	updateCharacter,
 }
+
+// get the first free id
+// const getFirstFreeId = async () => {
+// 	let myId = -1
+// 	const characters = await Character.find().sort({ id: 1 })
+// 	for (let i = 0; i < characters.length; i++) {
+// 		if (characters[i].id != i + 1) {
+// 			myId = i + 1
+// 			break
+// 		}
+// 	}
+// 	if (myId == -1) {
+// 		myId = characters.length + 1
+// 	}
+// 	return myId
+// }
+
+// find if an id is valid
+// const isValidId = async (id) => {
+// 	const character = await Character.findOne({ id: id })
+// 	if (character) {
+// 		return true
+// 	}
+// 	return false
+// }

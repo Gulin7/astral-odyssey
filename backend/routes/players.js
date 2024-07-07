@@ -1,5 +1,6 @@
 const express = require('express')
 const Player = require('../models/PlayerSchema')
+const protectRoute = require('../middleware/protectRoute')
 
 // require the controller
 const {

@@ -1,13 +1,20 @@
 class PlayerClass {
-	id
+	_id
 	userId
 	nickname
 	pictureUrl
+	guildId
 
-	constructor(userId, nickname, pictureUrl) {
+	constructor(_id, userId, nickname, pictureUrl, guildId) {
+		this._id = _id
 		this.userId = userId
 		this.nickname = nickname
 		this.pictureUrl = pictureUrl
+		this.guildId = guildId
+	}
+
+	getId() {
+		return this._id
 	}
 
 	getUserId() {
@@ -32,6 +39,14 @@ class PlayerClass {
 
 	setPictureUrl(newUrl) {
 		this.pictureUrl = newUrl
+	}
+
+	getGuildId() {
+		return this.guildId
+	}
+
+	setGuildId(newGuildId) {
+		this.guildId = newGuildId
 	}
 }
 

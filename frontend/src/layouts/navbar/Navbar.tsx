@@ -1,7 +1,7 @@
+import axios from 'axios';
 import {useContext} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {UserContext} from '../../contexts/UserContext';
-import {User} from '../../models/User';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -9,9 +9,21 @@ const Navbar = () => {
     const userContext = useContext(UserContext)!;
 
     function logout() {
-        localStorage.setItem('isLoggedIn', 'no');
-        userContext.setUser(new User(-1, '', '', '', false));
-        sessionStorage.removeItem('userToken');
+        try {
+            const URL = 'http://localhost:5000/api/users/logout';
+            // const URL = `http://3.79.63.224:5000/api/users/logout`;
+
+            axios.post(URL).then((response) => {
+                console.log(response.data);
+
+                navigate('/');
+            });
+
+            localStorage.setItem('isLoggedIn', 'no');
+            sessionStorage.removeItem('userToken');
+        } catch (error) {
+            console.error(error);
+        }
         navigate('/login');
     }
 
@@ -30,9 +42,24 @@ const Navbar = () => {
                         Players
                     </Link>
                 </div>
-                <div>
+                {/* <div>
                     <Link to='/addPlayer' className='nav-link'>
                         Add Player
+                    </Link>
+                </div> */}
+                <div>
+                    <Link to='/chat' className='nav-link'>
+                        Chat
+                    </Link>
+                </div>
+                <div>
+                    <Link to='/guilds' className='nav-link'>
+                        Guilds
+                    </Link>
+                </div>
+                <div>
+                    <Link to='/guildChat' className='nav-link'>
+                        Guild Chat
                     </Link>
                 </div>
                 <div>

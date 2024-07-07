@@ -1,32 +1,9 @@
 const mongoose = require('mongoose')
 const Armor = require('../models/ArmorSchema')
 
-const isValidId = async (id) => {
-	const armor = await Armor.findOne({ id: id })
-	if (armor) {
-		return true
-	}
-	return false
-}
-
-const getFirstFreeId = async () => {
-	let myId = -1
-	const armors = await Armor.find().sort({ id: 1 })
-	for (let i = 0; i < armors.length; i++) {
-		if (armors[i].id != i + 1) {
-			myId = i + 1
-			break
-		}
-	}
-	if (myId == -1) {
-		myId = armors.length + 1
-	}
-	return myId
-}
-
 // get all Armors
 const getArmors = async (req, res) => {
-	const armors = await Armor.find().sort({ id: 1 })
+	const armors = await Armor.find().sort({ _id: 1 })
 
 	res.status(200).json(armors)
 }
@@ -35,11 +12,7 @@ const getArmors = async (req, res) => {
 const getArmor = async (req, res) => {
 	const { id } = req.params
 
-	if (isValidId(id) == false) {
-		return res.status(404).json({ error: 'Armor not found' })
-	}
-
-	const armor = await Armor.findOne({ id: id })
+	const armor = await Armor.findOne({ _id: id })
 
 	if (!armor) {
 		return res.status(404).json({ error: 'Armor not found' })
@@ -57,7 +30,6 @@ const createArmor = async (req, res) => {
 
 	try {
 		const newArmor = await Armor.create({
-			id,
 			itemName,
 			primaryStat,
 			itemRarity,
@@ -74,11 +46,7 @@ const createArmor = async (req, res) => {
 const deleteArmor = async (req, res) => {
 	const { id } = req.params
 
-	if (isValidId(id) == false) {
-		return res.status(404).json({ error: 'Armor not found' })
-	}
-
-	const armor = await Armor.findOneAndDelete({ id: id })
+	const armor = await Armor.findOneAndDelete({ _id: id })
 
 	if (!armor) {
 		return res.status(404).json({ error: 'Armor not found!' })
@@ -90,11 +58,7 @@ const deleteArmor = async (req, res) => {
 const updateArmor = async (req, res) => {
 	const { id } = req.params
 
-	if (isValidId(id) == false) {
-		return res.status(404).json({ error: 'Armor not found' })
-	}
-
-	const armor = await Armor.findOneAndUpdate({ id: id }, { ...req.body })
+	const armor = await Armor.findOneAndUpdate({ _id: id }, { ...req.body })
 
 	if (!armor) {
 		return res.status(404).json({ error: 'Armor not found' })

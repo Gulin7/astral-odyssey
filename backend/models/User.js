@@ -1,14 +1,20 @@
 export class User {
+	_id
 	username
 	email
 	password
 	role
 
-	constructor(username, email, password, role) {
+	constructor(_id, username, email, password, role) {
+		this._id = _id
 		this.username = username
 		this.email = email
 		this.password = password
 		this.role = role
+	}
+
+	getId() {
+		return this._id
 	}
 
 	getUsername() {

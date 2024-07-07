@@ -1,5 +1,6 @@
 const express = require('express')
 const Weapon = require('../models/WeaponSchema')
+const protectRoute = require('../middleware/protectRoute')
 
 //require the controller
 const {

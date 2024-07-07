@@ -31,7 +31,6 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import MagePage from './pages/MagePage/MagePage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import PlayersPage from './pages/PlayersPage/PlayersPage';
-import PokemonBattlePage from './pages/PokemonBattlePage/PokemonBattlePage';
 import PotionPage from './pages/PotionsPage/PotionsPage';
 import RacesPage from './pages/RacesPage/RacesPage';
 import RangerPage from './pages/RangerPage/RangerPage';
@@ -89,8 +88,8 @@ function App() {
     axiosRetry(axios, {retries: 3});
 
     const fetchPlayers = async () => {
-        // const URL = `http://localhost:5000/api/players?page=${page}`;
-        const URL = `http://3.79.63.224:5000/api/players?page=${page}`;
+        const URL = `http://localhost:5000/api/players?page=${page}`;
+        // const URL = `http://3.79.63.224:5000/api/players?page=${page}`;
 
         await axios({
             method: 'GET',
@@ -145,8 +144,8 @@ function App() {
     };
 
     const fetchCharacters = async () => {
-        //const URL = 'http://localhost:5000/api/characters';
-        const URL = 'http://3.79.63.224:5000/api/characters';
+        const URL = 'http://localhost:5000/api/characters';
+        // const URL = 'http://3.79.63.224:5000/api/characters';
         await axios
             .get(URL)
             .then((response) => {
@@ -173,8 +172,8 @@ function App() {
     };
 
     const fetchArmors = async () => {
-        //const URL = 'http://localhost:5000/api/armors';
-        const URL = 'http://3.79.63.224:5000/api/armors';
+        const URL = 'http://localhost:5000/api/armors';
+        // const URL = 'http://3.79.63.224:5000/api/armors';
 
         const path = 'src/assets/armors/';
         await axios
@@ -202,8 +201,8 @@ function App() {
     };
 
     const fetchWeapons = async () => {
-        //const URL = 'http://localhost:5000/api/weapons';
-        const URL = 'http://3.79.63.224:5000/api/weapons';
+        const URL = 'http://localhost:5000/api/weapons';
+        // const URL = 'http://3.79.63.224:5000/api/weapons';
         const path = 'src/assets/weapons/';
         await axios
             .get(URL)
@@ -230,8 +229,8 @@ function App() {
     };
 
     const fetchPotions = async () => {
-        //const URL = 'http://localhost:5000/api/armors';
-        const URL = 'http://3.79.63.224:5000/api/potions';
+        const URL = 'http://localhost:5000/api/armors';
+        // const URL = 'http://3.79.63.224:5000/api/potions';
         const path = 'src/assets/potions/';
         await axios
             .get(URL)
@@ -595,19 +594,7 @@ function App() {
                                                 )
                                             }
                                         />
-                                        <Route
-                                            path='/pokemonArcade'
-                                            element={
-                                                user && user.getId() > 0 ? (
-                                                    <PokemonBattlePage />
-                                                ) : (
-                                                    <Navigate
-                                                        to='/login'
-                                                        replace
-                                                    />
-                                                )
-                                            }
-                                        />
+
                                         <Route
                                             path='*'
                                             element={

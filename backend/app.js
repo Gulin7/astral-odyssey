@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 app.use('/api/user', userRoutes)
 app.use('/api/players', playerRoutes)
 app.use('/api/characters', characterRoutes)
-app.use('/api/armosr', armorRoutes)
+app.use('/api/armors', armorRoutes)
 app.use('./api/weapons', weaponRoutes)
 app.use('./api/potions', potionRoutes)
 

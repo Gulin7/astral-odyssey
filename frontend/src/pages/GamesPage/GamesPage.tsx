@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
 import './GamesPage.css';
 
-const FighterPage = () => {
+const GamesPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -12,10 +12,6 @@ const FighterPage = () => {
             navigate('/login');
         }
     });
-
-    const goToPokemonArcade = () => {
-        navigate('/pokemonArcade');
-    };
 
     return (
         <MainLayout>
@@ -28,18 +24,11 @@ const FighterPage = () => {
                         Welcome to Astral Odyssey Arcade! Here you can play a
                         variety of games to earn coins and have fun. Good luck!
                     </div>
-                    <div className='arcade-container'>
-                        <div id='pokemon-arcade'>
-                            <button onClick={goToPokemonArcade}>
-                                {' '}
-                                Pokemon Arcade
-                            </button>
-                        </div>
-                    </div>
+                    <div className='arcade-container'></div>
                 </div>
             </div>
         </MainLayout>
     );
 };
 
-export default FighterPage;
+export default GamesPage;

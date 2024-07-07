@@ -5,5 +5,6 @@ export type SignupFormType = {
     usernameInput: React.RefObject<HTMLInputElement>;
     emailInput: React.RefObject<HTMLInputElement>;
     passwordInput: React.RefObject<HTMLInputElement>;
+    confirmedPasswordInput: React.RefObject<HTMLInputElement>;
     givenUser?: User;
 };

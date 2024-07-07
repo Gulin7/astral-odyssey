@@ -32,6 +32,11 @@ app.use((req, res, next) => {
 	next()
 })
 
+// Check server on route
+app.use('/checkConnection', (req, res) => {
+	res.status(200).json('Server is running')
+})
+
 //routes
 app.use('/api/users', userRoutes)
 app.use('/api/players', playerRoutes)

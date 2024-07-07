@@ -45,11 +45,12 @@ const createCharacter = async (req, res) => {
 	let { name, charClass, race, playerId } = req.body
 
 	// fields properly
-	charClass = charClass.toLowerCase()
-	race = race.toLowerCase()
+	charClass = charClass.toLowerCase().trim()
+	race = race.toLowerCase().trim()
 
 	// add doc to db
-	const id = await getFirstFreeId()
+	// const id = await getFirstFreeId()
+
 	try {
 		const newCharacter = await Character.create({
 			name,
@@ -59,7 +60,15 @@ const createCharacter = async (req, res) => {
 			skinURL: getDefaultSkinUrl(charClass),
 			level: 1,
 		})
-		res.status(200).json(newCharacter)
+		res.status(200).json({
+			id: newCharacter._id,
+			name: newCharacter.name,
+			charClass: newCharacter.charClass,
+			race: newCharacter.race,
+			playerId: newCharacter.playerId,
+			skinURL: newCharacter.skinURL,
+			level: newCharacter.level,
+		})
 	} catch (error) {
 		res.status(400).json({ error: error.message })
 	}

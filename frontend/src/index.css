@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=New+Rocker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=New+Rocker&display=swap');
 
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 * {
     padding: 0;
     margin: 0;

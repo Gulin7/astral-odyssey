@@ -1,12 +1,12 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
-import { useContext, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {useContext, useEffect, useRef} from 'react';
+import {useNavigate} from 'react-router-dom';
 import Button from '../../components/Button/Button';
-import { PlayersContext } from '../../contexts/PlayersContext';
-import { PlayerForm } from '../../features/CRUD/PlayerForm/PlayerForm';
+import {PlayersContext} from '../../contexts/PlayersContext';
+import {PlayerForm} from '../../features/CRUD/PlayerForm/PlayerForm';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
-import { Player } from '../../models/Player';
+import {Player} from '../../models/Player';
 import './AddPlayerPage.css';
 
 function handleOnClick(
@@ -82,14 +82,6 @@ const AddPlayerPage = () => {
 
             console.log(inputFields);
             try {
-                playersContext.addPlayer(
-                    new Player(
-                        userId,
-                        inputFields.nickname,
-                        inputFields.pictureURL,
-                    ),
-                );
-
                 const URL = `http://localhost:5000/api/players/addPlayer`;
                 // const URL = `http://3.79.63.224:5000/api/players/addPlayer`;
 
@@ -105,14 +97,14 @@ const AddPlayerPage = () => {
                     data: postBody,
                 }).then((response) => {
                     console.log(response.data);
-                    // playersContext.addPlayer(
-                    //     new Player(
-                    //         response.data.id,
-                    //         response.data.userId,
-                    //         response.data.nickname,
-                    //         response.data.pictureURL,
-                    //     ),
-                    // );
+                    playersContext.addPlayer(
+                        new Player(
+                            response.data.id,
+                            response.data.userId,
+                            response.data.nickname,
+                            response.data.pictureURL,
+                        ),
+                    );
                 });
             } catch (error) {
                 console.log('Error in POST request');

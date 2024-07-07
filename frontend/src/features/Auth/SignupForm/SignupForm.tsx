@@ -10,7 +10,6 @@ function setSignupFormEntries(
     if (givenUser !== undefined) {
         formEntries[0].defaultValue = givenUser.getUsername();
         formEntries[1].defaultValue = givenUser.getEmail();
-        formEntries[2].defaultValue = givenUser.getPassword();
     }
 
     return formEntries;
@@ -36,6 +35,13 @@ function createFormEntries(props: any) {
             label: 'Password',
             ref: props.passwordInput,
             placeHolder: 'Enter password',
+            defaultValue: '',
+            disabled: false,
+        },
+        {
+            label: 'Confirm Password',
+            ref: props.confirmedPasswordInput,
+            placeHolder: 'Enter password again',
             defaultValue: '',
             disabled: false,
         },

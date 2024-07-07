@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {useContext, useRef} from 'react';
+import {useContext, useEffect, useRef} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import {UserContext} from '../../contexts/UserContext';
@@ -13,11 +13,18 @@ function handleOnClick(
     usernameInput: React.RefObject<HTMLInputElement>,
     emailInput: React.RefObject<HTMLInputElement>,
     passwordInput: React.RefObject<HTMLInputElement>,
-): {username: string; email: string; password: string} {
+    confirmedPasswordInput: React.RefObject<HTMLInputElement>,
+): {
+    username: string;
+    email: string;
+    password: string;
+    confirmedPassword: string;
+} {
     if (
         !usernameInput.current ||
         !emailInput.current ||
-        !passwordInput.current
+        !passwordInput.current ||
+        !confirmedPasswordInput.current
     ) {
         throw new Error('Null references');
     }
@@ -25,7 +32,8 @@ function handleOnClick(
     if (
         !usernameInput.current!.value ||
         !emailInput.current!.value ||
-        !passwordInput.current!.value
+        !passwordInput.current!.value ||
+        !confirmedPasswordInput.current!.value
     ) {
         throw new Error('All fields are required');
     }
@@ -33,11 +41,13 @@ function handleOnClick(
     const userUsername: string = usernameInput.current!.value;
     const userEmail: string = emailInput.current!.value;
     const userPassword: string = passwordInput.current!.value;
+    const confirmedPassword: string = confirmedPasswordInput.current!.value;
 
     const inputFields = {
         username: userUsername,
         email: userEmail,
         password: userPassword,
+        confirmedPassword: confirmedPassword,
         role: 3,
     };
 
@@ -50,13 +60,19 @@ const SignupPage = () => {
     const userContext = useContext(UserContext)!;
 
     const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn === 'yes') {
-        navigate('/');
-    }
+
+    // console.log(isLoggedIn);
+
+    useEffect(() => {
+        if (isLoggedIn === 'yes') {
+            navigate('/');
+        }
+    }, [navigate]);
 
     const usernameInput = useRef<HTMLInputElement>(null);
     const emailInput = useRef<HTMLInputElement>(null);
     const passwordInput = useRef<HTMLInputElement>(null);
+    const confirmedPasswordInput = useRef<HTMLInputElement>(null);
 
     const handleOnClickWrapper = () => {
         try {
@@ -64,6 +80,7 @@ const SignupPage = () => {
                 usernameInput,
                 emailInput,
                 passwordInput,
+                confirmedPasswordInput,
             );
             try {
                 const URL = 'http://localhost:5000/api/users/signup';
@@ -72,14 +89,17 @@ const SignupPage = () => {
                 axios.post(URL, inputFields).then((response) => {
                     // console.log(response.data);
                     const user = new User(
-                        response.data.user.id,
-                        response.data.user.username,
-                        response.data.user.email,
-                        'password',
-                        response.data.user.role,
+                        response.data._id,
+                        response.data.username,
+                        response.data.email,
+                        response.data.role,
                     );
                     userContext.setUser(user);
                     localStorage.setItem('isLoggedIn', 'yes');
+                    localStorage.setItem(
+                        'token',
+                        JSON.stringify(response.data.token),
+                    );
                 });
             } catch (error) {
                 console.error(error);
@@ -101,6 +121,7 @@ const SignupPage = () => {
                         usernameInput={usernameInput}
                         emailInput={emailInput}
                         passwordInput={passwordInput}
+                        confirmedPasswordInput={confirmedPasswordInput}
                     />
                     <div className='buttons'>
                         <Button

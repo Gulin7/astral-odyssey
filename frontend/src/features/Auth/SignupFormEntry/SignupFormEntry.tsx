@@ -1,6 +1,6 @@
-import {forwardRef} from 'react';
+import { forwardRef } from 'react';
 
-import {FormEntryProps} from '../../../utils/types/FormEntryProps.types';
+import { FormEntryProps } from '../../../utils/types/FormEntryProps.types';
 import './SignupFormEntry.css';
 
 export const SignupFormEntry = forwardRef<HTMLInputElement, FormEntryProps>(
@@ -13,7 +13,7 @@ export const SignupFormEntry = forwardRef<HTMLInputElement, FormEntryProps>(
                 <label className='signup-form-label' htmlFor={props.label}>
                     {props.label}
                 </label>
-                {props.label === 'Password' ? (
+                {props.label === 'Password' || props.label === 'Confirm Password' ? (
                     <input
                         className='signup-form-input'
                         type='password'

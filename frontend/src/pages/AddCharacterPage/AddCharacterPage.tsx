@@ -74,17 +74,6 @@ const AddCharacterPage = () => {
                 playerIdInput,
             );
 
-            charactersContext.addCharacter(
-                new Character(
-                    inputCharacter.name,
-                    inputCharacter.charClass,
-                    inputCharacter.race,
-                    inputCharacter.playerId,
-                    `${inputCharacter.charClass}-default.png`,
-                    1,
-                ),
-            );
-
             const URL = `http://localhost:5000/api/characters/addCharacter`;
             // const URL = `http://3.79.63.224:5000/api/characters/addCharacter`;
 
@@ -95,6 +84,17 @@ const AddCharacterPage = () => {
             }).then((response) => {
                 console.log('My characters are: ');
                 console.log(response.data);
+                charactersContext.addCharacter(
+                    new Character(
+                        response.data._id,
+                        response.data.name,
+                        response.data.charClass,
+                        response.data.race,
+                        response.data.playerId,
+                        response.data.playerId,
+                        response.data.level,
+                    ),
+                );
             });
             navigate('/characters');
         } catch (error) {

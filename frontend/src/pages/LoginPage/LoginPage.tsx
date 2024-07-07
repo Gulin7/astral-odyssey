@@ -66,16 +66,15 @@ const LoginPage = () => {
                 axios.post(URL, inputFields).then((response) => {
                     console.log(response.data);
                     const currentUser = new User(
-                        response.data.user.id,
-                        response.data.user.username,
-                        response.data.user.email,
-                        'password',
-                        response.data.user.role,
+                        response.data._id,
+                        response.data.username,
+                        response.data.email,
+                        response.data.role,
                     );
                     userContext.setUser(currentUser);
                     localStorage.setItem('isLoggedIn', 'yes');
                     localStorage.setItem(
-                        'userToken',
+                        'token',
                         JSON.stringify(response.data.token),
                     );
                     navigate('/');
@@ -99,6 +98,7 @@ const LoginPage = () => {
                         usernameInput={usernameInput}
                         passwordInput={passwordInput}
                     />
+
                     <div className='buttons'>
                         <Button
                             type='submit'

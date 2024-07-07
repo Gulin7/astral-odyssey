@@ -20,12 +20,14 @@ import AddCharacterPage from './pages/AddCharacterPage/AddCharacterPage';
 import AddPlayerPage from './pages/AddPlayerPage/AddPlayerPage';
 import ArmorPage from './pages/ArmorsPage/ArmorsPage';
 import CharactersPage from './pages/CharactersPage/CharactersPage';
+import ChatPage from './pages/ChatPage/ChatPage';
 import ClassesChartPage from './pages/ClassesChartPage/ClassesChartPage';
 import ClassesPage from './pages/ClassesPage/ClassesPage';
 import EditCharacterPage from './pages/EditCharacterPage/EditCharacterPage';
 import EditPlayerPage from './pages/EditPlayerPage/EditPlayerPage';
 import FighterPage from './pages/FighterPage/FighterPage';
 import GamesPage from './pages/GamesPage/GamesPage';
+import GuildsPage from './pages/GuildsPage/GuildsPage';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MagePage from './pages/MagePage/MagePage';
@@ -53,7 +55,7 @@ function App() {
     const [weapons, setWeapons] = useState<Weapon[]>([]);
     const [potions, setPotions] = useState<Potion[]>([]);
 
-    // Socket.io for adding players
+    // Socket.io for adding players automatically
     // useEffect(() => {
     //     //const URL = 'http://localhost:5000';
     //     const URL = 'http://3.79.63.224:5000';
@@ -391,6 +393,32 @@ function App() {
                                             element={
                                                 user ? (
                                                     <AddPlayerPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/guilds'
+                                            element={
+                                                user ? (
+                                                    <GuildsPage />
+                                                ) : (
+                                                    <Navigate
+                                                        to='/login'
+                                                        replace
+                                                    />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path='/chat'
+                                            element={
+                                                user ? (
+                                                    <ChatPage />
                                                 ) : (
                                                     <Navigate
                                                         to='/login'

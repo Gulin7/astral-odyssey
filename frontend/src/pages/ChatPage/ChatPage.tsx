@@ -1,5 +1,4 @@
-import axios from 'axios';
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import MainLayout from '../../layouts/mainLayout/MainLayout';
 
@@ -13,17 +12,17 @@ const ChatPage = () => {
         }
     });
 
-    const [chats, setChats] = useState([]);
+    // const [chats, setChats] = useState([]);
 
-    const fetchChats = async () => {
-        const {data} = await axios.get('/api/chats');
+    // const fetchChats = async () => {
+    //     const {data} = await axios.get('/api/chats');
 
-        setChats(data);
-    };
+    //     setChats(data);
+    // };
 
-    useEffect(() => {
-        fetchChats();
-    }, []);
+    // useEffect(() => {
+    //     fetchChats();
+    // }, []);
 
     return (
         <MainLayout>
@@ -36,9 +35,6 @@ const ChatPage = () => {
                     >
                         Here you can see all of your chats and messages.
                     </div>
-                    {chats.map((chat: Chat) => (
-                        <div>{chat.getChatName()}</div>
-                    ))}
                 </div>
             </div>
         </MainLayout>

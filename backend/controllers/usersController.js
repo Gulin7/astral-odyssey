@@ -6,6 +6,8 @@ const generateToken = require('../utils/generateToken')
 const loginUser = async (req, res) => {
 	const { username, password } = req.body
 
+	console.log('Logging in user: ', username)
+
 	try {
 		const existingUser = await User.login(username, password)
 
@@ -15,17 +17,22 @@ const loginUser = async (req, res) => {
 		res.status(200).json({
 			_id: existingUser._id,
 			username: existingUser.username,
+			email: existingUser.email,
+			role: existingUser.role,
 		})
 	} catch (error) {
-		res.status(400).json({ error: error.message })
+		res.status(400).json({ 'Error logging in': error.message })
 	}
 }
 
 //signup user
 const signupUser = async (req, res) => {
-	const { username, email, password, confirmPassword, role } = req.body
+	const { username, email, password, confirmedPassword, role } = req.body
 
-	if (password !== confirmPassword) {
+	console.log(password)
+	console.log(confirmedPassword)
+
+	if (password != confirmedPassword) {
 		return res.status(400).json({ error: 'Passwords do not match' })
 	}
 
@@ -40,6 +47,7 @@ const signupUser = async (req, res) => {
 			_id: user._id,
 			username: user.username,
 			email: user.email,
+			role: user.role,
 		})
 	} catch (error) {
 		res.status(400).json({ 'Error signing up': error })

@@ -8,6 +8,8 @@ const Navbar = () => {
     const navigate = useNavigate();
     const userContext = useContext(UserContext)!;
 
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'yes';
+
     function logout() {
         try {
             const URL = 'http://localhost:5000/api/users/logout';
@@ -25,6 +27,10 @@ const Navbar = () => {
             console.error(error);
         }
         navigate('/login');
+    }
+
+    if (!isLoggedIn) {
+        return null;
     }
 
     return (

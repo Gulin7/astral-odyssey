@@ -11,7 +11,6 @@ function setLoginFormEntries(
 ) {
     if (givenUser !== undefined) {
         formEntries[0].defaultValue = givenUser.getUsername();
-        formEntries[1].defaultValue = givenUser.getPassword();
     }
 
     return formEntries;

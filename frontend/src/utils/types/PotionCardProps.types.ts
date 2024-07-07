@@ -2,5 +2,5 @@ import Potion from '../../models/Potion';
 
 export type PotionCardPropsType = {
     givenPotion: Potion;
-    removePotion: (PotionId: number) => void;
+    removePotion: (PotionId: string) => void;
 };

@@ -6,7 +6,7 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: space-evenly;
-    gap: 4rem;
+    gap: 2rem;
 }
 
 .game-container {
@@ -33,6 +33,6 @@
     transition: all 0.7s ease;
 }
 
-.rps-game-image {
-    width: 283px;
+.game-container img {
+    width: 284px;
 }

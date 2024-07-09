@@ -29,6 +29,7 @@ import CharactersPage from './pages/CharactersPage/CharactersPage';
 import ChatPage from './pages/ChatPage/ChatPage';
 import ClassesChartPage from './pages/ClassesChartPage/ClassesChartPage';
 import ClassesPage from './pages/ClassesPage/ClassesPage';
+import CoinFlipPage from './pages/CoinFlipPage/CoinFlipPage';
 import EditCharacterPage from './pages/EditCharacterPage/EditCharacterPage';
 import EditPlayerPage from './pages/EditPlayerPage/EditPlayerPage';
 import FighterPage from './pages/FighterPage/FighterPage';
@@ -307,6 +308,10 @@ function App() {
                                         <Route
                                             path='/minesweeper'
                                             element={<MinesweeperPage />}
+                                        />
+                                        <Route
+                                            path='/coinflip'
+                                            element={<CoinFlipPage />}
                                         />
                                         <Route
                                             path='*'

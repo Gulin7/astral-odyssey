@@ -1,0 +1,12 @@
+.coin-img {
+    width: 16em;
+}
+
+@keyframes flip-coin {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}

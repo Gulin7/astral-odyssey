@@ -5,6 +5,8 @@ import './GamesPage.css';
 
 import twoZeroFourEightImage from '../../assets/games/2048.png';
 import hangmanImage from '../../assets/games/hangman.png';
+import rpsImage from '../../assets/games/rps.png';
+import ticTacToeImage from '../../assets/games/tictactoe.png';
 
 const GamesPage = () => {
     const navigate = useNavigate();
@@ -24,6 +26,14 @@ const GamesPage = () => {
 
     const navigateToTwoZeroFourEight = () => {
         navigate('/2048');
+    };
+
+    function navigateToTicTacToe() {
+        navigate('/tictactoe');
+    }
+
+    const navigateToRPS = () => {
+        navigate('/rps');
     };
 
     return (
@@ -49,6 +59,19 @@ const GamesPage = () => {
                             onClick={navigateToTwoZeroFourEight}
                         >
                             <img src={twoZeroFourEightImage} alt=''></img>
+                        </div>
+                        <div
+                            className='game-container'
+                            onClick={navigateToTicTacToe}
+                        >
+                            <img src={ticTacToeImage} alt=''></img>
+                        </div>
+                        <div className='game-container' onClick={navigateToRPS}>
+                            <img
+                                src={rpsImage}
+                                alt=''
+                                className='rps-game-image'
+                            ></img>
                         </div>
                     </div>
                 </div>

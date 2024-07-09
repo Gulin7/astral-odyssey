@@ -39,12 +39,14 @@ import HangmanPage from './pages/HangmanPage/HangmanPage';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MagePage from './pages/MagePage/MagePage';
+import MinesweeperPage from './pages/MinesweeperPage/MinesweeperPage';
 import MonsterPage from './pages/MonstersPage/MonsterPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import PlayersPage from './pages/PlayersPage/PlayersPage';
 import PotionPage from './pages/PotionsPage/PotionsPage';
 import RacesPage from './pages/RacesPage/RacesPage';
 import RangerPage from './pages/RangerPage/RangerPage';
+import RockPaperScissorsPage from './pages/RockPaperScissorsPage/RockPaperScissorsPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 import TicTacToePage from './pages/TicTacToePage/TicTacToePage';
 import TwoZeroFourEightPage from './pages/TwoZeroFourEightPage/TwoZeroFourEightPage';
@@ -297,6 +299,14 @@ function App() {
                                         <Route
                                             path='/tictactoe'
                                             element={<TicTacToePage />}
+                                        />
+                                        <Route
+                                            path='/rps'
+                                            element={<RockPaperScissorsPage />}
+                                        />
+                                        <Route
+                                            path='/minesweeper'
+                                            element={<MinesweeperPage />}
                                         />
                                         <Route
                                             path='*'

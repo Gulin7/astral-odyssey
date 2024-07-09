@@ -1,0 +1,136 @@
+.rps-game {
+    margin-top: 20px;
+}
+
+.rps-target-score {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.rps-circle-arrows {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.rps-circle-arrow {
+    text-align: center;
+    position: relative;
+    margin: 10px;
+}
+
+.rps-circle-arrow img {
+    width: 100px;
+    height: 100px;
+}
+
+.arrow-up-left {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 30px solid #333;
+    transform: rotate(45deg);
+}
+
+.arrow-down-right {
+    position: absolute;
+    top: -10px;
+    right: -30px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 30px solid #333;
+    transform: rotate(145deg);
+}
+
+.arrow-left {
+    position: absolute;
+    bottom: 35px;
+    left: -75px;
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-right: 30px solid #333;
+}
+
+.rps-scoreboard {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    text-align: center; /* Centering scoreboard text */
+}
+
+.rps-round-winner {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+    text-align: center; /* Centering round winner text */
+}
+
+.rps-game-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the top */
+    margin-bottom: 20px;
+    gap: 63px;
+}
+
+.rps-player,
+.rps-computer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.rps-choices {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rps-choices button {
+    margin: 5px;
+}
+
+.rps-game-container img {
+    width: 150px;
+    height: 150px;
+}
+
+.rps-scissors-image {
+    margin-top: 64px; /* Adjusting position of scissors image */
+    margin-right: 16px;
+}
+
+.rps-rock-image {
+    margin-top: 90px; /* Adjusting position of rock image */
+    margin-left: 16px;
+}
+
+.rps-paper-image {
+    margin-top: -64px; /* Adjusting position of paper image */
+}
+
+.rps-game-over {
+    font-size: 1.5em;
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.rps-game-over button {
+    display: block;
+    margin: 20px auto; /* Centering play again button */
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

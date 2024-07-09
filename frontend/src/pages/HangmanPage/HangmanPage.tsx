@@ -127,7 +127,7 @@ const HangmanPage = () => {
                                             Countries
                                         </option>
                                         <option value='animals'>Animals</option>
-                                        <option value='fruit'>Fruits</option>
+                                        <option value='fruits'>Fruits</option>
                                         <option value='vegetables'>
                                             Vegetables
                                         </option>

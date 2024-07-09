@@ -45,6 +45,7 @@ import PotionPage from './pages/PotionsPage/PotionsPage';
 import RacesPage from './pages/RacesPage/RacesPage';
 import RangerPage from './pages/RangerPage/RangerPage';
 import SignupPage from './pages/SignupPage/SignupPage';
+import TwoZeroFourEightPage from './pages/TwoZeroFourEightPage/TwoZeroFourEightPage';
 import WarriorPage from './pages/WarriorPage/WarriorPage';
 import WeaponPage from './pages/WeaponsPage/WeaponsPage';
 
@@ -282,6 +283,10 @@ function App() {
                                         <Route
                                             path='/areas'
                                             element={<AreasPage />}
+                                        />
+                                        <Route
+                                            path='/2048'
+                                            element={<TwoZeroFourEightPage />}
                                         />
                                         <Route
                                             path='*'

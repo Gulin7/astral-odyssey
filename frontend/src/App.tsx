@@ -35,6 +35,7 @@ import FighterPage from './pages/FighterPage/FighterPage';
 import GamesPage from './pages/GamesPage/GamesPage';
 import GuildChat from './pages/GuildChat/GuildChat';
 import GuildsPage from './pages/GuildsPage/GuildsPage';
+import HangmanPage from './pages/HangmanPage/HangmanPage';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MagePage from './pages/MagePage/MagePage';
@@ -45,6 +46,7 @@ import PotionPage from './pages/PotionsPage/PotionsPage';
 import RacesPage from './pages/RacesPage/RacesPage';
 import RangerPage from './pages/RangerPage/RangerPage';
 import SignupPage from './pages/SignupPage/SignupPage';
+import TicTacToePage from './pages/TicTacToePage/TicTacToePage';
 import TwoZeroFourEightPage from './pages/TwoZeroFourEightPage/TwoZeroFourEightPage';
 import WarriorPage from './pages/WarriorPage/WarriorPage';
 import WeaponPage from './pages/WeaponsPage/WeaponsPage';
@@ -287,6 +289,14 @@ function App() {
                                         <Route
                                             path='/2048'
                                             element={<TwoZeroFourEightPage />}
+                                        />
+                                        <Route
+                                            path='/hangman'
+                                            element={<HangmanPage />}
+                                        />
+                                        <Route
+                                            path='/tictactoe'
+                                            element={<TicTacToePage />}
                                         />
                                         <Route
                                             path='*'

@@ -1,6 +1,7 @@
 # Astral Odyssey
  
 Astral Odyssey is a web-app built using the MERN stack, which allows for RPG management.
+Deployed using AWS.
 
 # Features
 <div> Features implemented:

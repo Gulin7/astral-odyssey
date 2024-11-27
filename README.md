@@ -16,6 +16,7 @@ Deployed using AWS.
 Implemented a few classic games:
 <ul>
  <li> Coin flip </li>
+ <li> Hangman </li>
  <li> Minesweeper </li>
  <li> 2048 </li>
  <li> Rock, paper, scissors </li>
